@@ -269,6 +269,25 @@ function encu(textu) {
                 
             }
 
+function decu(juy,oik) {
+                var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+                var gbu = juy;
+                var kiu = oik;
+                var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
+
+                // The counter mode of operation maintains internal state, so to
+                // decrypt a new instance must be instantiated.
+                var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
+                var decryptedBytese = aesCtre.decrypt(encryptedBytese);
+
+                // Convert our bytes back into text
+                var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
+                console.log(decryptedTexte);
+                return decryptedTexte;
+                
+            }
+
+  
 document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
 ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
@@ -327,6 +346,8 @@ if(!(url_n === '1')) {
 }
 else {
   noteid = url_id
+  $('.note_title').text(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1]));
+  $('.note_text').html(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1]))
 }
 document.addEventListener("paste", function (e){
     save();
