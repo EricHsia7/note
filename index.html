@@ -260,10 +260,6 @@ var color_h = 198 ;
 $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
 
 
-
-
-
-
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
@@ -281,4 +277,14 @@ else {
 }); 
 }
   });
+if(!(url_n === '1')) {
+  var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var noteid = "";
+            for (var i = 0; i < 16; i++) {
+                var idrandomNumber = Math.floor(Math.random() * idchars.length);
+                noteid += idchars.substring(idrandomNumber, idrandomNumber + 1);
+            }
+  history.pushState(null, null,'https://erichsia7.github.io/note/?n=1&id=' + noteid)
+}
+
 </script>
