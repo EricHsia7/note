@@ -76,6 +76,10 @@
 </div>
 <script>
 
+var getUrlString = location.href;
+var url = new URL(getUrlString);
+var url_s = url.searchParams.get('s');
+
 function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
