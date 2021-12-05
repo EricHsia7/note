@@ -53,6 +53,8 @@
   height:55px;
   background:var(--color-light);
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
 }
 .bar_btn {
   position:relative;
@@ -93,6 +95,51 @@ var url = new URL(getUrlString);
 var url_n = url.searchParams.get('n');
 var url_id = url.searchParams.get('id');
 var url_new = url.searchParams.get('new')
+
+function genid(mode) {
+if(mode === "random"){
+var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var genid = "";
+            for (var i = 0; i < 16; i++) {
+                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+            }
+  return genid ;
+}
+          
+ if(mode === "time"){
+   var gtoday=new Date();
+   var genid2 = (gtoday.getMonth()+1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8));
+   
+   return genid2
+ }
+  
+  if(mode === "number"){
+   
+   var genid3 = '' ;
+for (var i = 0; i < 16; i++) {
+  genid3 += '' + (0+Math.floor(Math.random() * 9))
+}
+   return genid3
+ }
+  
+  if(mode === "uuid"){
+var genidchars4 = "abcdef012345678";
+    var geniduu = [8,4,4,4,12];
+            var genid4 = "";
+            var genid5 = "";
+    for (var ia = 0; ia < geniduu.length; ia++) {
+      var genid4 = "";
+            for (var i = 0; i < geniduu[ia]; i++) {
+                var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
+                genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
+            }
+genid5 += '-' + genid4 ;
+    }
+    return genid5.substring(1,genid5.length)
+  }
+
+}
 function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
@@ -304,7 +351,7 @@ document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
 ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
 $('.bar_btn[f="back"]').click(function() {
-  location.href = 'https://erichsia7.github.io/note/' ;
+  location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
 
 function getcolorset(main_color_h) {
