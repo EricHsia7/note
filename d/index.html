@@ -338,7 +338,7 @@ if(!(url_n === '1')) {
                 var idrandomNumber = Math.floor(Math.random() * idchars.length);
                 noteid += idchars.substring(idrandomNumber, idrandomNumber + 1);
             }
-  history.pushState(null, null,'https://erichsia7.github.io/note/?n=1&id=' + noteid);
+  history.pushState(null, null,'https://erichsia7.github.io/note/d/?n=1&id=' + noteid);
   localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
   var encdtit = encu($('.note_title').text()) ;
   var enctxt = encu($('.note_text').html()) ;
