@@ -643,6 +643,6 @@ previewcolorset(Math.round(px2/bar_width*359))
 $('#colorhinp').val(color_h)
 previewcolorset(color_h)
  
-$('.themebarradio').css({'left':((color_h/359*bar_width)-10),'background':'rgb(' + hsv2rgb(color_h,100,100).join(',') + ')'})
+$('.themebarradio').css({'left':((color_h/359*$('.themebar').width())-10),'background':'rgb(' + hsv2rgb(color_h,100,100).join(',') + ')'})
 
 </script>
