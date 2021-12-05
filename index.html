@@ -4,7 +4,6 @@
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
 <link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="manifest" href="manifest.json?l">
@@ -83,6 +82,7 @@ align-items: center;
 <div class="allnote"></div>
 <div class="addnote">+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
+<script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
 <script>
   function genid(mode) {
 if(mode === "random"){
@@ -383,7 +383,11 @@ for (var i = 0; i < listarr.length; i++) {
      var thsdec = textlengthdd(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]),16)
      var thstxdec = textlengthdd(decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]),25)
      var thscoh = parseInt(ffdata.split(',')[2]) ;
-     $('.allnote').prepend('<a href="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div></a>')
+     $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
+     $('.note_c[nid="' + listarr[i] + '"]').click(function() {
+      location.href = $(this).attr('link')
+     });
+    ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',555,'false');
    }
 }
 
