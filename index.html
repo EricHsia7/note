@@ -238,7 +238,10 @@ function getcolorset(main_color_h) {
 }
 function textlengthdd(txt,len) {
   if(txt.length > len) {
-    txt = txt.substring(0, len) + '...';
+    return txt = txt.substring(0, len) + '...';
+  }
+  else {
+    return txt
   }
 }
 function encu(textu) {
