@@ -308,7 +308,20 @@ function decu(juy,oik) {
                 return decryptedTexte;
                 
             }
-
+function setthemecol(hexcolsjs,delaytimems) {
+  setTimeout(function() {
+  $('meta[name="theme-color"]').attr('content',hexcolsjs);
+  },delaytimems);
+}
+function darkmodehexcol() {
+if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  return '#1a1a1a'
+}
+else {
+return '#fff'
+}
+}
+  setthemecol(darkmodehexcol())
 $('.addnote').click(function() {
   location.href = 'https://erichsia7.github.io/note/d/?new=1&t' ;
 })
