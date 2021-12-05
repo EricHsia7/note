@@ -283,22 +283,18 @@ function decu(juy,oik) {
             }
 
 
-var list = 'null,kp0rs9ork8sjb51b,dpgfqucmp5ssu0u5,v8x2an1dxfki8my2,sjeyyvn1kqvqjldn,xasajqzkw8s8jszx' ;
+var list = localStorage.getItem('note_id_list') ;
 var listarr = list.split(',') ;
-
-var ffdata = '64d036671274cf11a0:656162,7dcdaeaf5d00479af6:584256,192' ;
 
 for (var i = 0; i < listarr.length; i++) {
    if(!(listarr[i] === 'null')) {
+     var ffdata = localStorage.getItem('note_id_' + listarr[i])
      var thsdec = decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])
      var thstxdec = decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1])
      var thscoh = parseInt(ffdata.split(',')[2]) ;
      $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>')
    }
 }
-
-
-
 
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
