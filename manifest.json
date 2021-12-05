@@ -1,6 +1,6 @@
 {
-  "name": "note",
-  "short_name": "note",
+  "name": "Note",
+  "short_name": "Note",
   "icons": [
     {
     "src": "pwaicon/48x48.png",
