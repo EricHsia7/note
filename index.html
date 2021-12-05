@@ -382,7 +382,6 @@ for (var i = 0; i < listarr.length; i++) {
     
     var thedwdhid = genid('random')
      $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]) + '</span>')
-     $('span#' + thedwdhid).text()
      var thstxdec = textlengthdd($('span#' + thedwdhid).text(),25)
      $('span#' + thedwdhid).remove()
      var ffdata = localStorage.getItem('note_id_' + listarr[i])
