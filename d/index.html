@@ -78,7 +78,7 @@ outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
  width:100%;
  height:100%;
  background:var(--color-grey);
- opacity:0;
+ opacity:0.6;
  display:none;
  }
 .themebox {
@@ -92,6 +92,7 @@ outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
   border-radius:15px;
   opacity:0;
   display:none;
+  transition:0.3s;
 }
 .themebox input {
   width:calc(100% - 40px);
@@ -476,7 +477,22 @@ ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
 $('.bar_btn[f="back"]').click(function() {
   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
-
+$('.bar_btn[f="theme"]').click(function() {
+  $('.themebox').css({'display':'block'});
+  $('.themeboxbg').css({'display':'block'});
+  setTimeout(function() {
+    $('.themeboxbg').css({'opacity':'1'});
+    $('.themebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
+  },1);
+});
+ $('.themebtn[f="cancel"]').click(function() {
+ $('.themeboxbg').css({'opacity':'0'});
+ $('.themebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
+  setTimeout(function() {
+$('.themeboxbg').css({'display':'none'});
+  $('.themebox').css({'display':'none'});
+  },300);
+ });
 function getcolorset(main_color_h) {
   var liga = hsv2rgb(main_color_h,18,100)
   var light_color = rgbToHex(Math.round(liga[0]),Math.round(liga[1]),Math.round(liga[2])) ;
@@ -620,5 +636,6 @@ previewcolorset(Math.round(px2/bar_width*359))
 }
 $('#colorhinp').val(0)
 previewcolorset(0)
+
 
 </script>
