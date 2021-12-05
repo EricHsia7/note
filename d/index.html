@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<style id="color_set"></style>
 <style>
+  body {
+    background:var(--color-light)
+  }
   .note {
   background:var(--color-light);
   position:fixed;
@@ -61,9 +65,12 @@
     background:var(--color-dark);
     color:#fff;
   }
+  body {
+    background:var(--color-dark)
+  }
 }
 </style>
-<style id="color_set"></style>
+
 <div class="note">
   <div class="note_title">Untitled Note</div>
   <div class="note_line"></div>
