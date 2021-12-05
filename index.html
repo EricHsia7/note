@@ -379,9 +379,17 @@ var listarr = list.split(',') ;
 
 for (var i = 0; i < listarr.length; i++) {
    if(!(listarr[i] === 'null')) {
+    
+    var thedwdhid = genid('random')
+     $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]) + '</span>')
+     $('span#' + thedwdhid).text()
+     var thstxdec = textlengthdd($('span#' + thedwdhid).text(),25)
+     $('span#' + thedwdhid).remove()
      var ffdata = localStorage.getItem('note_id_' + listarr[i])
      var thsdec = textlengthdd(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]),16)
-     var thstxdec = textlengthdd(decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]),25)
+     
+     
+     
      var thscoh = parseInt(ffdata.split(',')[2]) ;
      $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
      $('.note_c[nid="' + listarr[i] + '"]').click(function() {
