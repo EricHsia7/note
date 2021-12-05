@@ -292,7 +292,7 @@ for (var i = 0; i < listarr.length; i++) {
      var thsdec = decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])
      var thstxdec = decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1])
      var thscoh = parseInt(ffdata.split(',')[2]) ;
-     $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>')
+     $('.allnote').prepend('<a href="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '"><div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div></a>')
    }
 }
 
