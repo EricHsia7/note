@@ -386,10 +386,10 @@ for (var i = 0; i < listarr.length; i++) {
      var ffdata = localStorage.getItem('note_id_' + listarr[i])
      var thsdec = textlengthdd(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]),16)
      
-     var thedwdhid = genid('random')
+     var thedwdhid = genid('uuid')
      $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]) + '</span>')
      var thstxdec = textlengthdd($('span#' + thedwdhid).text(),25)
-     $('#' + thedwdhid).remove()
+     $('span#' + thedwdhid).remove()
      
      
      var thscoh = parseInt(ffdata.split(',')[2]) ;
