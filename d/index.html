@@ -540,7 +540,7 @@ function decu(juy,oik) {
 document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
 ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
-ripple('.themebtn','var(--color-ftf)','0.4',800,'true');
+ripple('.themebtn,.deletebtn','var(--color-ftf)','0.4',800,'true');
 $('.bar_btn[f="back"]').click(function() {
   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
@@ -645,11 +645,14 @@ document.addEventListener("cut", function (e){
 document.addEventListener("selectionchange", function (e){
     save();
   });
+ var deleteee = '0' ;
 function save() {
+ if(deleteee === '0') {
  $('.note_text *').removeAttr('style')
   var encdtit = encu($('.note_title').text()) ;
   var enctxt = encu($('.note_text').html()) ;
   localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h)
+ }
 }
 
 function previewcolorset(colorh) {
@@ -723,6 +726,17 @@ $('.themeboxbg').css({'display':'none'});
   $('.themebox').css({'display':'none'});
   },300);
  });
+ 
+ $('.deletebtn[f="confirmdel"]').click(function() {
+  deleteee = '1'
+  localStorage.removeItem('note_id_' + noteid)
+  localStorage.setItem('note_id_list',localStorage.getItem('note_id_list').replaceAll(',' + noteid,''))
+  setTimeout(function() {
+   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
+  },100);
+ });
+ 
+ 
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
