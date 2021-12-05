@@ -172,7 +172,7 @@ align-items: center;
   left:20px;
   border-radius:15px;
 }
-.themebtn[f="set"] {
+.themebtn[f="change"] {
   left:calc(20px + 50% - 25px + 10px);
   border-radius:15px;
 }
@@ -635,6 +635,12 @@ $('.themebarradio').css({'left':((color_h/359*$('.themebar').width())-10),'backg
   color_h = parseInt($('#colorhinp').val())
   save();
   $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+  $('.themeboxbg').css({'opacity':'0'});
+ $('.themebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
+  setTimeout(function() {
+$('.themeboxbg').css({'display':'none'});
+  $('.themebox').css({'display':'none'});
+  },300);
  });
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
