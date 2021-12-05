@@ -635,6 +635,7 @@ $('.themebarradio').css({'left':((color_h/359*$('.themebar').width())-10),'backg
   color_h = parseInt($('#colorhinp').val())
   save();
   $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+  setthemecol(darkmodehexcol())
   $('.themeboxbg').css({'opacity':'0'});
  $('.themebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
   setTimeout(function() {
