@@ -200,7 +200,9 @@ align-items: center;
   justify-content: center;
   align-items: center;
   font-size:21px;
-  color:var(--color-ftf)
+  color:var(--color-ftf);
+  font-weight:500;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .deletebtn {
   position:absolute;
@@ -213,7 +215,8 @@ align-items: center;
 display: flex;
 justify-content: center;
 align-items: center;
-  color:#fff
+  color:#fff;
+ font-family: 'Noto Sans TC', sans-serif;
 }
 .deletebtn[f="canceldel"] {
   left:20px;
@@ -224,7 +227,7 @@ align-items: center;
   border-radius:15px;
 }
 @media (prefers-color-scheme: dark) {
-  .note,.bar,.themebox {
+  .note,.bar,.themebox,.deletebox {
     background:var(--color-dark);
     color:#fff;
   }
@@ -233,6 +236,9 @@ align-items: center;
   }
   .themebox input {
    color:#fff;
+ }
+ .delete_txt {
+  color:#fff;
  }
 }
 </style>
