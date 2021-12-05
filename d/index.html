@@ -480,6 +480,7 @@ function decu(juy,oik) {
 document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
 ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
+ripple('.themebtn','var(--color-ftf)','0.4',800,'true');
 $('.bar_btn[f="back"]').click(function() {
   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
@@ -630,7 +631,11 @@ $('.themebarradio').css({'left':((color_h/359*$('.themebar').width())-10),'backg
     $('.themebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
   },1);
 });
- 
+ $('.themebtn[f="change"]').click(function() {
+  color_h = parseInt($('#colorhinp').val())
+  save();
+  $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+ });
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
