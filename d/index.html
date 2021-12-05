@@ -5,62 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
-
 <style>
-body {
-  background:#fff;
-}
-.note_c {
-  width:100%;
-  height:80px;
+  .note {
   background:var(--color-light);
-  border: 1px solid var(--color-grey);
-  border-radius:15px;
-  margin-top:10px;
-  position:relative;
-  font-family: 'Noto Sans TC', sans-serif;
-}
-.note_c h2 {
-  position:absolute;
-  top:5px;
-  left:8px;
-  margin:0px;
-  padding:0px;
+  position:fixed;
+  top:55px;
+  left:0px;
+  width:100%;
+  height:calc(100% - 55px);
   color:var(--color-ftf);
-  width:calc(100% - 16px);
-  height:35px;
-  line-height:35px;
-  font-size:24px;
+  font-weight:400;
+  font-family: 'Noto Sans TC', sans-serif;
+  overflow:scroll;
 }
-.note_c_t {
-  position:absolute;
-  top:40px;
-  left:8px;
-  width:calc(100% - 16px);
-  height:35px;
-  line-height:15px;
-  font-size:15px;
-  color:var(--color-grey)
+.note_title {
+  padding:10px 20px;
+  font-weight:700;
+  font-size:20px;
+  width:calc(100% - 40px);
+  -webkit-appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+.note_line {
+  background:var(--color-grey);
+  width:calc(100% - 40px);
+  height:1px;
+  margin-left:20px;
+}
+.note_text {
+  width:calc(100% - 40px);
+  min-height:100%;
+  padding:0px 20px;
+  -webkit-appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.bar {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:55px;
+  background:var(--color-light);
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+}
+.bar_btn {
+  position:relative;
+  height:100%;
+  width:60px;
+  float:left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight:700;
+} 
 @media (prefers-color-scheme: dark) {
-  body {
-    background:#1a1a1a;
+  .note,.bar {
+    background:var(--color-dark);
+    color:#fff;
   }
-  .note_c {
-  background:var(--color-dark);
-  border: 1px solid var(--color-grey);
-}
-.note_c h2 {
-  color:#fff;
-  }
-.note_c_t {
-  color:#e3e3e3
-}
 }
 </style>
-<div class="allnote"></div>
+<style id="color_set"></style>
+<div class="note">
+  <div class="note_title">Untitled Note</div>
+  <div class="note_line"></div>
+  <div class="note_text"></div>
+</div>
+<div class="bar">
+  <div class="bar_btn">返回</div>
+  <div class="bar_btn">主題</div>
+  <div class="bar_btn">分享</div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
+
+var getUrlString = location.href;
+var url = new URL(getUrlString);
+var url_n = url.searchParams.get('n');
+var url_id = url.searchParams.get('id');
 function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
@@ -221,21 +241,6 @@ function rgbtohsl(r,g,b){
   }
 }
 
-
-function getcolorset(main_color_h) {
-  var liga = hsv2rgb(main_color_h,18,100)
-  var light_color = rgbToHex(Math.round(liga[0]),Math.round(liga[1]),Math.round(liga[2])) ;
-  var darka = hsv2rgb(main_color_h,55,16)
-  var dark_color = rgbToHex(Math.round(darka[0]),Math.round(darka[1]),Math.round(darka[2])) ;
-  
-  var grea = hsv2rgb(main_color_h,30,50)
-  var grey_color = rgbToHex(Math.round(grea[0]),Math.round(grea[1]),Math.round(grea[2])) ;
-  
-  var ftf = hsv2rgb(main_color_h,80,20)
-  var ftf_color = rgbToHex(Math.round(ftf[0]),Math.round(ftf[1]),Math.round(ftf[2])) ;
-  
-  return {'light':light_color,'dark':dark_color,'grey':grey_color,'ftf':ftf_color,'arr':[light_color,dark_color,grey_color,ftf_color]}
-}
 function encu(textu) {
  var ivqu = parseInt(
                     Math.floor(Math.random() * 8 + 1) +
@@ -282,19 +287,29 @@ function decu(juy,oik) {
                 
             }
 
+  
+document.querySelector('.note_title').contentEditable = true ;
+document.querySelector('.note_text').contentEditable = true ;
+ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
 
-var list = localStorage.getItem('note_id_list') ;
-var listarr = list.split(',') ;
 
-for (var i = 0; i < listarr.length; i++) {
-   if(!(listarr[i] === 'null')) {
-     var ffdata = localStorage.getItem('note_id_' + listarr[i])
-     var thsdec = decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])
-     var thstxdec = decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1])
-     var thscoh = parseInt(ffdata.split(',')[2]) ;
-     $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>')
-   }
+function getcolorset(main_color_h) {
+  var liga = hsv2rgb(main_color_h,18,100)
+  var light_color = rgbToHex(Math.round(liga[0]),Math.round(liga[1]),Math.round(liga[2])) ;
+  var darka = hsv2rgb(main_color_h,55,16)
+  var dark_color = rgbToHex(Math.round(darka[0]),Math.round(darka[1]),Math.round(darka[2])) ;
+  
+  var grea = hsv2rgb(main_color_h,30,50)
+  var grey_color = rgbToHex(Math.round(grea[0]),Math.round(grea[1]),Math.round(grea[2])) ;
+  
+  var ftf = hsv2rgb(main_color_h,80,20)
+  var ftf_color = rgbToHex(Math.round(ftf[0]),Math.round(ftf[1]),Math.round(ftf[2])) ;
+  
+  return {'light':light_color,'dark':dark_color,'grey':grey_color,'ftf':ftf_color,'arr':[light_color,dark_color,grey_color,ftf_color]}
 }
+
+//var color_h = 198 ;
+
 
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
@@ -313,4 +328,46 @@ else {
 }); 
 }
   });
+  
+  
+  var noteid
+if(!(url_n === '1')) {
+  var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            noteid = "";
+            for (var i = 0; i < 16; i++) {
+                var idrandomNumber = Math.floor(Math.random() * idchars.length);
+                noteid += idchars.substring(idrandomNumber, idrandomNumber + 1);
+            }
+  history.pushState(null, null,'https://erichsia7.github.io/note/?n=1&id=' + noteid);
+  localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
+  var encdtit = encu($('.note_title').text()) ;
+  var enctxt = encu($('.note_text').html()) ;
+  var color_h = Math.round(Math.random()*360)
+
+  localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h);
+}
+else {
+  noteid = url_id
+  var color_h = parseInt(localStorage.getItem('note_id_' + noteid).split(',')[2])
+  $('.note_title').text(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1]));
+  $('.note_text').html(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1]))
+}
+ $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+
+document.addEventListener("paste", function (e){
+    save();
+  });
+document.addEventListener("cut", function (e){
+    save();
+  });
+document.addEventListener("selectionchange", function (e){
+    save();
+  });
+function save() {
+  var encdtit = encu($('.note_title').text()) ;
+  var enctxt = encu($('.note_text').html()) ;
+  localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h)
+}
+
+
 </script>
