@@ -640,8 +640,9 @@ function m2(e) {
 previewcolorset(Math.round(px2/bar_width*359))
   $('.themebarradio').css({'left':(px2-10),'background':'rgb(' + hsv2rgb(Math.round(px2/bar_width*359),100,100).join(',') + ')'})
 }
-$('#colorhinp').val(0)
-previewcolorset(0)
-
+$('#colorhinp').val(color_h)
+previewcolorset(color_h)
+ 
+$('.themebarradio').css({'left':((color_h/359*bar_width)-10),'background':'rgb(' + hsv2rgb(color_h,100,100).join(',') + ')'})
 
 </script>
