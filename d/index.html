@@ -70,7 +70,98 @@ outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
   justify-content: center;
   align-items: center;
   font-weight:700;
-} 
+}
+
+.themebox {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:clamp(280px,80vw,400px);
+  height:calc((clamp(0px,100vw,350px) - 40px) / 4 + 20px + 10px + 40px + 15px + 5px + 7.5px + 5px + 20px + 45px);
+  background:var(--color-light);
+  border-radius:15px;
+}
+.themebox input {
+  width:calc(100% - 40px);
+  height:40px;
+  position:absolute;
+  top:calc((clamp(0px,100vw,350px) - 40px) / 4 + 20px + 10px);
+  left:50%;
+  padding:0px;
+  margin:0px;
+  border-radius:15px;
+  max-width:350px;
+  transform:translateX(-50%);
+  text-align: center;
+  font-size:18px;
+  border: 1px solid var(--color-grey);
+  background:rgba(0, 0, 0, 0);
+  color:var(--color-ftf)
+}
+.themebar {
+  position:absolute;
+  width:calc(100% - 40px);
+  height:5px;
+  background: linear-gradient(90deg,rgba(255, 0, 0,1),rgba(255, 255, 0, 1), rgba(0, 255, 0, 1), rgba(0, 255, 255, 1), rgba(0, 0, 255, 1), rgba(255, 0, 255, 1), rgba(255, 0, 0, 1));
+  position:absolute;
+  top:calc((clamp(0px,100vw,350px) - 40px) / 4 + 20px + 10px + 40px + 10px + 5px);
+  left:50%;
+  border-radius:15px;
+  max-width:350px;
+  transform:translateX(-50%);
+}
+.themebarradio {
+  position:absolute;
+  top:50%;
+  left:-10px;
+  width:20px;
+  height:20px;
+  background:#ff0000;
+  border-radius:99em;
+  transform:translateY(-50%);
+  border: 1.5px solid #fff;
+  box-sizing: border-box;
+}
+.themeset {
+  width:calc(100% - 40px);
+  max-width:350px;
+  height:calc((clamp(0px,100vw,350px) - 40px) / 4);
+  background:#fff;
+  position:absolute;
+  top:20px;
+  left:50%;
+  border-radius:15px;
+  overflow:hidden;
+  transform:translateX(-50%);
+}
+.themeset .col {
+  width:25%;
+  float:left;
+  height:100%;
+}
+.themebtn {
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  width:calc(50% - 20px - 5px);
+  height:40px;
+  background:var(--color-grey);
+  
+display: flex;
+justify-content: center;
+align-items: center;
+  color:#fff
+}
+.themebtn[f="cancel"] {
+  left:20px;
+  border-radius:15px;
+}
+.themebtn[f="set"] {
+  left:calc(20px + 50% - 25px + 10px);
+  border-radius:15px;
+}
+ 
 @media (prefers-color-scheme: dark) {
   .note,.bar {
     background:var(--color-dark);
@@ -92,6 +183,22 @@ outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
   <div class="bar_btn">Theme</div>
   <div class="bar_btn">Share</div>
 </div>
+
+<div class="themebox">
+  <div class="themeset">
+    <div class="col" id="lig"></div>
+    <div class="col" id="gre"></div>
+    <div class="col" id="ft"></div>
+    <div class="col" id="dar"></div>  
+  </div>
+  <input type="text" id="colorhinp">
+  <div class="themebar">
+    <div class="themebarradio"></div>
+  </div>
+  <div class="themebtn" f="cancel">Cancel</div>
+  <div class="themebtn" f="set">Change</div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
 
@@ -454,5 +561,53 @@ function save() {
   localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h)
 }
 
+function previewcolorset(colorh) {
+  $('#lig').css({'background':getcolorset(colorh).light})
+  $('#dar').css({'background':getcolorset(colorh).dark})
+  $('#gre').css({'background':getcolorset(colorh).grey})
+  $('#ft').css({'background':getcolorset(colorh).ftf})
+}
+
+let mouseX = 0
+let mouseY = 0
+let offsetX = 0
+let offsetY = 0
+let isDown = false
+var div2 = document.querySelector(".themebar");
+var hsv_a = 0 ;
+var px = 0 ;
+var py = $('.box').height() ;
+
+div2.addEventListener('touchstart', function(e) {
+  isDown = true
+  mouseX = e.pageX
+  mouseY = e.pageY
+  document.addEventListener('touchmove', m2)
+}, {passive: true});
+
+document.addEventListener('touchend', function(e) {
+  if (isDown) {
+    offsetX += e.pageX - mouseX
+    offsetY += e.pageY - mouseY
+  }
+  isDown = false
+  document.removeEventListener('touchmove',m2)
+  
+});
+function m2(e) {
+  var bar_width = $('.themebar').width()
+  var px2 = (e.pageX-$('.themebar').offset().left-$(window).scrollLeft()) ;
+  if(e.pageX > ($('.themebar').offset().left-$(window).scrollLeft()+bar_width)) {
+    px2 = bar_width;
+  }
+  if(e.pageX < ($('.themebar').offset().left-$(window).scrollLeft())) {
+    px2 = 0;
+  }
+  $('#colorhinp').val(Math.round(px2/bar_width*359))
+previewcolorset(Math.round(px2/bar_width*359))
+  $('.themebarradio').css({'left':(px2-10),'background':'rgb(' + hsv2rgb(Math.round(px2/bar_width*359),100,100).join(',') + ')'})
+}
+$('#colorhinp').val(0)
+previewcolorset(0)
 
 </script>
