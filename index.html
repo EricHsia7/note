@@ -387,7 +387,7 @@ for (var i = 0; i < listarr.length; i++) {
      var thsdec = textlengthdd(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]),16)
      
      var thedwdhid = genid('uuid')
-     $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]) + '</span>')
+     $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]) + '</span>')
      var thstxdec = textlengthdd($('span#' + thedwdhid).text(),25)
      $('span#' + thedwdhid).remove()
      
