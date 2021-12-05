@@ -80,7 +80,7 @@
   <div class="note_text"></div>
 </div>
 <div class="bar">
-  <div class="bar_btn">返回</div>
+  <div class="bar_btn" f="back">返回</div>
   <div class="bar_btn">主題</div>
   <div class="bar_btn">分享</div>
 </div>
@@ -302,7 +302,9 @@ function decu(juy,oik) {
 document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
 ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
-
+$('.bar_btn[f="back"]').click(function() {
+  location.href = 'https://erichsia7.github.io/note/' ;
+});
 
 function getcolorset(main_color_h) {
   var liga = hsv2rgb(main_color_h,18,100)
