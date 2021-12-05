@@ -309,6 +309,9 @@ function decu(juy,oik) {
                 
             }
 
+$('.addnote').click(function() {
+  location.href = 'https://erichsia7.github.io/note/d/?new=1&t' ;
+})
 
 var list = localStorage.getItem('note_id_list') ;
 var listarr = list.split(',') ;
@@ -322,9 +325,7 @@ for (var i = 0; i < listarr.length; i++) {
      $('.allnote').prepend('<a href="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '"><div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div></a>')
    }
 }
-$('.addnote').click(function() {
-  location.href = 'https://erichsia7.github.io/note/d/?new=1&t' ;
-})
+
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
