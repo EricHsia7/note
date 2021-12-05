@@ -177,6 +177,51 @@ align-items: center;
   border-radius:15px;
 }
  
+.deletebox {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0.8);
+  width:clamp(280px,80vw,400px);
+  height:calc(20px + 20px + 40px + 50px);
+  background:var(--color-light);
+  border-radius:15px;
+  opacity:0;
+  display:none;
+}
+.delete_txt {
+  position:absolute;
+  top:20px;
+  left:20px;
+  width:calc(100% - 40px);
+  height:50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:21px;
+  color:var(--color-ftf)
+}
+.deletebtn {
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  width:calc(50% - 20px - 5px);
+  height:40px;
+  background:var(--color-grey);
+  
+display: flex;
+justify-content: center;
+align-items: center;
+  color:#fff
+}
+.deletebtn[f="canceldel"] {
+  left:20px;
+  border-radius:15px;
+}
+.deletebtn[f="confirmdel"] {
+  left:calc(20px + 50% - 25px + 10px);
+  border-radius:15px;
+}
 @media (prefers-color-scheme: dark) {
   .note,.bar,.themebox {
     background:var(--color-dark);
@@ -218,6 +263,11 @@ align-items: center;
   <div class="themebtn" f="change">Change</div>
 </div>
 
+<div class="deletebox">
+  <div class="delete_txt">Confirm to delete this note.</div>
+  <div class="deletebtn" f="canceldel">Cancel</div>
+  <div class="deletebtn" f="confirmdel">Confirm</div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
 
@@ -485,7 +535,15 @@ ripple('.themebtn','var(--color-ftf)','0.4',800,'true');
 $('.bar_btn[f="back"]').click(function() {
   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
-
+$('.bar_btn[f="delete"]').click(function() {
+  $('.deletebox').css({'display':'block'});
+  $('.themeboxbg').css({'display':'block'});
+  setTimeout(function() {
+    $('.themeboxbg').css({'opacity':'0.6'});
+    $('.deletebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
+  },1);
+});
+ 
  $('.themebtn[f="cancel"]').click(function() {
  $('.themeboxbg').css({'opacity':'0'});
  $('.themebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
@@ -494,6 +552,17 @@ $('.themeboxbg').css({'display':'none'});
   $('.themebox').css({'display':'none'});
   },300);
  });
+ 
+ 
+ $('.deletebtn[f="canceldel"]').click(function() {
+ $('.themeboxbg').css({'opacity':'0'});
+ $('.deletebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
+  setTimeout(function() {
+$('.themeboxbg').css({'display':'none'});
+  $('.deletebox').css({'display':'none'});
+  },300);
+ });
+ 
 function getcolorset(main_color_h) {
   var liga = hsv2rgb(main_color_h,18,100)
   var light_color = rgbToHex(Math.round(liga[0]),Math.round(liga[1]),Math.round(liga[2])) ;
