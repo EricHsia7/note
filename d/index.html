@@ -81,6 +81,7 @@ var getUrlString = location.href;
 var url = new URL(getUrlString);
 var url_n = url.searchParams.get('n');
 var url_id = url.searchParams.get('id');
+var url_new = url.searchParams.get('new')
 function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
@@ -332,6 +333,7 @@ else {
   
   var noteid
 if(!(url_n === '1')) {
+  if(url_new === '1') {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             noteid = "";
             for (var i = 0; i < 16; i++) {
@@ -345,6 +347,7 @@ if(!(url_n === '1')) {
   var color_h = Math.round(Math.random()*360)
 
   localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h);
+  }
 }
 else {
   noteid = url_id
