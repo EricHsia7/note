@@ -236,6 +236,11 @@ function getcolorset(main_color_h) {
   
   return {'light':light_color,'dark':dark_color,'grey':grey_color,'ftf':ftf_color,'arr':[light_color,dark_color,grey_color,ftf_color]}
 }
+function textlengthdd(txt,len) {
+  if(txt.length > len) {
+    txt = txt.substring(0, len) + '...';
+  }
+}
 function encu(textu) {
  var ivqu = parseInt(
                     Math.floor(Math.random() * 8 + 1) +
@@ -289,8 +294,8 @@ var listarr = list.split(',') ;
 for (var i = 0; i < listarr.length; i++) {
    if(!(listarr[i] === 'null')) {
      var ffdata = localStorage.getItem('note_id_' + listarr[i])
-     var thsdec = decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])
-     var thstxdec = decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1])
+     var thsdec = textlengthdd(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]),16)
+     var thstxdec = textlengthdd(decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]),30)
      var thscoh = parseInt(ffdata.split(',')[2]) ;
      $('.allnote').prepend('<a href="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '"><div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div></a>')
    }
