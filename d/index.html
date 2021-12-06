@@ -241,6 +241,60 @@ align-items: center;
   left:calc(20px + 50% - 25px + 10px);
   border-radius:15px;
 }
+ 
+ 
+:root {--color-light:#d1ffe0;--color-dark:#122919;--color-grey:#598065;--color-ftf:#0a3317}
+
+.sharebox {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0.8);
+  width:clamp(280px,80vw,400px);
+  height:calc(20px + 20px + 40px + 50px);
+  background:var(--color-light);
+  border-radius:15px;
+  opacity:0;
+  display:none;
+}
+.sharebox input {
+  position:absolute;
+  top:20px;
+  left:20px;
+  width:calc(100% - 40px);
+  height:40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:21px;
+  color:#fff;
+  padding:0px;
+  border:none;
+  border-radius:15px;
+  background:var(--color-grey);
+}
+.sharebtn {
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  width:calc(50% - 20px - 5px);
+  height:40px;
+  background:var(--color-grey);
+  
+display: flex;
+justify-content: center;
+align-items: center;
+  color:#fff
+}
+.sharebtn[f="closeshare"] {
+  left:20px;
+  border-radius:15px;
+}
+.sharebtn[f="copyshare"] {
+  left:calc(20px + 50% - 25px + 10px);
+  border-radius:15px;
+}
+ 
 @media (prefers-color-scheme: dark) {
   .note,.bar,.themebox,.deletebox {
     background:var(--color-dark);
@@ -321,6 +375,13 @@ align-items: center;
   <div class="deletebtn" f="canceldel">Cancel</div>
   <div class="deletebtn" f="confirmdel">Confirm</div>
 </div>
+
+<div class="sharebox">
+  <input type="text" id="sharelink">
+  <div class="sharebtn" f="closeshare">Close</div>
+  <div class="sharebtn" f="copyshare">Copy</div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
 
