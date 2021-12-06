@@ -267,12 +267,15 @@ align-items: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size:21px;
+  font-size:15px;
   color:#fff;
   padding:0px;
   border:none;
   border-radius:15px;
   background:var(--color-grey);
+ font-weight:500;
+  font-family: 'Noto Sans TC', sans-serif;
+ 
 }
 .sharebtn {
   position:absolute;
@@ -285,7 +288,9 @@ align-items: center;
 display: flex;
 justify-content: center;
 align-items: center;
-  color:#fff
+  color:#fff;
+ font-weight:700;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .sharebtn[f="closeshare"] {
   left:20px;
@@ -297,7 +302,7 @@ align-items: center;
 }
  
 @media (prefers-color-scheme: dark) {
-  .note,.bar,.themebox,.deletebox {
+  .note,.bar,.themebox,.deletebox,.sharebox {
     background:var(--color-dark);
     color:#fff;
   }
