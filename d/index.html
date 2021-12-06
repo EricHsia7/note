@@ -872,6 +872,11 @@ $('.themeboxbg').css({'display':'none'});
   $('.sharebox').css({'display':'none'});
   },300);
  });
+ $('.sharebtn[f="copyshare"]').click(function() {
+ var copyText = $('#sharelink');
+        copyText.select();
+        document.execCommand("Copy");
+ });
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
