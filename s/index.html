@@ -108,6 +108,7 @@ function decu(juy,oik) {
                 return decryptedTexte;
                 
             }
+    
   var noteid ;
     
 function saveftyyy() {
@@ -124,9 +125,9 @@ function saveftyyy() {
   var encdtoi = url_d.split(',')[0] + ':' + titpw + ',' + url_d.split(',')[1] + ':' + txtpw + ',' + url_d.split(',')[2]
   localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
   localStorage.setItem('note_id_' + noteid, encdtoi);
-  setTimeout(function() {
+  //setTimeout(function() {
   location.href = 'https://erichsia7.github.io/note/d/?n=1&id=' + noteid + '&r=' + genid('random');
-  },300);
+  //},300);
   }
-  console.log(saveftyyy())
+  saveftyyy()
 </script>
