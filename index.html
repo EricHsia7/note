@@ -376,6 +376,15 @@ return '#fff'
 $('.addnote').click(function() {
   location.href = 'https://erichsia7.github.io/note/d/?new=1&t' ;
 })
+ var randcolorhfrbt = Math.round(Math.random()*359) ;
+ 
+if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  $('.addnote').css({'background':getcolorset(randcolorhfrbt).dark,'color':'#fff','border':'border: 1px solid ' + getcolorset(randcolorhfrbt).grey});
+}
+else {
+$('.addnote').css({'background':getcolorset(randcolorhfrbt).light,'color':getcolorset(randcolorhfrbt).ftf,'border':'border: 1px solid ' + getcolorset(randcolorhfrbt).grey});
+}
+ 
 
 var list = localStorage.getItem('note_id_list') ;
 var listarr = list.split(',') ;
