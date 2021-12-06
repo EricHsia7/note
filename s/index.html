@@ -13,7 +13,10 @@
 <style>
   body {
   background:var(--color-light);
-    color:var(--color-ftf)
+    color:var(--color-ftf);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight:700;
+    font-size:18px;
   }
   .load {
     position:fixed;
@@ -320,8 +323,27 @@ function saveftyyy() {
   localStorage.setItem('note_id_' + noteid, encdtoi);
   setTimeout(function() {
   location.href = 'https://erichsia7.github.io/note/d/?n=1&id=' + noteid + '&r=' + genid('random');
-  },800);
+  },500);
   }
   saveftyyy()
+  
+  
+  $(document).ready(function() {
+        var googlefontloadtime = new Date().getTime() ;
+        if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
+  $('body').append('<style>' + localStorage.getItem('googlefontNotoSansTC') + '</style>');
+  console.log('loaded')
+}
+else {
+ $.ajax({type:'get',url:"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap",dataType:'text',success:function(e) {
+  var googlefontloadtimedd = new Date().getTime() ;
+  localStorage.setItem('googlefontNotoSansTC', e); localStorage.setItem('googlefontNotoSansTCloaded', googlefontloadtimedd);
+   $('body').append('<style>' + e + '</style>');
+   
+   console.log('loaded2')
+   }
+}); 
+}
+  });
 </script>
 
