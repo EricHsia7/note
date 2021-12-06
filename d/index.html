@@ -848,7 +848,23 @@ $('.themeboxbg').css({'display':'none'});
   var shdatapwd = encdtit[1].toString(32) + '_' + enctxt[1].toString(32) ;
   return 'https://erichsia7.github.io/note/s/?d=' + shdatastr + '&pw=' + shdatapwd
  }
- 
+ $('.bar_btn[f="share"]').click(function() {
+  $('.sharebox').css({'display':'block'});
+  $('.themeboxbg').css({'display':'block'});
+  $('#colorhinp').val(color_h)
+  setTimeout(function() {
+    $('.themeboxbg').css({'opacity':'0.6'});
+    $('.sharebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
+  },1);
+ });
+ $('.sharebtn[f="closeshare').click(function() {
+ $('.themeboxbg').css({'opacity':'0'});
+ $('.sharebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
+  setTimeout(function() {
+$('.themeboxbg').css({'display':'none'});
+  $('.sharebox').css({'display':'none'});
+  },300);
+ });
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
