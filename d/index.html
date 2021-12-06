@@ -785,7 +785,7 @@ $('.themeboxbg').css({'display':'none'});
   var enctxt = encu($('.note_text').html()) ;
   var shdatastr = encdtit[0] + ',' + enctxt[0] + ',' + color_h
   var shdatapwd = encdtit[1].toString(32) + '_' + enctxt[1].toString(32) ;
-  return shdatastr + ')' + shdatapwd
+  return 'https://erichsia7.github.io/note/s/?d=' + shdatastr + '&pw=' + shdatapwd
  }
  
 $(document).ready(function() {
