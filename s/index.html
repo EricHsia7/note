@@ -10,8 +10,26 @@
 <!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
 <meta name="theme-color" content="#fff">
 <style id="color_set"></style>
+<style>
+  body {
+  background:var(--color-light);
+    color:var(--color-ftf)
+  }
+  .load {
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%)
+  }
+  @media (prefers-color-scheme: dark) {
+    body {
+    background:var(--color-dark);
+      color:#fff
+    }
+  }
+</style>
 <body>
-  ooo
+  <div class="load">decoding</div>
   </body>
 <script>
   var getUrlString = location.href;
@@ -109,6 +127,23 @@ function decu(juy,oik) {
                 
             }
     
+  function getcolorset(main_color_h) {
+  var liga = hsv2rgb(main_color_h,18,100)
+  var light_color = rgbToHex(Math.round(liga[0]),Math.round(liga[1]),Math.round(liga[2])) ;
+  var darka = hsv2rgb(main_color_h,55,16)
+  var dark_color = rgbToHex(Math.round(darka[0]),Math.round(darka[1]),Math.round(darka[2])) ;
+  
+  var grea = hsv2rgb(main_color_h,30,50)
+  var grey_color = rgbToHex(Math.round(grea[0]),Math.round(grea[1]),Math.round(grea[2])) ;
+  
+  var ftf = hsv2rgb(main_color_h,80,20)
+  var ftf_color = rgbToHex(Math.round(ftf[0]),Math.round(ftf[1]),Math.round(ftf[2])) ;
+  
+  return {'light':light_color,'dark':dark_color,'grey':grey_color,'ftf':ftf_color,'arr':[light_color,dark_color,grey_color,ftf_color]}
+}
+  var color_h = parseInt(url_d.split(',')[2])
+  $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+  
   var noteid ;
     
 function saveftyyy() {
@@ -127,7 +162,7 @@ function saveftyyy() {
   localStorage.setItem('note_id_' + noteid, encdtoi);
   setTimeout(function() {
   location.href = 'https://erichsia7.github.io/note/d/?n=1&id=' + noteid + '&r=' + genid('random');
-  },300);
+  },800);
   }
   saveftyyy()
 </script>
