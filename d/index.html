@@ -256,6 +256,7 @@ align-items: center;
   border-radius:15px;
   opacity:0;
   display:none;
+ transition:0.3s;
 }
 .sharebox input {
   position:absolute;
@@ -645,7 +646,7 @@ function decu(juy,oik) {
 document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
 ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
-ripple('.themebtn,.deletebtn','var(--color-ftf)','0.4',800,'true');
+ripple('.themebtn,.deletebtn,.sharebtn','var(--color-ftf)','0.4',800,'true');
 $('.bar_btn[f="back"]').click(function() {
   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
@@ -849,6 +850,7 @@ $('.themeboxbg').css({'display':'none'});
   return 'https://erichsia7.github.io/note/s/?d=' + shdatastr + '&pw=' + shdatapwd
  }
  $('.bar_btn[f="share"]').click(function() {
+  $('#sharelink').val(getsharelink())
   $('.sharebox').css({'display':'block'});
   $('.themeboxbg').css({'display':'block'});
   $('#colorhinp').val(color_h)
