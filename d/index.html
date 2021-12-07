@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
@@ -387,6 +388,7 @@ align-items: center;
 </div>
 
 <div class="sharebox">
+ <div class="qrc"></div>
   <input type="text" id="sharelink" readonly="readonly">
   <div class="sharebtn" f="closeshare">Close</div>
   <div class="sharebtn" f="copyshare">Copy</div>
@@ -859,7 +861,8 @@ $('.themeboxbg').css({'display':'none'});
   return 'https://erichsia7.github.io/note/s/?d=' + shdatastr + '&pw=' + shdatapwd
  }
  $('.bar_btn[f="share"]').click(function() {
-  $('#sharelink').val(getsharelink())
+  var c865bb62 = getsharelink()
+  $('#sharelink').val(c865bb62)
   $('.sharebox').css({'display':'block'});
   $('.themeboxbg').css({'display':'block'});
   $('#colorhinp').val(color_h)
@@ -867,6 +870,28 @@ $('.themeboxbg').css({'display':'none'});
     $('.themeboxbg').css({'opacity':'0.6'});
     $('.sharebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
   },1);
+  
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+   var qrcdarkcol = '#fff'
+   var qrclightcol = getcolorset(color_h).dark
+  }
+  else { 
+   var qrcdarkcol = getcolorset(color_h).ftf
+   var qrclightcol = getcolorset(color_h).light
+  }
+  
+  
+  document.querySelector('#qr').innerHTML = '';
+var qrcode = new QRCode(document.querySelector('#qrc') , {
+    text: $('#sharelink').val(),
+    width: 512,
+    height: 512,
+    colorDark : qrcdarkcol,
+    colorLight : qrclightcol,
+    correctLevel : QRCode.CorrectLevel.L
+});
+  
+  
  });
  $('.sharebtn[f="closeshare"]').click(function() {
  $('.themeboxbg').css({'opacity':'0'});
