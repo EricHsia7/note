@@ -255,7 +255,7 @@ align-items: center;
   left:50%;
   transform:translate(-50%,-50%) scale(0.8);
   width:clamp(280px,80vw,400px);
-  height:calc(20px + 20px + 40px + 50px);
+  height:calc(20px + 20px + 40px + 50px + 150px + 10px);
   background:var(--color-light);
   border-radius:15px;
   opacity:0;
@@ -264,7 +264,7 @@ align-items: center;
 }
 .sharebox input {
   position:absolute;
-  top:20px;
+  top:180px;
   left:20px;
   width:calc(100% - 40px);
   height:40px;
@@ -305,7 +305,14 @@ align-items: center;
   left:calc(20px + 50% - 25px + 10px);
   border-radius:15px;
 }
- 
+ .qrc {
+  width:150px;
+  heigth:150px;
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+ }
 @media (prefers-color-scheme: dark) {
   .note,.bar,.themebox,.deletebox,.sharebox {
     background:var(--color-dark);
