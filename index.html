@@ -519,6 +519,15 @@ for (var i = 0; i < listarr.length; i++) {
       },80);
      });
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
+    
+    if(i === (listarr.length-1)) {
+     $('.allnote').masonry({
+  itemSelector: '.note_c',
+  columnWidth: 200
+});
+    }
+    
+    
    }
 }
 
