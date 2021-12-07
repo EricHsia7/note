@@ -523,10 +523,10 @@ for (var i = 0; i < listarr.length; i++) {
     
     if(i > (listarr.length-2)) {
      if($(window).width() > 500) {
-      $('.note_c').width($(window).width()/2-15)
+      $('.note_c').css({'width':$(window).width()/2-15,'margin-left':'10px'})
      $('.allnote').masonry({
   itemSelector: '.note_c',
-                columnWidth: 7.5, //gap
+                columnWidth: 5, //gap
                 animate: false,
                 horizontalOrder: true,
                 originTop: true
