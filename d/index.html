@@ -883,7 +883,7 @@ $('.themeboxbg').css({'display':'none'});
   },1);
   
   if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-   var qrcdarkcol = '#fff'
+   var qrcdarkcol = getcolorset(color_h).grey
    var qrclightcol = getcolorset(color_h).dark
   }
   else { 
