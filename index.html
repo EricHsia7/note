@@ -537,7 +537,11 @@ for (var i = 0; i < listarr.length; i++) {
     
    }
 }
-
+$(window).resize(function() {
+if($(window).width() > 500) {
+      $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
+     }
+})
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
