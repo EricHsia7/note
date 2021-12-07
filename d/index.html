@@ -881,8 +881,8 @@ $('.themeboxbg').css({'display':'none'});
   }
   
   
-  document.querySelector('#qr').innerHTML = '';
-var qrcode = new QRCode(document.querySelector('#qrc') , {
+  document.querySelector('.qrc').innerHTML = '';
+var qrcode = new QRCode(document.querySelector('.qrc') , {
     text: $('#sharelink').val(),
     width: 512,
     height: 512,
