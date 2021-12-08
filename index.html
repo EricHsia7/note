@@ -510,6 +510,7 @@ if(!(localStorage.getItem('lastnotelisthtml') === null)) {
  function pritntc() {
   if(String(list).length < 5) {
 $('#emptysvg').css({'display':'block'})
+   localStorage.setItem('lastnotelisthtml',String($('.allnote').html()).replaceAll('&amp;','&'))
 return 'no note'
   }
 for (var i = 0; i < listarr.length; i++) {
