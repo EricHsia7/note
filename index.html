@@ -495,7 +495,7 @@ $('.addnote').css({'background':getcolorset(randcolorhfrbt).light,'color':getcol
 
 var list = localStorage.getItem('note_id_list') ;
 var listarr = list.split(',') ;
-if(!(localStorage.getItem('lastnotelisthtml') === 'null')) {
+if(!(localStorage.getItem('lastnotelisthtml') === null)) {
  $('.allnote').html(localStorage.getItem('lastnotelisthtml'))
  setTimeout(function() {
   $('.allnote').html('')
@@ -509,7 +509,7 @@ if(!(localStorage.getItem('lastnotelisthtml') === 'null')) {
  
  function pritntc() {
 for (var i = 0; i < listarr.length; i++) {
-   if(!(listarr[i] === null)) {
+   if(!(listarr[i] === 'null')) {
     if($('#emptysvg').length > 0) {
      $('#emptysvg').remove()
     }
