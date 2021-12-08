@@ -562,7 +562,11 @@ for (var i = 0; i < listarr.length; i++) {
      }
      var lastnotelisthtml = String($('.allnote').html()).replaceAll('&amp;','&')
      localStorage.setItem('lastnotelisthtml',lastnotelisthtml)
-     $('.note_c').attr('ld','1')
+     $('.note_c').css({'transition':'0.3s'}).attr('ld','1');
+     setTimeout(function() {
+      $('.note_c').css({'transition':'0s'})
+     },350);
+     
     }
     
     
