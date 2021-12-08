@@ -498,6 +498,7 @@ var listarr = list.split(',') ;
 if(!(localStorage.getItem('lastnotelisthtml') === 'null')) {
  $('.allnote').html(localStorage.getItem('lastnotelisthtml'))
  setTimeout(function() {
+  $('.allnote').html('')
   pritntc()
  },800);
 }
