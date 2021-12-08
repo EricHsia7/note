@@ -508,6 +508,10 @@ if(!(localStorage.getItem('lastnotelisthtml') === null)) {
  
  
  function pritntc() {
+  if(String(list).length < 5) {
+$('#emptysvg').css({'display':'none'})
+return 'no note'
+  }
 for (var i = 0; i < listarr.length; i++) {
    if(!(listarr[i] === 'null')) {
     if($('#emptysvg').length > 0) {
