@@ -535,7 +535,7 @@ for (var i = 0; i < listarr.length; i++) {
                 originTop: true
 });
      }
-     var lastnotelisthtml = $('.allnote').html()
+     var lastnotelisthtml = String($('.allnote').html()).replaceAll('&amp;','&')
      localStorage.setItem('lastnotelisthtml',lastnotelisthtml)
     }
     
