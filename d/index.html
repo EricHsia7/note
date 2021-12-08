@@ -653,7 +653,7 @@ function encu(textu) {
                 var encryptedBytesu = aesCtru.encrypt(textBytesu);
 
                 var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
-                console.log(encryptedHexu);
+                //console.log(encryptedHexu);
                 return [encryptedHexu,ivqu]
                 
             }
@@ -671,7 +671,7 @@ function decu(juy,oik) {
 
                 // Convert our bytes back into text
                 var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
-                console.log(decryptedTexte);
+                //console.log(decryptedTexte);
                 return decryptedTexte;
                 
             }
