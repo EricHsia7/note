@@ -495,7 +495,18 @@ $('.addnote').css({'background':getcolorset(randcolorhfrbt).light,'color':getcol
 
 var list = localStorage.getItem('note_id_list') ;
 var listarr = list.split(',') ;
-
+if(!(localStorage.getItem('lastnotelisthtml') === 'null')) {
+ $('.allnote').html(localStorage.getItem('lastnotelisthtml'))
+ setTimeout(function() {
+  pritntc()
+ },800);
+}
+ else {
+  pritntc()
+ }
+ 
+ 
+ function pritntc() {
 for (var i = 0; i < listarr.length; i++) {
    if(!(listarr[i] === 'null')) {
     if($('#emptysvg').length > 0) {
@@ -542,6 +553,9 @@ for (var i = 0; i < listarr.length; i++) {
     
    }
 }
+ //g
+ }
+ 
 $(window).resize(function() {
 if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
