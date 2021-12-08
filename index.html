@@ -32,7 +32,11 @@ body {
   position:relative;
   font-family: 'Noto Sans TC', sans-serif;
   box-sizing: border-box;
+  opacity:0.3;
 }
+.note_c[ld="1"] {
+ opacity:1;
+ }
 .note_c h2 {
   position:absolute;
   top:5px;
@@ -558,6 +562,7 @@ for (var i = 0; i < listarr.length; i++) {
      }
      var lastnotelisthtml = String($('.allnote').html()).replaceAll('&amp;','&')
      localStorage.setItem('lastnotelisthtml',lastnotelisthtml)
+     $('.note_c').attr('ld','1')
     }
     
     
