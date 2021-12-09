@@ -315,8 +315,11 @@ align-items: center;
   left:50%;
   transform:translateX(-50%);
   -webkit-user-select: none;
-  background:var(--color-grey);
+  color:var(--color-grey);
   overflow:hidden;
+  display: flex;
+justify-content: center;
+align-items: center;
  }
  .qrc img {
   width:calc(clamp(280px,80vw,400px) - 40px);
@@ -903,7 +906,7 @@ $('.themeboxbg').css({'display':'none'});
    var qrclightcol = getcolorset(color_h).light
   }
   
-  
+  if($('#sharelink').val().length < 2500) {
   document.querySelector('.qrc').innerHTML = '';
 var qrcode = new QRCode(document.querySelector('.qrc') , {
     text: $('#sharelink').val(),
@@ -913,6 +916,10 @@ var qrcode = new QRCode(document.querySelector('.qrc') , {
     colorLight : qrclightcol,
     correctLevel : QRCode.CorrectLevel.L
 });
+  }
+  else {
+   document.querySelector('.qrc').innerHTML = 'The link is too long, so the QR Code cannot be used.';
+  }
   
   
  });
