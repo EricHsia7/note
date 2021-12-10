@@ -492,11 +492,11 @@ $('.addnote').click(function() {
  var randcolorhfrbt = Math.round(Math.random()*359) ;
  
 if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  $('.addnote').css({'background':getcolorset(randcolorhfrbt).dark,'color':'#fff','border':'1px solid ' + getcolorset(randcolorhfrbt).grey});
+  $('.addnote').css({'background':'#1f1f1f','color':'#fff','border':'1px solid #fff'});
   $('#emptysvgcsscolor').html(':root{--svg-empty:' + getcolorset(randcolorhfrbt).grey + '}')
 }
 else {
-$('.addnote').css({'background':getcolorset(randcolorhfrbt).light,'color':getcolorset(randcolorhfrbt).ftf,'border':'1px solid ' + getcolorset(randcolorhfrbt).grey});
+$('.addnote').css({'background':'#fff','color':'#000','border':'1px solid #888'});
  $('#emptysvgcsscolor').html(':root{--svg-empty:' + getcolorset(randcolorhfrbt).light + '}')
 }
  
