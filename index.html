@@ -85,8 +85,18 @@ align-items: center;
   position:relative;
   margin-top:60px;
  }
+ .note_ti {
+  background:#fff;
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:55px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.05);
+  -webkit-user-select: none;
+ }
 @media (prefers-color-scheme: dark) {
-  body {
+  body,.note_ti {
     background:#1a1a1a;
   }
   .note_c {
@@ -198,6 +208,7 @@ align-items: center;
 
  </div>
 <div class="addnote">+</div>
+ <div class="note_ti"></div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
