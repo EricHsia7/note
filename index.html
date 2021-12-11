@@ -138,8 +138,6 @@ background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
   -webkit-user-select: none;
    display:none;
-   opacity:0;
-   transition:0.3s;
  }
 #note_search {
   position:absolute;
@@ -785,13 +783,7 @@ var listarrh = listh.split(',') ;
  var searchdacontent = [] ;
  $('.search').click(function() {
   $('.note_ti_s').css({'display':'block'}); 
-  setTimeout(function() {
-   $('.note_ti_s').css({'opacity':'1'})
-  },1);
-  setTimeout(function() {
    $('.note_ti').css({'display':'none'});
-     },300);
-  
   //searchda
   for (var i = 0; i < listarrh.length; i++) {
    if(!(listarrh[i] === 'null')) {
