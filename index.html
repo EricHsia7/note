@@ -713,13 +713,37 @@ for (var i = 0; i < listarr.length; i++) {
  //g
   }
  }
- 
+ var listh = localStorage.getItem('note_id_list') ;
+var listarrh = listh.split(',') ;
+ var searchdaid = [] ;
+ var searchdacontent = [] ;
  $('.search').click(function() {
   $('.note_ti_s').css({'display':'block'});
   setTimeout(function() {
       $('.note_ti_s').css({'opacity':'1'})
      },1);
+  
+  //searchda
+  for (var i = 0; i < listarrh.length; i++) {
+   if(!(listarrh[i] === 'null')) {
+     var ffdata = localStorage.getItem('note_id_' + listarrh[i])
+     var thsdec = decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])
+     var thedwdhid = genid('uuid') + genid('random')
+     $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]) + '</span>')
+     var thstxdec = $('span#' + thedwdhid).text()
+     searchdacontent.push(listarrh[i] + ' ' + thsdec + ' ' + thstxdec)
+     searchdaid.push(listarrh[i])
+    $('span#' + thedwdhid).remove()
+   }
+   }
+  //end
+  
+  
+  
  });
+ function searchgg() {
+  
+ }
 $(window).resize(function() {
 if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
