@@ -782,7 +782,7 @@ document.addEventListener("selectionchange", function (e){
    }
   }
   $('.search_result').css({'--search-result-co':searchresultarr.length});
-  if(searchresultarr.length > 1) {
+  if(searchresultarr.length > 0) {
    $('#note_search').attr('g','1')
    $('.search_result').css({'display':'block'});
   }
