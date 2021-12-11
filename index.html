@@ -758,7 +758,7 @@ document.addEventListener("selectionchange", function (e){
   for (var i = 0; i < searchdacontent.length; i++) {
    if(searchdacontent[i][0].indexOf(searchtextva) > -1) {
     searchresultarr.push(searchdaid[i])
-    $('.search_result').prepend('<li>' + searchdaid[i][1][1] + '</li>')
+    $('.search_result').prepend('<li>' + searchdacontent[i][1][1] + '</li>')
    }
   }
   
