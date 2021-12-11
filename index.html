@@ -737,11 +737,13 @@ var listarrh = listh.split(',') ;
  var searchdaid = [] ;
  var searchdacontent = [] ;
  $('.search').click(function() {
-  $('.note_ti_s').css({'display':'block'});
-  $('.note_ti').css({'display':'none'});
+  $('.note_ti_s').css({'display':'block'}); 
   setTimeout(function() {
-      $('.note_ti_s').css({'opacity':'1'})
-     },1);
+   $('.note_ti_s').css({'opacity':'1'})
+  },1);
+  setTimeout(function() {
+   $('.note_ti').css({'display':'none'});
+     },300);
   
   //searchda
   for (var i = 0; i < listarrh.length; i++) {
