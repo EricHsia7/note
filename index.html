@@ -147,7 +147,7 @@ background: rgba(255, 255, 255, 0.5);
   left:50%;
   transform:translate(-50%,-50%);
   width:clamp(280px,90vw,400px);
-  height:49px;
+  height:45px;
   padding:0px 10px;
   border-radius:15px;
   box-sizing: border-box;
@@ -166,7 +166,7 @@ background: rgba(255, 255, 255, 0.5);
   width:clamp(280px,90vw,400px);
   height:calc(var(--search-result-co) * 45px);
   position:absolute;
-  top:calc(49px + ((100% - 49px) / 2) - 1px);
+  top:calc(45px + ((100% - 45px) / 2) - 1px);
   background:rgba(255,255,255,0.95);
   left:calc((100% - clamp(280px,90vw,400px)) / 2);
   border-radius:0px 0px 15px 15px;
@@ -174,6 +174,7 @@ background: rgba(255, 255, 255, 0.5);
   max-height:calc(5 * 45px + 15px);
   border:1px solid #e3e3e3;
   box-sizing: border-box;
+  display:none;
 }
 .search_result li {
   width:calc(100% - 10px);
@@ -349,7 +350,7 @@ background: rgba(255, 255, 255, 0.5);
  <div class="note_ti_s">
    <div class="search_result" style="--search-result-co:0">
    </div>
-   <input type="text" id="note_search" placeholder="Search" g="1" >
+   <input type="text" id="note_search" placeholder="Search" g="0" >
    </div>
  
  
@@ -781,6 +782,14 @@ document.addEventListener("selectionchange", function (e){
    }
   }
   $('.search_result').css({'--search-result-co':searchresultarr.length});
+  if(searchresultarr.length > 1) {
+   $('#note_search').attr('g','1')
+   $('.search_result').css({'display':'block'});
+  }
+  else {
+   $('#note_search').attr('g','0')
+   $('.search_result').css({'display':'none'});
+  }
  }
 $(window).resize(function() {
 if($(window).width() > 500) {
