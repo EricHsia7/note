@@ -821,7 +821,7 @@ document.addEventListener("selectionchange", function (e){
   var searchtextva = $('#note_search').val()
   $('.search_result').html('')
   for (var i = 0; i < searchdacontent.length; i++) {
-   if(searchdacontent[i][0].indexOf(searchtextva) > -1) {
+   if(searchdacontent[i][0].indexOf(searchtextva) > -1 && searchtextva.length > 0) {
     searchresultarr.push(searchdaid[i])
     $('.search_result').prepend('<a href="https://erichsia7.github.io/note/d/?n=1&id=' + searchdaid[i] + '&r=' + genid('random') + '"><li>' + searchdacontent[i][1][1] + '</li></a>')
    }
