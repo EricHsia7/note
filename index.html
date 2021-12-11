@@ -137,6 +137,9 @@ background: rgba(255, 255, 255, 0.5);
   height:55px;
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
   -webkit-user-select: none;
+   display:none;
+   opacity:0;
+   transition:0.3s;
  }
 #note_search {
   position:absolute;
@@ -708,6 +711,12 @@ for (var i = 0; i < listarr.length; i++) {
   }
  }
  
+ $('.search').click(function() {
+  $('.search_ti_s').css({'display':'block'});
+  setTimeout(function() {
+      $('.search_ti_s').css({'opacity':'1'})
+     },125);
+ });
 $(window).resize(function() {
 if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
@@ -715,7 +724,7 @@ if($(window).width() > 500) {
  else {
   $('.note_c').css({'width':'100%','margin-left':'0px'})
  }
-})
+});
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
