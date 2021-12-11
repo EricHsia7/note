@@ -111,6 +111,19 @@ background: rgba(255, 255, 255, 0.5);
   left:50%;
   transform:translate(-50%,-50%);
  }
+ :root {
+  --svg-fy-c:#000;
+ }
+ .search {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:55px;
+  height:55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 @media (prefers-color-scheme: dark) {
   body {
     background:#1a1a1a;
@@ -128,6 +141,9 @@ background: rgba(255, 255, 255, 0.5);
 .note_ti {
  color:#fff;
  background: rgba(26, 26, 26, 0.5);
+ }
+ :root {
+  --svg-fy-c:#fff;
  }
 }
 </style>
@@ -229,6 +245,18 @@ background: rgba(255, 255, 255, 0.5);
  </div>
 <div class="addnote">+</div>
  <div class="note_ti">
+  <div class="search">
+ <svg height="30px" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30px" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 64 64">
+<defs/>
+<g id="圖層1" vectornator:layerName="圖層1">
+<g opacity="1">
+<path d="M58.3016+52.5121L42.1316+36.3421L36.3421+36.3421L36.3421+42.1316L52.5121+58.3016C54.11+59.8995+56.7037+59.8995+58.3016+58.3016L58.3016+58.3016C59.8995+56.7037+59.8995+54.11+58.3016+52.5121Z" opacity="1" fill="var(--svg-fy-c)"/>
+<path stroke="var(--svg-fy-c)" stroke-width="2" d="M21.8684+4.5C12.2761+4.5+4.5+12.2761+4.5+21.8684C4.5+31.4607+12.2761+39.2368+21.8684+39.2368C31.4607+39.2368+39.2368+31.4607+39.2368+21.8684C39.2368+12.2761+31.4607+4.5+21.8684+4.5Z" fill="none" stroke-linecap="butt" opacity="1" stroke-linejoin="miter"/>
+<path stroke="var(--svg-fy-c)" stroke-width="1.83675" d="M33.4474+33.4474L40.6842+40.6842" fill="none" stroke-linecap="butt" opacity="1" stroke-linejoin="miter"/>
+</g>
+</g>
+</svg>
+  </div>
   <div class="noti">Note</div>
  </div>
 </body>
