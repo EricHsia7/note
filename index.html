@@ -86,7 +86,9 @@ align-items: center;
   margin-top:60px;
  }
  .note_ti {
-  background:#fff;
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
+background: rgba(255, 255, 255, 0.5);
   position:fixed;
   top:0px;
   left:0px;
@@ -107,10 +109,10 @@ align-items: center;
   position:absolute;
   top:50%;
   left:50%;
-  transform:translate(-50%,-50%)
+  transform:translate(-50%,-50%);
  }
 @media (prefers-color-scheme: dark) {
-  body,.note_ti {
+  body {
     background:#1a1a1a;
   }
   .note_c {
@@ -125,6 +127,7 @@ align-items: center;
 }
 .note_ti {
  color:#fff;
+ background: rgba(26, 26, 26, 0.5);
  }
 }
 </style>
