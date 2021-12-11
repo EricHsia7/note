@@ -320,16 +320,7 @@ background: rgba(255, 255, 255, 0.5);
  </div>
  
  <div class="note_ti_s">
-   <div class="search_result" style="--search-result-co:9">
-     <li>#1</li>
-     <li>#2</li>
-     <li>#3</li>
-      <li>#1</li>
-     <li>#2</li>
-     <li>#3</li>
-      <li>#1</li>
-     <li>#2</li>
-     <li>#3</li>
+   <div class="search_result" style="--search-result-co:0">
    </div>
    <input type="text" id="note_search" placeholder="Search" g="1" >
    </div>
@@ -761,6 +752,7 @@ document.addEventListener("selectionchange", function (e){
     $('.search_result').prepend('<li><a href="https://erichsia7.github.io/note/d/?n=1&id=' + searchdaid[i] + '&r=' + genid('random') + '">' + searchdacontent[i][1][1] + '</a></li>')
    }
   }
+  $('.search_result').css({'--search-result-co':searchdacontent.length});
   
   
      
