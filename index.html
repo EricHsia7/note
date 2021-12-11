@@ -169,6 +169,7 @@ background: rgba(255, 255, 255, 0.5);
   max-height:calc(5 * 35px + 15px);
   border:1px solid #e3e3e3;
   box-sizing: border-box;
+  transition:0.2s
 }
 .search_result li {
   width:calc(100% - 10px);
@@ -752,10 +753,7 @@ document.addEventListener("selectionchange", function (e){
     $('.search_result').prepend('<li><a href="https://erichsia7.github.io/note/d/?n=1&id=' + searchdaid[i] + '&r=' + genid('random') + '">' + searchdacontent[i][1][1] + '</a></li>')
    }
   }
-  $('.search_result').css({'--search-result-co':searchdacontent.length});
-  
-  
-     
+  $('.search_result').css({'--search-result-co':searchresultarr.length});
  }
 $(window).resize(function() {
 if($(window).width() > 500) {
