@@ -738,11 +738,32 @@ var listarrh = listh.split(',') ;
    }
   //end
   
+  document.addEventListener("paste", function (e){
+    searchgg();
+  });
+document.addEventListener("cut", function (e){
+    searchgg();
+  });
+document.addEventListener("selectionchange", function (e){
+    searchgg();
+  });
   
   
  });
+ var searchresultarr = []
  function searchgg() {
+  searchresultarr = []
+  var searchtextva = $('#note_search').val()
+  $('.search_result').html('')
+  for (var i = 0; i < searchdacontent.length; i++) {
+   if(searchdacontent[i].indexOf(searchtextva) > -1) {
+    searchresultarr.push(searchdaid)
+    $('.search_result').append('<li>' + searchdaid + '</li>')
+   }
+  }
   
+  
+     
  }
 $(window).resize(function() {
 if($(window).width() > 500) {
