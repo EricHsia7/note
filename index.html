@@ -193,7 +193,16 @@ background: rgba(255, 255, 255, 0.5);
   font-weight:400;
  font-size:18px
  }
- 
+ @media only screen and (max-width: 600px) {
+ #note_search {
+  width:calc(100% - 55px);
+  height:100%;
+  top:0px;
+  left:55px;
+  border:none;
+  transform:translate(0px,0px);
+  }
+ }
 @media (prefers-color-scheme: dark) {
   body {
     background:#1a1a1a;
