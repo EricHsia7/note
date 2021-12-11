@@ -174,8 +174,10 @@ background: rgba(255, 255, 255, 0.5);
   max-height:calc(5 * 45px + 15px);
   border:1px solid #e3e3e3;
   box-sizing: border-box;
-  display:none;
 }
+ .search_result[g="0"] {
+  display:none;
+ }
 .search_result li {
   width:calc(100% - 10px);
   height:45px;
@@ -266,6 +268,9 @@ background: rgba(255, 255, 255, 0.5);
     padding-left:55px;
     width:calc(100% - 55px)
    }
+    .search_result[g="0"] {
+  display:block;
+ }
  }
 </style>
 <style id="emptysvgcsscolor"></style>
@@ -382,7 +387,7 @@ background: rgba(255, 255, 255, 0.5);
  </div>
  
  <div class="note_ti_s">
-   <div class="search_result" style="--search-result-co:0">
+   <div class="search_result" style="--search-result-co:0" g="0">
    </div>
    <input type="text" id="note_search" placeholder="Search" g="0" >
   <div class="backb">
@@ -827,12 +832,10 @@ document.addEventListener("selectionchange", function (e){
   }
   $('.search_result').css({'--search-result-co':searchresultarr.length});
   if(searchresultarr.length > 0) {
-   $('#note_search').attr('g','1')
-   $('.search_result').css({'display':'block'});
+   $('#note_search,.search_result').attr('g','1')
   }
   else {
-   $('#note_search').attr('g','0')
-   $('.search_result').css({'display':'none'});
+   $('#note_search,.search_result').attr('g','0')
   }
  }
 $(window).resize(function() {
