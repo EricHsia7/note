@@ -156,6 +156,8 @@ background: rgba(255, 255, 255, 0.5);
   font-size:18px;
  font-family: 'Noto Sans TC', sans-serif;
   font-weight:400;
+ background:rgba(0, 0, 0, 0);
+ color:#000;
 }
 #note_search[g="1"] {
   border-radius:15px 15px 0px 0px
@@ -213,6 +215,17 @@ background: rgba(255, 255, 255, 0.5);
  }
  :root {
   --svg-fy-c:#fff;
+ }
+ #note_search {
+  color:#fff;
+  border:1px solid #888;
+ }
+ .search_result {
+  background:#1f1f1f;
+  border:1px solid #888;
+ }
+ .search_result li {
+  color:#fff;
  }
 }
 </style>
@@ -720,6 +733,7 @@ var listarrh = listh.split(',') ;
  var searchdacontent = [] ;
  $('.search').click(function() {
   $('.note_ti_s').css({'display':'block'});
+  $('.note_ti').css({'display':'none'});
   setTimeout(function() {
       $('.note_ti_s').css({'opacity':'1'})
      },1);
