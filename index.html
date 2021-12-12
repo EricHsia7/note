@@ -798,10 +798,10 @@ var listarrh = listh.split(',') ;
   $('.note_ti_s').css({'display':'block'}); 
    $('.note_ti').css({'display':'none'});
   $('#note_search').focus();
-  $('.allnote').attr('f','1')
   if($(window).width() < 600) {
-   $(window).scrollTop(0);
+   $(document).scrollTop(0);
   }
+  $('.allnote').attr('f','1')
   //searchda
   for (var i = 0; i < listarrh.length; i++) {
    if(!(listarrh[i] === 'null')) {
@@ -847,6 +847,11 @@ document.addEventListener("selectionchange", function (e){
   else {
    $('#note_search,.search_result').attr('g','0')
   }
+  
+  if($(window).width() < 600) {
+   $(document).scrollTop(0);
+  }
+  
  }
  ripple('.search,.backb','#888','0.4',800,'true');
  $('.backb').click(function() {
