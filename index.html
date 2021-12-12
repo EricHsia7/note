@@ -403,7 +403,7 @@ backdrop-filter: blur(30px);
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
- ripple('.search,.backb','#888','0.4',800,'true');
+ 
  
   function genid(mode) {
 if(mode === "random"){
@@ -834,6 +834,12 @@ document.addEventListener("selectionchange", function (e){
    $('#note_search,.search_result').attr('g','0')
   }
  }
+ ripple('.search,.backb','#888','0.4',800,'true');
+ $('.backb').click(function() {
+  $('.note_ti_s').css({'display':'none'}); 
+   $('.note_ti').css({'display':'block'});
+  $('#note_search').blur()
+ });
 $(window).resize(function() {
 if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
@@ -842,6 +848,7 @@ if($(window).width() > 500) {
   $('.note_c').css({'width':'100%','margin-left':'0px'})
  }
 });
+ 
 $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
