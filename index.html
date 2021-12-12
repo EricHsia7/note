@@ -799,6 +799,9 @@ var listarrh = listh.split(',') ;
    $('.note_ti').css({'display':'none'});
   $('#note_search').focus();
   $('.allnote').attr('f','1')
+  if($(window).width() < 600) {
+   $(window).scrollTop(0);
+  }
   //searchda
   for (var i = 0; i < listarrh.length; i++) {
    if(!(listarrh[i] === 'null')) {
@@ -851,6 +854,7 @@ document.addEventListener("selectionchange", function (e){
    $('.note_ti').css({'display':'block'});
   $('#note_search').blur()
   $('.allnote').attr('f','0')
+  
  });
 $(window).resize(function() {
 if($(window).width() > 500) {
