@@ -273,12 +273,17 @@ background: #fff;
     -webkit-backdrop-filter: blur(30px);
 backdrop-filter: blur(30px);
    }
+    .allnote[f="1"] {
+  position:fixed;
+  top:0px;
+  left:0px;
+ }
  }
 </style>
 <style id="emptysvgcsscolor"></style>
 <body>
  
-<div class="allnote">
+<div class="allnote" f="0">
  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" id="emptysvg">
     <g id="freepik--Box--inject-6">
         <path d="M126.11,338.69H254.55a0,0,0,0,1,0,0V405a6.47,6.47,0,0,1-6.47,6.47H132.58a6.47,6.47,0,0,1-6.47-6.47V338.69A0,0,0,0,1,126.11,338.69Z" style="fill: var(--svg-empty);"></path>
@@ -792,7 +797,8 @@ var listarrh = listh.split(',') ;
  searchdacontent = [] ;
   $('.note_ti_s').css({'display':'block'}); 
    $('.note_ti').css({'display':'none'});
-  $('#note_search').focus()
+  $('#note_search').focus();
+  $('.allnote').attr('f','1')
   //searchda
   for (var i = 0; i < listarrh.length; i++) {
    if(!(listarrh[i] === 'null')) {
@@ -844,6 +850,7 @@ document.addEventListener("selectionchange", function (e){
   $('.note_ti_s').css({'display':'none'}); 
    $('.note_ti').css({'display':'block'});
   $('#note_search').blur()
+  $('.allnote').attr('f','0')
  });
 $(window).resize(function() {
 if($(window).width() > 500) {
