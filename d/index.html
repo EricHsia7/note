@@ -739,7 +739,10 @@ function getcolorset(main_color_h) {
 
 
 
-  
+  var td = new Date()
+  var date_time = td.getFullYear()+ '/' + (td.getMonth()+1) + '/' + td.getDate() ;
+  var default_title = 'Untitled Note - {date}'
+  var default_title_d = default_title.replaceAll('{date}',date_time)
   
   var noteid
 if(!(url_n === '1')) {
@@ -752,6 +755,7 @@ if(!(url_n === '1')) {
             }
   history.pushState(null, null,'https://erichsia7.github.io/note/d/?n=1&id=' + noteid);
   localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
+   $('.note_title').text(default_title_d)
   var encdtit = encu($('.note_title').text()) ;
   var enctxt = encu($('.note_text').html()) ;
   var color_h = Math.round(Math.random()*360)
