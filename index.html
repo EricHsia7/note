@@ -881,6 +881,9 @@ document.addEventListener("selectionchange", function (e){
   $('.allnote').attr('f','0')
   
  });
+ $('.settings').click(function() {
+    location.href = 'https://erichsia7.github.io/note/settings/?r=' + genid('random');
+  });
 $(window).resize(function() {
 if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
