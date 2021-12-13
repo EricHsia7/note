@@ -736,12 +736,17 @@ function getcolorset(main_color_h) {
   
 
 //var color_h = 198 ;
-
+function checkTime(i)
+{
+if (i<10) 
+  {i="0" + i}
+  return i
+}
 
 
   var td = new Date()
   var date_time = td.getFullYear()+ '/' + (td.getMonth()+1) + '/' + td.getDate() ;
-  var dtt = td.getHours() + ':' + td.getMinutes() + ':' + td.getSeconds()
+  var dtt = checkTime(td.getHours()) + ':' + checkTime(td.getMinutes()) + ':' + checkTime(td.getSeconds())
   var default_title = 'Untitled Note - {date} {time}'
   var default_title_d = default_title.replaceAll('{date}',date_time).replaceAll('{time}',dtt)
   
