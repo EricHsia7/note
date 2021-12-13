@@ -1,1 +1,121 @@
+<meta charset="UTF-8">
+<title>Note</title>
+<head>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
+<meta name="theme-color" content="#fff">
+<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="icon" />
+<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="bookmark" />
+<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="shortcut icon" />
+<link rel="manifest" href="https://erichsia7.github.io/note/manifest.json?l">
+<style>
+  .note_ti_s {
+background: #fff;
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:55px;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+  -webkit-user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:20px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+ }
+.backb {
+ position:absolute;
+ top:0px;
+ left:0px;
+ width:55px;
+ height:55px;
+ display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+.storaged {
+  position:absolute;
+  top:60px;
+  left:0px;
+  width:100%;
+  height:calc(100% - 60px);
+  overflow:scroll;
+}
+.th {
+  font-size:15px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+  display: flex;
+  align-items: center;
+  min-height:40px;
+  width:calc(100% - 10px);
+  border-bottom:1px solid #e3e3e3;
+  padding-left:10px;
+}
+</style>
+<div class="storaged">
+  <div class="th" g="mb"></div>
+  <div class="th" g="deftit">Default title: <input type="text"></div>
+</div>
+<div class="note_ti_s">
+  Settings
+  <div class="backb">
+  <svg width="30px" height="30px" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 64 64">
+<defs/>
+<g id="圖層1" vectornator:layerName="圖層1">
+<path d="M27.8841+32L48.2392+11.6449C50.4447+9.4394+50.4447+5.85954+48.2392+3.65409L48.2392+3.65409C46.0338+1.44864+42.4539+1.44864+40.2485+3.65409L15.6689+28.2337C13.5859+30.3166+13.5859+33.6887+15.6689+35.7663L40.2485+60.3459C42.4539+62.5514+46.0338+62.5514+48.2392+60.3459L48.2392+60.3459C50.4447+58.1405+50.4447+54.5606+48.2392+52.3551L27.8841+32Z" opacity="1" fill="var(--svg-fy-c)"/>
+</g>
+</svg>
+  </div>
+   </div>
+<script>
+var localStorageSpace = function(){
+        var allStrings = '';
+        for(var key in window.localStorage){
+            if(window.localStorage.hasOwnProperty(key)){
+                allStrings += window.localStorage[key];
+            }
+        }
+        return allStrings ? Math.round(3 + ((allStrings.length*16)/(8*1024))) : '0';
+    };
 
+function testsessionStorage() {
+  var genidchars = "0123456789";
+  var genid = "";
+            for (var i = 0; i < 50000; i++) {
+                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+            }
+  if(sessionStorage.getItem('sizetest') === null) {
+    var char = genid ;
+  }
+  else {
+    var char = sessionStorage.getItem('sizetest') + genid
+  }
+  try {
+  sessionStorage.setItem('sizetest',char);
+    console.log(String(sessionStorage.getItem('sizetest')).length);
+    
+   $('.th[g="mb"]').html('Storage: Calculating')
+    setTimeout(testsessionStorage,1)
+} catch (error) {
+ //console.log(String(sessionStorage.getItem('sizetest')).length);
+  $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + String(sessionStorage.getItem('sizetest')).length/1000 + 'KB')
+  setTimeout(function() {
+    sessionStorage.setItem('sizetest','')
+  },500)
+  return ''
+}
+
+}
+sessionStorage.setItem('sizetest','')
+setTimeout(testsessionStorage,1)
+</script>
