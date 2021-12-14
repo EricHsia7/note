@@ -58,7 +58,7 @@ background: #fff;
   font-weight:700;
   display: flex;
   align-items: center;
-  min-height:40px;
+  min-height:45px;
   width:calc(100% - 10px);
   border-bottom:1px solid #e3e3e3;
   padding-left:10px;
@@ -66,6 +66,12 @@ background: #fff;
     :root {
   --svg-fy-c:#000;
  }
+   input {
+  box-sizing: border-box;
+  border:1px solid #e3e3e3;
+  height:35px;
+  width:230px
+   }
    @media (prefers-color-scheme: dark) {
   body,.note_ti_s {
     background:#1a1a1a;
@@ -81,7 +87,7 @@ background: #fff;
 </style>
 <div class="storaged">
   <div class="th" g="mb"></div>
-  <div class="th" g="deftit">Default title: <input type="text" value="Untitled Note - {date}"></div>
+  <div class="th" g="deftit">Default title: <input type="text" value="Untitled Note - {date}" id="deftit"></div>
 </div>
 <div class="note_ti_s">
   Settings
