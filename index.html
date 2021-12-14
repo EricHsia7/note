@@ -819,7 +819,7 @@ var listarrh = listh.split(',') ;
   $('.note_ti_s').css({'display':'block'}); 
    $('.note_ti').css({'display':'none'});
   $('#note_search').focus();
-  },800);
+  },500);
   if($(window).width() < 600) {
    $(document).scrollTop(0);
   }
@@ -882,7 +882,7 @@ document.addEventListener("selectionchange", function (e){
    $('.note_ti').css({'display':'block'});
   $('#note_search').blur()
   $('.allnote').attr('f','0')
-  },800);
+  },500);
  });
  $('.settings').click(function() {
     location.href = 'https://erichsia7.github.io/note/settings/?r=' + genid('random');
