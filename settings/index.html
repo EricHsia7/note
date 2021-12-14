@@ -196,6 +196,11 @@ function testsessionStorage() {
 }
 
 }
+   
+if(localStorage.getItem('note_settings_deftit') === null) {
+   localStorage.setItem('note_settings_deftit','Untitled Note - {date} {time}')
+  }
+   
 sessionStorage.setItem('sizetest','')
 setTimeout(testsessionStorage,1)
   ripple('.backb','#888','0.4',800,'true');
