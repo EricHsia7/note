@@ -213,6 +213,21 @@ document.addEventListener("selectionchange", function (e){
     savesettings();
   });
    
+function setthemecol(hexcolsjs,delaytimems) {
+  setTimeout(function() {
+  $('meta[name="theme-color"]').attr('content',hexcolsjs);
+  },delaytimems);
+}
+function darkmodehexcol() {
+if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  return '#1a1a1a'
+}
+else {
+return '#fff'
+}
+}
+  setthemecol(darkmodehexcol(),1)
+   
     $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
