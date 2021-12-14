@@ -191,7 +191,20 @@ setTimeout(testsessionStorage,1)
   $('.backb').click(function() {
     location.href = 'https://erichsia7.github.io/note/?r=' + genid('random');
   });
-  
+   $('#deftit').val(localStorage.getItem('note_settings_deftit'))
+  function savesettings() {
+     localStorage.setItem('note_settings_deftit',$('#deftit').val())
+  }
+   document.addEventListener("paste", function (e){
+    savesettings();
+  });
+document.addEventListener("cut", function (e){
+    savesettings();
+  });
+document.addEventListener("selectionchange", function (e){
+    savesettings();
+  });
+   
     $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
