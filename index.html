@@ -821,11 +821,10 @@ var listarrh = listh.split(',') ;
  $('.search').click(function() {
   searchdaid = [] ;
  searchdacontent = [] ;
-  setTimeout(function() {
   $('.note_ti_s').css({'display':'block'}); 
    $('.note_ti').css({'display':'none'});
   $('#note_search').focus();
-  },500);
+
   if($(window).width() < 600) {
    $(document).scrollTop(0);
   }
@@ -881,14 +880,14 @@ document.addEventListener("selectionchange", function (e){
   }
   
  }
- ripple('.search,.backb,.settings','#888','0.4',800,'true');
+ //ripple('.search,.backb,.settings','#888','0.4',800,'true');
  $('.backb').click(function() {
-  setTimeout(function() {
+ 
   $('.note_ti_s').css({'display':'none'}); 
    $('.note_ti').css({'display':'block'});
   $('#note_search').blur()
   $('.allnote').attr('f','0')
-  },500);
+ 
  });
  $('.settings').click(function() {
     location.href = 'https://erichsia7.github.io/note/settings/?r=' + genid('random');
