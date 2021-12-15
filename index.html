@@ -780,11 +780,11 @@ for (var i = 0; i < listarr.length; i++) {
      $('.note_c[nid="' + listarr[i] + '"]').click(function() {
       var thlinkh = String($(this).attr('link'))
       var thidf = $(this).attr('nid')
-      $(this).css({'opacity':'0.8'});
+      $(this).css({'opacity':'1'});
       setTimeout(function() {
       location.href = thlinkh
        $('.note_c[nid="' + thidf + '"]').css({'opacity':'1'});
-      },80);
+      },1);
      });
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
