@@ -881,13 +881,19 @@ document.addEventListener("selectionchange", function (e){
   
  }
  //ripple('.search,.backb,.settings','#888','0.4',800,'true');
- $('.backb').click(function() {
+ $('.search,.backb,.settings').click(function() {
+ $(this).css({'opacity':'0.8'});
+  var thclas = $(this).attr('class')
+      setTimeout(function() {
+       $('.' + thclas).css({'opacity':'1'});
+      },80);
+ });
  
+ $('.backb').click(function() {
   $('.note_ti_s').css({'display':'none'}); 
    $('.note_ti').css({'display':'block'});
   $('#note_search').blur()
   $('.allnote').attr('f','0')
- 
  });
  $('.settings').click(function() {
     location.href = 'https://erichsia7.github.io/note/settings/?r=' + genid('random');
