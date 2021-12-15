@@ -220,6 +220,9 @@ document.addEventListener("cut", function (e){
 document.addEventListener("selectionchange", function (e){
     savesettings();
   });
+document.addEventListener("keyup", function (e){
+    save();
+  });
    
 function setthemecol(hexcolsjs,delaytimems) {
   setTimeout(function() {
