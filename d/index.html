@@ -823,7 +823,15 @@ function previewcolorset(colorh) {
   $('#gre').css({'background':getcolorset(colorh).grey})
   $('#ft').css({'background':getcolorset(colorh).ftf})
 }
-
+      $.extend($.support, { touch: "ontouchend" in document });
+ 
+ var eventlistenert = ['touchstart','touchmove','touchend'] ;
+ if($.support.touch) {
+  eventlistenert = ['touchstart','touchmove','touchend'] ;
+ }
+ else {
+  eventlistenert = ['mousedown','mousemove','mouseup'] ;
+ }
 let mouseX = 0
 let mouseY = 0
 let offsetX = 0
@@ -834,21 +842,20 @@ var hsv_a = 0 ;
 var px = 0 ;
 var py = $('.box').height() ;
 
-div2.addEventListener('touchstart', function(e) {
+div2.addEventListener(eventlistenert[0], function(e) {
   isDown = true
   mouseX = e.pageX
   mouseY = e.pageY
-  document.addEventListener('touchmove', m2)
+  document.addEventListener(eventlistenert[1], m2)
 }, {passive: true});
 
-document.addEventListener('touchend', function(e) {
+document.addEventListener(eventlistenert[2], function(e) {
   if (isDown) {
     offsetX += e.pageX - mouseX
     offsetY += e.pageY - mouseY
   }
   isDown = false
-  document.removeEventListener('touchmove',m2)
-  
+  document.removeEventListener(eventlistenert[1],m2)
 });
 function m2(e) {
   var bar_width = $('.themebar').width()
