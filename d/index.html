@@ -685,8 +685,19 @@ function decu(juy,oik) {
   
 document.querySelector('.note_title').contentEditable = true ;
 document.querySelector('.note_text').contentEditable = true ;
-ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
-ripple('.themebtn,.deletebtn,.sharebtn','var(--color-ftf)','0.4',800,'true');
+//ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
+//ripple('.themebtn,.deletebtn,.sharebtn','var(--color-ftf)','0.4',800,'true');.
+var thclid = '' ;
+ $('.bar_btn,.themebtn,.deletebtn,.sharebtn').click(function() {
+ $(this).css({'opacity':'0.8'});
+  thclas = genid('uuid')
+  $(this).attr('op',thclas)
+      setTimeout(function() {
+       $('*[op="' + thclas + '"]').css({'opacity':'1'});
+      },10);
+ });
+ 
+ 
 $('.bar_btn[f="back"]').click(function() {
   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
 });
