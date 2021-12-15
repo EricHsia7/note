@@ -881,11 +881,13 @@ document.addEventListener("selectionchange", function (e){
   
  }
  //ripple('.search,.backb,.settings','#888','0.4',800,'true');
+ var thclid = '' ;
  $('.search,.backb,.settings').click(function() {
  $(this).css({'opacity':'0.8'});
-  var thclas = $(this).attr('class')
+  thclas = genid('uuid')
+  $(this).attr('op',thclas)
       setTimeout(function() {
-       $('.' + thclas).css({'opacity':'1'});
+       $('*[op="' + thclas + '"]').css({'opacity':'1'});
       },80);
  });
  
