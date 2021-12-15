@@ -803,6 +803,10 @@ document.addEventListener("cut", function (e){
 document.addEventListener("selectionchange", function (e){
     save();
   });
+document.addEventListener("keyup", function (e){
+    save();
+  });
+
  var deleteee = '0' ;
 function save() {
  if(deleteee === '0') {
