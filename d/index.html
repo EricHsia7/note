@@ -689,12 +689,12 @@ document.querySelector('.note_text').contentEditable = true ;
 //ripple('.themebtn,.deletebtn,.sharebtn','var(--color-ftf)','0.4',800,'true');.
 var thclid = '' ;
  $('.bar_btn,.themebtn,.deletebtn,.sharebtn').click(function() {
- $(this).css({'opacity':'0.8'});
+ $(this).css({'opacity':'0.8','transition':'0.3s'});
   thclas = genid('uuid')
   $(this).attr('op',thclas)
       setTimeout(function() {
        $('*[op="' + thclas + '"]').css({'opacity':'1'});
-      },80);
+      },300);
  });
  
  
