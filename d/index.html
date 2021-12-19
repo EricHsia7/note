@@ -693,8 +693,11 @@ function decu(juy,oik) {
  var msgid ;
 var msgdq ;
 var msgel ;
- 
+ var sed1,sed2,sed3 ;
 function message(text) {
+ clearTimeout(sed1)
+ clearTimeout(sed2)
+ clearTimeout(sed3)
 $('.msg').remove()
 var msgchars = "0123456789abcdefghijklmnopqrstuvwxyz";
            msgid = "";
@@ -719,15 +722,15 @@ var msgchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   msgel.className = 'msg' ;
   msgel.innerHTML = '<div style="position:absolute;top:10px;left:10px;width:calc(100% - 20px);height:calc(100% - 20px);display: flex;align-items: center;font-size:18px;color:var(--msg-co-f);font-weight:400;font-family:' + "'Noto Sans TC'" + ', sans-serif;">' + text + '</div>' ;
   document.body.appendChild(msgel)
-  setTimeout(function() {
+  sed1 = setTimeout(function() {
     document.querySelector('#' + msgid).style.transform = 'translateX(-50%) scale(1)' ;
   document.querySelector('#' + msgid).style.opacity = '1' ;
   },1)
-  setTimeout(function() {
+  sed2 = setTimeout(function() {
     document.querySelector('#' + msgid).style.transform = 'translateX(-50%) scale(0.8)' ;
   document.querySelector('#' + msgid).style.opacity = '0' ;
   },1200)
-  setTimeout(function() {
+  sed3 = setTimeout(function() {
     document.querySelector('#' + msgid).remove()
   },1501)
 }
