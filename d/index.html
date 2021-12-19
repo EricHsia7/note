@@ -723,15 +723,15 @@ var msgchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   msgel.innerHTML = '<div style="position:absolute;top:10px;left:10px;width:calc(100% - 20px);height:calc(100% - 20px);display: flex;align-items: center;font-size:18px;color:var(--msg-co-f);font-weight:400;font-family:' + "'Noto Sans TC'" + ', sans-serif;">' + text + '</div>' ;
   document.body.appendChild(msgel)
   sed1 = setTimeout(function() {
-    document.querySelector('#' + msgid).style.transform = 'translateX(-50%) scale(1)' ;
-  document.querySelector('#' + msgid).style.opacity = '1' ;
+    document.querySelector('#' + String(msgid)).style.transform = 'translateX(-50%) scale(1)' ;
+  document.querySelector('#' + String(msgid)).style.opacity = '1' ;
   },1)
   sed2 = setTimeout(function() {
-    document.querySelector('#' + msgid).style.transform = 'translateX(-50%) scale(0.8)' ;
-  document.querySelector('#' + msgid).style.opacity = '0' ;
+    document.querySelector('#' + String(msgid)).style.transform = 'translateX(-50%) scale(0.8)' ;
+  document.querySelector('#' + String(msgid)).style.opacity = '0' ;
   },1200)
   sed3 = setTimeout(function() {
-    document.querySelector('#' + msgid).remove()
+    document.querySelector('#' + String(msgid)).remove()
   },1501)
 }
  
