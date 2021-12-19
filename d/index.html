@@ -334,7 +334,15 @@ align-items: center;
  .qrc canvas {
 display:none;
  }
+ :root {
+  --msg-co-o:var(--color-light);
+  --msg-co-f:var(--color-ftf);
+ }
 @media (prefers-color-scheme: dark) {
+ :root {
+  --msg-co-o:var(--color-dark);
+   --msg-co-f:var(--color-grey);
+ }
   .note,.bar,.themebox,.deletebox,.sharebox {
     background:var(--color-dark);
     color:#fff;
@@ -697,7 +705,7 @@ var msgchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   msgel = document.createElement('div')
   msgel.style.width = 'clamp(280px,80vw,400px)' ;
   msgel.style.height = '55px' ;
-  msgel.style.background = 'var(--color-light)' ;
+  msgel.style.background = 'var(--msg-co-o)' ;
   msgel.style.borderRadius = '15px' ;
   msgel.style.position = 'fixed' ;
   msgel.style.left = '50%' ;
@@ -707,7 +715,7 @@ var msgchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   msgel.style.transition = '0.3s' ;
   msgel.id = msgid ;
   msgel.className = 'msg' ;
-  msgel.innerHTML = '<div style="position:absolute;top:10px;left:10px;width:calc(100% - 20px);height:calc(100% - 20px);display: flex;align-items: center;font-size:18px;color:var(--color-ftf);font-weight:400;font-family:' + "'Noto Sans TC'" + ', sans-serif;">' + text + '</div>' ;
+  msgel.innerHTML = '<div style="position:absolute;top:10px;left:10px;width:calc(100% - 20px);height:calc(100% - 20px);display: flex;align-items: center;font-size:18px;color:var(--msg-co-f);font-weight:400;font-family:' + "'Noto Sans TC'" + ', sans-serif;">' + text + '</div>' ;
   document.body.appendChild(msgel)
   setTimeout(function() {
     msgel.style.transform = 'translateX(-50%) scale(1)' ;
