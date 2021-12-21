@@ -864,9 +864,7 @@ var thclid = '' ;
  */
  
  
-$('.bar_btn[f="back"]').click(function() {
-  location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
-});
+
 $('.bar_btn[f="delete"]').click(function() {
   $('.deletebox').css({'display':'block'});
   $('.themeboxbg').css({'display':'block'});
@@ -990,8 +988,7 @@ document.addEventListener("keyup", function (e){
 for (var i = 0; i < timearr.length-1; i++) {
   timeavg += Math.abs(timearr[(i+1)]-timearr[i])
 }
-console.log(timearr.length + ',' + timeavg/(timearr.length-1))
-  
+//console.log(timearr.length + ',' + timeavg/(timearr.length-1))
  }
  var deleteee = '0' ;
 function save() {
@@ -1008,6 +1005,21 @@ calctypespeed()
  }
 }
 
+ 
+ $('.bar_btn[f="back"]').click(function() {
+  gtag('event', 'type_speed', {
+    'event_category': Math.round(timeavg/(timearr.length-1)),
+    'event_label': user_id,
+    'transport_type': 'beacon',
+    'event_callback': function(){
+    //systeminfodata(user_id)
+     location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
+    }
+  });
+ //gt
+});
+ 
+ 
 function previewcolorset(colorh) {
   $('#lig').css({'background':getcolorset(colorh).light})
   $('#dar').css({'background':getcolorset(colorh).dark})
