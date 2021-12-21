@@ -941,6 +941,9 @@ console.log(timeavg/(timearr.length-1))
 function save() {
  if(deleteee === '0') {
   timearr.push(new Date().getTime())
+  if(timearr.length > 15) {
+   timearr.splice(0, 10);
+  }
 calctypespeed()
  $('.note_text *').removeAttr('style')
   var encdtit = encu($('.note_title').text()) ;
