@@ -302,7 +302,7 @@ function decu(juy,oik) {
   
   return {'light':light_color,'dark':dark_color,'grey':grey_color,'ftf':ftf_color,'arr':[light_color,dark_color,grey_color,ftf_color]}
 }
-  var color_h = parseInt(url_d.split(',')[2])
+  var color_h = 161
   $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
   
   var noteid ;
