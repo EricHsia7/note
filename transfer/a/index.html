@@ -309,10 +309,18 @@ function decu(juy,oik) {
   
   var noteid ;
     
+  var list = localStorage.getItem('note_id_list') ;
+var listarr = list.split(',') ;
+  var dataarrffg = [] ;
+  for (var i = 0; i < listarr.length; i++) {
+   if(!(listarr[i] === 'null')) {
+      dataarrffg.push(listarr[i] + '@' + localStorage.getItem('note_id_' + listarr[i]))
+     }
+     }
   
   
   
-  var dataee = 'qvyhw81lpy1alwqo@33fe3f7fd73737b28f0c7825372606edfde7380eb2f2563930:448345,dc7f69e4dfc0511417244aa5d90acc170a696ff5283adba81ed6c5f33f753f42ae044c5c2497b590effc14eb947f17dce27649f69f84a4f06dc2b4c450b1:686148,151$yuhygygygyygyggyh@33fe3f7fd73737b28f0c7825372606edfde7380eb2f2563930:448345,dc7f69e4dfc0511417244aa5d90acc170a696ff5283adba81ed6c5f33f753f42ae044c5c2497b590effc14eb947f17dce27649f69f84a4f06dc2b4c450b1:686148,151'
+  var dataee = dataarrffg.join('$')
 var splitsize = 256 ;
 var fgyarr = [] ;
 var ty = 0 ;
