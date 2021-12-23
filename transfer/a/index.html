@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
@@ -26,6 +27,38 @@
     transform:translate(-50%,-50%)
   }
   */
+  .tit {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:55px;
+  background:#fff;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+  color:var(--color-ftf);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ -webkit-user-select: none;
+}
+.box {
+  position:fixed;
+  top:55px;
+  left:0px;
+  width:100%;
+  height:calc(100% - 55px);
+  display: flex;
+justify-content: center;
+align-items: center;
+  flex-direction:column;
+}
+.qrc {
+  width:250px;
+  height:250px;
+  background:#e3e3e3;
+}
   @media (prefers-color-scheme: dark) {
     body {
     background:var(--color-dark);
@@ -34,7 +67,16 @@
   }
 </style>
 <body>
-  <div class="load">Opening</div>
+ 
+  
+  <div class="box">
+  <div class="qrc">
+    
+  </div>
+</div>
+
+<div class="tit">Transfer</div>
+  
   </body>
 <script>
   var getUrlString = location.href;
@@ -350,7 +392,26 @@ function urllist() {
   }
   return urltgsarr 
 }
-  $('.load').html(urllist().join('<br>'))
+  
+  
+ // $('.load').html(urllist().join('<br>'))
+  
+  
+  function qrcfg(utyurlarr) {
+    for (var i = 0; i < utyurlarr.length; i++) {
+      //document.querySelector('.qrc').innerHTML = '';
+var qrcode = new QRCode(document.querySelector('.qrc') , {
+    text: utyurlarr[i],
+    width: 512,
+    height: 512,
+    colorDark : '#000',
+    colorLight : '#fff',
+    correctLevel : QRCode.CorrectLevel.L
+});
+    }
+  }
+  qrcfg(urllist())
+  
   
   
   
