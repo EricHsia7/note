@@ -410,21 +410,20 @@ function urllist() {
  // $('.load').html(urllist().join('<br>'))
   
   
-  function qrcfg(utyurlarr) {
-    for (var i = 0; i < utyurlarr.length; i++) {
-      //document.querySelector('.qrc').innerHTML = '';
+  function qrcfg(utyurlarr,index) {
+      document.querySelector('.qrcf').innerHTML = '';
 var qrcode = new QRCode(document.querySelector('.qrcf') , {
-    text: utyurlarr[i],
+    text: utyurlarr[index],
     width: 512,
     height: 512,
     colorDark : '#000',
     colorLight : '#fff',
     correctLevel : QRCode.CorrectLevel.L
 });
-      $('.qrcf').css({'width':250*utyurlarr.length});
+      $('.qrcf').css({'width':250});
     }
-  }
-  qrcfg(urllist())
+  var gtyffurloo = urllist() ;
+  qrcfg(gtyffurloo,0)
   
   
   
