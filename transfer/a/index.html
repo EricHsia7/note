@@ -58,7 +58,16 @@ align-items: center;
   width:250px;
   height:250px;
   background:#e3e3e3;
+  position:relative;
+  overflow:scroll;
 }
+  .qrcf {
+  width:80px;
+    height:100%;
+    display: flex;
+justify-content: center;
+align-items: center;
+  }
   @media (prefers-color-scheme: dark) {
     body {
     background:var(--color-dark);
@@ -71,7 +80,7 @@ align-items: center;
   
   <div class="box">
   <div class="qrc">
-    
+    <div class="qrcf"></div>
   </div>
 </div>
 
@@ -400,7 +409,7 @@ function urllist() {
   function qrcfg(utyurlarr) {
     for (var i = 0; i < utyurlarr.length; i++) {
       //document.querySelector('.qrc').innerHTML = '';
-var qrcode = new QRCode(document.querySelector('.qrc') , {
+var qrcode = new QRCode(document.querySelector('.qrcf') , {
     text: utyurlarr[i],
     width: 512,
     height: 512,
@@ -408,6 +417,7 @@ var qrcode = new QRCode(document.querySelector('.qrc') , {
     colorLight : '#fff',
     correctLevel : QRCode.CorrectLevel.L
 });
+      $('.qrcf').css({'width':250*utyurlarr.length});
     }
   }
   qrcfg(urllist())
