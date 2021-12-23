@@ -37,7 +37,7 @@
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
   font-family: 'Noto Sans TC', sans-serif;
   font-weight:700;
-  color:var(--color-ftf);
+  color:#000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,6 +72,16 @@ align-items: center;
     width:250px;
     height:250px;
   }
+  .btn {
+    width:clac(250px * 0.5 - 5px);
+    height:55px;
+    background:#e3e3e3;
+    border-radius:15px;
+    color:#000;
+    display: flex;
+justify-content: center;
+align-items: center;
+  }
   /*
   @media (prefers-color-scheme: dark) {
     body {
@@ -88,6 +98,8 @@ align-items: center;
   <div class="qrc">
     <div class="qrcf"></div>
   </div>
+    <div class="btn">Previous</div>
+    <div class="btn">Next</div>
 </div>
 
 <div class="tit">Transfer</div>
