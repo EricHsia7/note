@@ -106,6 +106,7 @@ align-items: center;
  
   
   <div class="box">
+    <h4 id="qrcprog"></h4>
   <div class="qrc">
     <div class="qrcf"></div>
   </div>
@@ -452,10 +453,12 @@ var qrcode = new QRCode(document.querySelector('.qrcf') , {
     }
   var gtyffurloo = urllist() ;
   qrcfg(gtyffurloo,0)
+ $('#qrcprog').html('1/' + gtyffurloo.length)
   var yyhindexcc = 0 ;
   function nextqrc() {
     yyhindexcc += 1 ;
     qrcfg(gtyffurloo,yyhindexcc)
+    $('#qrcprog').html(yyhindexcc+1 + '/' + gtyffurloo.length)
   }
   $('.btn[g="next"]').click(function() {
   nextqrc()
