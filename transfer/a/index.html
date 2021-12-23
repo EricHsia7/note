@@ -452,8 +452,11 @@ var qrcode = new QRCode(document.querySelector('.qrcf') , {
     }
   var gtyffurloo = urllist() ;
   qrcfg(gtyffurloo,0)
-  
-  
+  var yyhindexcc = 0 ;
+  function nextqrc() {
+    yyhindexcc += 1 ;
+    qrcfg(gtyffurloo,yyhindexcc)
+  }
   
   
   $(document).ready(function() {
