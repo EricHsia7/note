@@ -145,12 +145,16 @@ align-items: center;
 <script>
   var getUrlString = location.href;
 var url = new URL(getUrlString);
+
 var url_d = url.searchParams.get('d');
 var url_pw = url.searchParams.get('pw');
 
+var utrid = url.searchParams.get('trid') ;
+var uindex = url.searchParams.get('index') ;
+var ulic = url.searchParams.get('lic') ;
+var usplit = url.searchParams.get('split') ;
+  var udata = url.searchParams.get('data') ;
   
-
-
     function genid(mode) {
 if(mode === "random"){
 var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -433,6 +437,26 @@ setl(9)
 for (var i = 0; i < 16; i++) {
   $('.g1[g="trdlist"]').append('<li f="x">#' + (i+1) + '</li>')
 }
+  
+  
+  function oiop() {
+    if(!(sessionStorage.getItem('transfer_' + utrid + '_list').indexOf('#' + uindex) > -1)) {
+      
+    if(sessionStorage.getItem('transfer_' + utrid + '_list') === null) {
+      sessionStorage.setItem('transfer_' + utrid + '_list','#' + uindex)
+    }
+    else {
+      sessionStorage.setItem('transfer_' + utrid + '_list',sessionStorage.getItem('transfer_' + utrid + '_list') + ',#' + uindex)
+    }
+      
+    }
+    
+    
+    sessionStorage.setItem('transfer_' + utrid + '_' + uindex,udata)
+  }
+  oiop()
+  
+  
   
   $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
