@@ -459,14 +459,14 @@ var qrcode = new QRCode(document.querySelector('.qrcf') , {
     if(yyhindexcc < gtyffurloo.length-1) {
     yyhindexcc += 1 ;
     qrcfg(gtyffurloo,yyhindexcc)
-    $('#qrcprog').html(yyhindexcc + '/' + gtyffurloo.length)
+    $('#qrcprog').html(yyhindexcc + '/' + gtyffurloo.length-1)
     }
   }
   function previoustt() {
   if(yyhindexcc > 0) {
     yyhindexcc -= 1 ;
     qrcfg(gtyffurloo,yyhindexcc)
-    $('#qrcprog').html(yyhindexcc + '/' + gtyffurloo.length)
+    $('#qrcprog').html(yyhindexcc + '/' + gtyffurloo.length-1)
     }
   }
   $('.btn[g="next"]').click(function() {
