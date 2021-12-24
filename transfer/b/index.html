@@ -438,29 +438,29 @@ function setl(g) {
   
   
   function oiop() {
-    if(!(String(sessionStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + uindex) > -1)) {
-    if(sessionStorage.getItem('transfer_' + utrid + '_list') === null) {
-      sessionStorage.setItem('transfer_' + utrid + '_list','#' + uindex)
+    if(!(String(localStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + uindex) > -1)) {
+    if(localStorage.getItem('transfer_' + utrid + '_list') === null) {
+      localStorage.setItem('transfer_' + utrid + '_list','#' + uindex)
     }
     else {
-      sessionStorage.setItem('transfer_' + utrid + '_list',sessionStorage.getItem('transfer_' + utrid + '_list') + ',#' + uindex)
+      localStorage.setItem('transfer_' + utrid + '_list',localStorage.getItem('transfer_' + utrid + '_list') + ',#' + uindex)
     }
       
     }
     
     
-    sessionStorage.setItem('transfer_' + utrid + '_' + uindex,udata)
+    localStorage.setItem('transfer_' + utrid + '_' + uindex,udata)
     
     for (var i = 0; i < ulic; i++) {
       var stayw = 'x'
-      if(String(sessionStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + i) > -1) {
+      if(String(localStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + i) > -1) {
         stayw = 'done'
       }
   $('.g1[g="trdlist"]').append('<li f="' + stayw + '">#' + (i) + '</li>')
       
 }
-    setl(String(sessionStorage.getItem('transfer_' + utrid + '_list')).split(',').length/ulic*100)
-    $('#pro').html(String(sessionStorage.getItem('transfer_' + utrid + '_list')).split(',').length + '/' + ulic)
+    setl(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length/ulic*100)
+    $('#pro').html(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length + '/' + ulic)
   }
   oiop()
   
