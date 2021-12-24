@@ -440,8 +440,7 @@ for (var i = 0; i < 16; i++) {
   
   
   function oiop() {
-    if(!(sessionStorage.getItem('transfer_' + utrid + '_list').indexOf('#' + uindex) > -1)) {
-      
+    if(!(String(sessionStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + uindex) > -1)) {
     if(sessionStorage.getItem('transfer_' + utrid + '_list') === null) {
       sessionStorage.setItem('transfer_' + utrid + '_list','#' + uindex)
     }
