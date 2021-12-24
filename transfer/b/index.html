@@ -69,6 +69,7 @@ align-items: center;
 }
 .g1[g="trdlist"] {
   height:auto;
+  margin-bottom:100px;
 }
 .g1[g="trdlist"] li {
   width:240px;
@@ -460,7 +461,7 @@ function setl(g) {
       
 }
     setl(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length/ulic*100)
-    $('#pro').html(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length + '/' + ulic)
+    $('#pro').html((String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length-1) + '/' + (ulic-1))
   }
   oiop()
   
