@@ -453,7 +453,7 @@ function setl(g) {
     
     for (var i = 0; i < ulic; i++) {
       var stayw = 'x'
-      if(String(sessionStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + uindex) > -1) {
+      if(String(sessionStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + i) > -1) {
         stayw = 'done'
       }
   $('.g1[g="trdlist"]').append('<li f="' + stayw + '">#' + (i+1) + '</li>')
