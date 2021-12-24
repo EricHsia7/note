@@ -453,7 +453,7 @@ var qrcode = new QRCode(document.querySelector('.qrcf') , {
     }
   var gtyffurloo = urllist() ;
   qrcfg(gtyffurloo,0)
- $('#qrcprog').html('1/' + gtyffurloo.length)
+ $('#qrcprog').html('0/' + (gtyffurloo.length-1))
   var yyhindexcc = 0 ;
   function nextqrc() {
     if(yyhindexcc < gtyffurloo.length-1) {
