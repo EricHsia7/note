@@ -456,7 +456,7 @@ var qrcode = new QRCode(document.querySelector('.qrcf') , {
  $('#qrcprog').html('1/' + gtyffurloo.length)
   var yyhindexcc = 0 ;
   function nextqrc() {
-    if(yyhindexcc < gtyffurloo.length) {
+    if(yyhindexcc < gtyffurloo.length-1) {
     yyhindexcc += 1 ;
     qrcfg(gtyffurloo,yyhindexcc)
     $('#qrcprog').html(yyhindexcc+1 + '/' + gtyffurloo.length)
