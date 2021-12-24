@@ -456,7 +456,7 @@ function setl(g) {
       if(String(sessionStorage.getItem('transfer_' + utrid + '_list')).indexOf('#' + i) > -1) {
         stayw = 'done'
       }
-  $('.g1[g="trdlist"]').append('<li f="' + stayw + '">#' + (i+1) + '</li>')
+  $('.g1[g="trdlist"]').append('<li f="' + stayw + '">#' + (i) + '</li>')
       
 }
     setl(String(sessionStorage.getItem('transfer_' + utrid + '_list')).split(',').length/ulic*100)
