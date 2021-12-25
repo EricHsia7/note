@@ -47,7 +47,7 @@
   align-items: center;
  -webkit-user-select: none;
 }
-.box {
+.box,.nextbox {
   position:fixed;
   top:55px;
   left:0px;
@@ -55,7 +55,9 @@
   height:calc(100% - 55px);
   overflow:scroll
 }
-
+.nextbox {
+  display:none;
+  }
 .g1 {
   position:relative;
   width:100%;
@@ -139,6 +141,11 @@ align-items: center;
   </div>
   
 </div>
+  
+  <div class="nextbox">
+  
+  </div>
+  
 <div class="tit">Transfer</div>
   
   
@@ -469,6 +476,7 @@ function setl(g) {
         hygvvg.push(localStorage.getItem('transfer_' + utrid + '_' + i))
       }
       $('.g1[g="trdlist"]').append('<input value="' + hygvvg.join('') + '">');
+      $('.nextbox').css({'display':'block'});
     }
     
     
