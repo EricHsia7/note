@@ -527,7 +527,7 @@ function setl(g) {
       
 }
     setl(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length/ulic*100)
-    $('#pro').html((String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length-1) + '/' + (ulic-1))
+    $('#pro').html((String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length) + '/' + (ulic))
    
     if(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length === ulic) {
     $('.nextbox').css({'display':'flex'});
