@@ -218,7 +218,11 @@ function testsessionStorage() {
     setTimeout(testsessionStorage,1)
 } catch (error) {
  //console.log(String(sessionStorage.getItem('sizetest')).length);
-  $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + String(sessionStorage.getItem('sizetest')).length/1000 + 'KB')
+   
+  $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + String(sessionStorage.getItem('sizetest')).length/1000 + 'KB');
+   
+   localStorage.setItem('note_settings_storagesize',String(sessionStorage.getItem('sizetest')).length/1000 + 'KB')
+                        
   setTimeout(function() {
     sessionStorage.setItem('sizetest','')
   },500)
@@ -232,7 +236,14 @@ if(localStorage.getItem('note_settings_deftit') === null) {
   }
    
 sessionStorage.setItem('sizetest','')
-setTimeout(testsessionStorage,1)
+   if(localStorage.getItem('note_settings_storagesize') === null) {
+      setTimeout(testsessionStorage,1)
+   }
+else {
+   $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + localStorage.getItem('note_settings_storagesize'));
+}
+   
+   
   //ripple('.backb','#888','0.4',800,'true');
   $('.backb').click(function() {
     location.href = 'https://erichsia7.github.io/note/?r=' + genid('random');
