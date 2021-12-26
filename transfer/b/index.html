@@ -505,21 +505,35 @@ function setl(g) {
 }
     setl(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length/ulic*100)
     $('#pro').html((String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length-1) + '/' + (ulic-1))
+   
+    if(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length === ulic) {
+    $('.nextbox').css({'display':'flex'});
+    }
     
-    var hygvvg = [] ;
+  }
+  oiop()
+  function fdata() {
+  var hygvvg = [] ;
     if(String(localStorage.getItem('transfer_' + utrid + '_list')).split(',').length === ulic) {
       for (var i = 0; i < ulic; i++) {
         hygvvg.push(localStorage.getItem('transfer_' + utrid + '_' + i))
       }
-      $('.g1[g="trdlist"]').append('<input value="' + hygvvg.join('') + '">');
-      $('.nextbox').css({'display':'flex'});
+      return hygvvg.join('')
     }
-    
-    
   }
-  oiop()
-  
-  
+  function overwrite() {
+    var thdat1 = String(fdata()) ;
+    var notesarr1 = thdat1.split('$')
+    for (var i = 0; i < notesarr1.length; i++) {
+      var ythid1 = notesarr1[i].split('@')[0]
+      var ythda1 = notesarr1[i].split('@')[1]
+      localStorage.setItem('note_id_' + ythid1,ythda1)
+      if(!(String(localStorage.getItem('note_id_list')).indexOf(ythid1) > -1)){
+      localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + ythid1);
+      }
+      
+    }
+  }
   
   $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
