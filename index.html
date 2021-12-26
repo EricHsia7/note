@@ -567,7 +567,7 @@ var url_transfer = url.searchParams.get('transfer');
  
  
  if(url_transfer === '1') {
-    $('body').prompt({'message':'Transfer is completed!','time':1200,'animate':'slide'});
+    $('body').prompt({'message':'Transfer is completed!','time':5000,'animate':'slide'});
     history.pushState(null, null,'https://erichsia7.github.io/note/?r=' + genid('random'));
  }
   function genid(mode) {
