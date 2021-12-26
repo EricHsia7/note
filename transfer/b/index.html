@@ -535,6 +535,25 @@ function setl(g) {
     }
   }
   
+  function duplicate() {
+    var thdat1 = String(fdata()) ;
+    var notesarr1 = thdat1.split('$')
+    for (var i = 0; i < notesarr1.length; i++) {
+      var ythid1 = genid('random')
+      var ythda1 = notesarr1[i].split('@')[1]
+      localStorage.setItem('note_id_' + ythid1,ythda1)
+      if(!(String(localStorage.getItem('note_id_list')).indexOf(ythid1) > -1)){
+      localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + ythid1);
+      }
+      
+    }
+  }
+  
+  function synchronize() {
+    
+  }
+  
+  
   $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
