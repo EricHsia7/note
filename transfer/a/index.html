@@ -496,6 +496,11 @@ var qrcode = new QRCode(document.querySelector('.qrcf') , {
   $('.btn[g="previous"]').click(function() {
     previoustt()
   });
+  
+  $('.backb').click(function() {
+    location.href = 'https://erichsia7.github.io/note/settings/?r=' + genid('random');
+  });
+  
   $(document).ready(function() {
         var googlefontloadtime = new Date().getTime() ;
         if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
