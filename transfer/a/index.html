@@ -501,14 +501,13 @@ function urllist() {
   ligcc = '#1a1a1a' ;
 }
 
-       
       document.querySelector('.qrcf').innerHTML = '';
 var qrcode = new QRCode(document.querySelector('.qrcf') , {
     text: utyurlarr[index],
     width: 512,
     height: 512,
-    colorDark : '#000',
-    colorLight : '#fff',
+    colorDark : drkcc,
+    colorLight : ligcc,
     correctLevel : QRCode.CorrectLevel.L
 });
       $('.qrcf').css({'width':250});
