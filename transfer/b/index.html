@@ -550,6 +550,28 @@ function setl(g) {
   }
   
   function synchronize() {
+    //delete all
+    var idlist = String(localStorage.getItem('note_id_list')).split(',')
+    for (var i = 0; i < idlist.length; i++) {
+      if(!(idlist[i] === 'null')) {
+    localStorage.removeItem('note_id_' + idlist[i])
+  localStorage.setItem('note_id_list',localStorage.getItem('note_id_list').replaceAll(',' + idlist[i],''))
+    }
+    }
+    //write
+    
+    var thdat1 = String(fdata()) ;
+    var notesarr1 = thdat1.split('$')
+    for (var i = 0; i < notesarr1.length; i++) {
+      var ythid1 = notesarr1[i].split('@')[0]
+      var ythda1 = notesarr1[i].split('@')[1]
+      localStorage.setItem('note_id_' + ythid1,ythda1)
+      if(!(String(localStorage.getItem('note_id_list')).indexOf(ythid1) > -1)){
+      localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + ythid1);
+      }
+      
+    }
+    
     
   }
   
