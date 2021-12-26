@@ -223,6 +223,38 @@ background: #fff;
   justify-content: center;
   align-items: center;
  }
+ 
+  /*prompt*/
+    .promptcenter {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #000;
+        font-size: 15px;
+        font-family: "Noto Sans TC", sans-serif;
+        font-weight: 700;
+    }
+    .promptcenter * {
+        color: #000;
+        font-size: 15px;
+        font-family: "Noto Sans TC", sans-serif;
+        font-weight: 700;
+    }
+        .prompt {
+            width: clamp(280px,80vw,400px);
+            height: 60px;
+            background: #fff;
+            border-radius: 15px;
+            position: fixed;
+            left: 50%;
+            bottom: -80px;
+            opacity: 0;
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+        }
+/*promptend*/
+ 
 @media (prefers-color-scheme: dark) {
   body {
     background:#1a1a1a;
@@ -267,6 +299,17 @@ background: #fff;
   color:#fff;
  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
 }
+ 
+     .promptcenter {
+        color: #fff;
+    }
+    .promptcenter * {
+        color: #fff;
+    }
+        .prompt {
+         background:#1f1f1f;
+ }
+ 
 }
  
   @media only screen and (max-width: 600px) {
@@ -450,7 +493,83 @@ backdrop-filter: blur(30px);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
  
+ var getUrlString = location.href;
+var url = new URL(getUrlString);
+var url_transfer = url.searchParams.get('transfer');
  
+ 
+ (function ($) {
+    $.fn.prompt = function (options) {
+        var settings = $.extend(
+            {
+                message: "undefined",
+                time: 2000,
+                animate: "slide",
+            },
+            options
+        );
+        return this.each(function () {
+            $(".prompt").remove();
+            var promptchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var promptid = "";
+            for (var i = 0; i < 10; i++) {
+                var randomNumber = Math.floor(Math.random() * promptchars.length);
+                promptid += promptchars.substring(randomNumber, randomNumber + 1);
+            }
+
+            if (settings.animate === "slide") {
+                $(this).append('<div class="prompt" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "30px" });
+                }, 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "0", transition: "0.4s", bottom: "-80px" });
+                }, settings.time + 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).remove();
+                }, settings.time + 400);
+            }
+
+            if (settings.animate === "fade") {
+                $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "10px" });
+                }, 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "0", transition: "0.4s" });
+                }, settings.time + 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).remove();
+                }, settings.time + 400);
+            }
+
+            if (settings.animate === "show") {
+                $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "1", transition: "0s", bottom: "10px" });
+                }, 100);
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "0", transition: "0s" });
+                }, settings.time + 100);
+                setTimeout(function () {
+                    $("#" + promptid).remove();
+                }, settings.time + 400);
+            }
+        });
+    };
+})(jQuery);
+ 
+ 
+ if(url_transfer === '1') {
+    $('body').prompt({'message':'Transfer is completed!','time':1200,'animate':'slide'});
+    history.pushState(null, null,'https://erichsia7.github.io/note/?r=' + genid('random'));
+ }
   function genid(mode) {
 if(mode === "random"){
 var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
