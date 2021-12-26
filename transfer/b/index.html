@@ -537,6 +537,16 @@ function setl(g) {
       return hygvvg.join('')
     }
   }
+  
+  
+  function deletetransfer() {
+  var delievhd = String(localStorage.getItem('transfer_' + utrid + '_list')).split(',')
+  for (var i = 0; i < delievhd.length; i++) {
+    localStorage.removeItem('transfer_' + utrid + '_' + i)
+  }
+  localStorage.removeItem('transfer_' + utrid + '_list')
+}
+  
   function overwrite() {
     var thdat1 = String(fdata()) ;
     var notesarr1 = thdat1.split('$')
@@ -550,6 +560,7 @@ function setl(g) {
       
     }
     $('.beu').css({'display':'flex'});
+    deletetransfer()
   }
   
   function duplicate() {
@@ -565,6 +576,7 @@ function setl(g) {
       
     }
     $('.beu').css({'display':'flex'});
+    deletetransfer()
   }
   
   function synchronize() {
@@ -590,7 +602,7 @@ function setl(g) {
       
     }
     $('.beu').css({'display':'flex'});
-    
+    deletetransfer()
   }
 
   function back() {
