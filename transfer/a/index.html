@@ -441,6 +441,21 @@ var listarr = list.split(',') ;
      }
   
   
+     function setthemecol(hexcolsjs,delaytimems) {
+  setTimeout(function() {
+  $('meta[name="theme-color"]').attr('content',hexcolsjs);
+  },delaytimems);
+}
+function darkmodehexcol() {
+if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  return '#1a1a1a'
+}
+else {
+return '#fff'
+}
+}
+  setthemecol(darkmodehexcol(),1)
+     
   
   var dataee = dataarrffg.join('$')
 var splitsize = 1800 ;
@@ -476,8 +491,17 @@ function urllist() {
   
  // $('.load').html(urllist().join('<br>'))
   
+     
   
   function qrcfg(utyurlarr,index) {
+       var drkcc = '#000' ;
+       var ligcc = '#fff' ;
+       if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  drkcc = '#fff' ;
+  ligcc = '#1a1a1a' ;
+}
+
+       
       document.querySelector('.qrcf').innerHTML = '';
 var qrcode = new QRCode(document.querySelector('.qrcf') , {
     text: utyurlarr[index],
