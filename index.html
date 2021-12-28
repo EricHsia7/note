@@ -975,9 +975,9 @@ for (var i = 0; i < listarr.length; i++) {
      
      
      $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join(''))
-     /*
-     for (var i = 0; i < pinnednoteidli.length; i++) {
-      $('.note_c[nid="' + pinnednoteidli[i] + '"]').click(function() {
+     
+     for (var yu = 0; yu < pinnednoteidli.length; yu++) {
+      $('.note_c[nid="' + pinnednoteidli[yu] + '"]').click(function() {
       var thlinkh = String($(this).attr('link'))
       var thidf = $(this).attr('nid')
       $(this).css({'opacity':'1'});
@@ -988,7 +988,7 @@ for (var i = 0; i < listarr.length; i++) {
      });
       
      }
-     */
+     
      
      if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
