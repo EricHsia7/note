@@ -934,6 +934,7 @@ $('#emptysvg').css({'display':'block'})
   }
   else {
    var pinnednotehtml = [] ;
+   var pinnednoteidli = [] ;
 for (var i = 0; i < listarr.length; i++) {
    if(!(listarr[i] === 'null')) {
     if($('#emptysvg').length > 0) {
@@ -952,7 +953,8 @@ for (var i = 0; i < listarr.length; i++) {
      var thscoh = parseInt(ffdata.split(',')[2]) ;
      var thspinned = ffdata.split(',')[3] ;
      if(thspinned === '1') {
-      pinnednotehtml.push('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>')
+      pinnednotehtml.push('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
+      pinnednoteidli.push(listarr[i])
      }
     else {
      $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
@@ -970,7 +972,22 @@ for (var i = 0; i < listarr.length; i++) {
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
     if(i > (listarr.length-2)) {
-     $('.allnote').prepend(pinnednotehtml.join('') + '<h3 id="pinnedtit">Pinned</h3>')
+     $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join(''))
+     
+     for (var i = 0; i < pinnednoteidli.length; i++) {
+      
+      $('.note_c[nid="' + pinnednoteidli[i] + '"]').click(function() {
+      var thlinkh = String($(this).attr('link'))
+      var thidf = $(this).attr('nid')
+      $(this).css({'opacity':'1'});
+      setTimeout(function() {
+      location.href = thlinkh
+       $('.note_c[nid="' + thidf + '"]').css({'opacity':'1'});
+      },1);
+     });
+      
+     }
+     
      
      if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
