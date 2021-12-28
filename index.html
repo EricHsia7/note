@@ -949,6 +949,12 @@ for (var i = 0; i < listarr.length; i++) {
      
      
      var thscoh = parseInt(ffdata.split(',')[2]) ;
+     var thspinned = ffdata.split(',')[3] ;
+     if(thspinned === '1') {
+      
+     }
+    else {
+     
      $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
      $('.note_c[nid="' + listarr[i] + '"]').click(function() {
       var thlinkh = String($(this).attr('link'))
@@ -959,6 +965,8 @@ for (var i = 0; i < listarr.length; i++) {
        $('.note_c[nid="' + thidf + '"]').css({'opacity':'1'});
       },1);
      });
+     
+    }
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
     if(i > (listarr.length-2)) {
