@@ -1138,16 +1138,20 @@ $('.themeboxbg').css({'display':'none'});
  });
  
  $('.bar_btn[f="pin"]').click(function() {
+  var pindervmsg = '' ;
   if(pinned === '0') {
+   pindervmsg = 'Pinned!' ;
  $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}');
   pinned = '1' ;
   save()
   }
   else {
+   pindervmsg = 'Unpinned!' ;
    $('#pinsvgstyle').html(':root{--svg-pin-fill:rgba(0,0,0,0)}');
   pinned = '0' ;
   save()
   }
+  $('body').prompt({'message':pindervmsg,'time':1200,'animate':'slide'});
  });
  
  
