@@ -918,7 +918,7 @@ var listarr = list.split(',') ;
 if(!(localStorage.getItem('lastnotelisthtml') === null)) {
  $('.allnote').html(localStorage.getItem('lastnotelisthtml'))
  setTimeout(function() {
-  $('.allnote .note_c,.allnote h2#pinnedtit').remove()
+  $('.allnote .note_c,.allnote h3#pinnedtit,h3').remove()
   pritntc()
  },500);
 }
@@ -970,12 +970,12 @@ for (var i = 0; i < listarr.length; i++) {
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
     if(i > (listarr.length-2)) {
-     $('.allnote').prepend(pinnednotehtml.join('') + '<h2 id="pinnedtit">Pinned</h2>')
+     $('.allnote').prepend(pinnednotehtml.join('') + '<h3 id="pinnedtit">Pinned</h3>')
      
      if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
      $('.allnote').masonry({
-  itemSelector: '.note_c',
+  itemSelector: '.note_c,#pinnedtit',
                 columnWidth: 3, //gap
                 animate: false,
                 horizontalOrder: true,
