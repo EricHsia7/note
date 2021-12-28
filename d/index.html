@@ -965,8 +965,13 @@ if(!(url_n === '1')) {
 }
 else {
   noteid = url_id
-  var color_h = parseInt(localStorage.getItem('note_id_' + noteid).split(',')[2])
+  var color_h = parseInt(localStorage.getItem('note_id_' + noteid).split(',')[2]) ;
+  if(String(localStorage.getItem('note_id_' + noteid).split(',')[3]) === 'undefined') {
+   pinned = '0' ;
+  }
+ else {
   pinned = String(localStorage.getItem('note_id_' + noteid).split(',')[3])
+ }
   $('.note_title').text(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1]));
   $('.note_text').html(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1]));
  if(pinned === '1') {
