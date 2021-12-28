@@ -968,7 +968,7 @@ for (var i = 0; i < listarr.length; i++) {
      var thspinned = ffdata.split(',')[3] ;
      if(thspinned === '1') {
       pinnednotehtml.push('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
-      pinnednoteidli.push(listarr[i])
+      pinnednoteidli.push(listarr[i]);
      }
     else {
      $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
@@ -986,6 +986,8 @@ for (var i = 0; i < listarr.length; i++) {
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
     if(i > (listarr.length-2)) {
+     if(pinnednoteidli.length < 0.1) {
+      
      $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join('') + '<h3 id="unpinnedtit">Unpinned</h3>')
      for (var yu = 0; yu < pinnednoteidli.length; yu++) {
       $('.note_c[nid="' + pinnednoteidli[yu] + '"]').click(function() {
@@ -997,6 +999,8 @@ for (var i = 0; i < listarr.length; i++) {
        $('.note_c[nid="' + thidf + '"]').css({'opacity':'1'});
       },1);
      });
+     }
+     
      }
      
      if($(window).width() > 500) {
