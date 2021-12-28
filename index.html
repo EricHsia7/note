@@ -223,6 +223,17 @@ background: #fff;
   justify-content: center;
   align-items: center;
  }
+ h3#pinnedtit {
+  width:100%;
+  margin:0px;
+  padding:0px;
+  margin-top:10px;
+  margin-bottom:10px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+ }
+ 
+ 
  
   /*prompt*/
     .promptcenter {
@@ -309,7 +320,9 @@ background: #fff;
         .prompt {
          background:#1f1f1f;
  }
- 
+  h3#pinnedtit {
+   color:#fff;
+ }
 }
  
   @media only screen and (max-width: 600px) {
@@ -972,8 +985,6 @@ for (var i = 0; i < listarr.length; i++) {
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
     if(i > (listarr.length-2)) {
-     
-     
      $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join(''))
      
      for (var yu = 0; yu < pinnednoteidli.length; yu++) {
