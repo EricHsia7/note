@@ -986,7 +986,7 @@ for (var i = 0; i < listarr.length; i++) {
     //ripple('.note_c[nid="' + listarr[i] + '"]',getcolorset(thscoh).grey,'0.3',333,'false');
     
     if(i > (listarr.length-2)) {
-     if(pinnednoteidli.length < 0.1) {
+     if(pinnednoteidli.length > 0) {
       
      $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join('') + '<h3 id="unpinnedtit">Unpinned</h3>')
      for (var yu = 0; yu < pinnednoteidli.length; yu++) {
