@@ -224,11 +224,12 @@ background: #fff;
   align-items: center;
  }
  h3#pinnedtit,h3#unpinnedtit {
-  width:100%;
+  width:calc(100% - 10px);
   margin:0px;
   padding:0px;
   margin-top:5px;
   margin-bottom:5px;
+  padding-left:10px;
   font-family: 'Noto Sans TC', sans-serif;
   font-weight:700;
  }
@@ -986,7 +987,6 @@ for (var i = 0; i < listarr.length; i++) {
     
     if(i > (listarr.length-2)) {
      $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join('') + '<h3 id="unpinnedtit">Unpinned</h3>')
-     
      for (var yu = 0; yu < pinnednoteidli.length; yu++) {
       $('.note_c[nid="' + pinnednoteidli[yu] + '"]').click(function() {
       var thlinkh = String($(this).attr('link'))
@@ -997,9 +997,7 @@ for (var i = 0; i < listarr.length; i++) {
        $('.note_c[nid="' + thidf + '"]').css({'opacity':'1'});
       },1);
      });
-      
      }
-     
      
      if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
