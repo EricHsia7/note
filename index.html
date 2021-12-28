@@ -223,7 +223,7 @@ background: #fff;
   justify-content: center;
   align-items: center;
  }
- h3#pinnedtit {
+ h3#pinnedtit,h3#unpinnedtit {
   width:100%;
   margin:0px;
   padding:0px;
@@ -232,15 +232,7 @@ background: #fff;
   font-family: 'Noto Sans TC', sans-serif;
   font-weight:700;
  }
- h3#unpinnedtit {
-  width:100%;
-  margin:0px;
-  padding:0px;
-  margin-top:5px;
-  margin-bottom:5px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:700;
- }
+
  
  
   /*prompt*/
@@ -328,7 +320,7 @@ background: #fff;
         .prompt {
          background:#1f1f1f;
  }
-  h3#pinnedtit {
+  h3#pinnedtit,h3#unpinnedtit {
    color:#fff;
  }
 }
@@ -1012,7 +1004,7 @@ for (var i = 0; i < listarr.length; i++) {
      if($(window).width() > 500) {
       $('.note_c').css({'width':$(window).width()/2-20,'margin-left':'10px'})
      $('.allnote').masonry({
-  itemSelector: '.note_c,#pinnedtit',
+  itemSelector: '.note_c,#pinnedtit,#unpinnedtit',
                 columnWidth: 3, //gap
                 animate: false,
                 horizontalOrder: true,
