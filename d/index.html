@@ -1133,9 +1133,16 @@ $('.themeboxbg').css({'display':'none'});
  });
  
  $('.bar_btn[f="pin"]').click(function() {
+  if(pinned === '0') {
  $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}');
   pinned = '1' ;
   save()
+  }
+  else {
+   $('#pinsvgstyle').html(':root{--svg-pin-fill:rgba(0,0,0,0)}');
+  pinned = '0' ;
+  save()
+  }
  });
  
  
