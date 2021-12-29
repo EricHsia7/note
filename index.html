@@ -941,6 +941,7 @@ if(!(localStorage.getItem('lastnotelisthtml') === null)) {
   cache.keys().then(function(keys) {
     keys.forEach(function(request, index, array) {
       cache.delete(request);
+      console.log(request)
     });
   });
 })
