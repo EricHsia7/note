@@ -1033,7 +1033,7 @@ calctypespeed()
  }
 }
 
- 
+ var backurlzzff = 'https://erichsia7.github.io/note/?r=' + genid('random')
  $('.bar_btn[f="back"]').click(function() {
   gtag('event', 'type_speed', {
     'event_category': Math.round(timeavg/(timearr.length-1)),
@@ -1041,11 +1041,19 @@ calctypespeed()
     'transport_type': 'beacon',
     'event_callback': function(){
     //systeminfodata(user_id)
-     location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
+     location.href = backurlzzff ;
     }
   });
  //gt
 });
+      $('.bar_btn[f="back"]').hover(function() {
+      caches.open('note_hover_cache').then(function(cache){
+            cache.addAll([
+                backurlzzff
+            ]);   
+        })  
+      console.log('cache!')
+     });
  
  
 function previewcolorset(colorh) {
