@@ -935,6 +935,17 @@ if(!(localStorage.getItem('lastnotelisthtml') === null)) {
   $('.allnote .note_c,.allnote h3#pinnedtit,h3,h3#unpinnedtit').remove()
   pritntc()
  },500);
+ 
+ 
+ caches.open('note_hover_cache').then(function(cache) {
+  cache.keys().then(function(keys) {
+    keys.forEach(function(request, index, array) {
+      cache.delete(request);
+    });
+  });
+})
+ 
+ 
 }
  else {
   pritntc()
@@ -1016,8 +1027,7 @@ for (var i = 0; i < listarr.length; i++) {
      
      $('.note_c').hover(function() {
       var tendiidfjr = String($(this).attr('link'))
-      caches.open('static')
-        .then(function(cache){
+      caches.open('note_hover_cache').then(function(cache){
             cache.addAll([
                 tendiidfjr
             ]);   
