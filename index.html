@@ -1014,6 +1014,19 @@ for (var i = 0; i < listarr.length; i++) {
 });
      }
      
+     $('.note_c').hover(function() {
+      var tendiidfjr = String($(this).attr('link'))
+      caches.open('static')
+        .then(function(cache){
+            cache.addAll([
+                tendiidfjr
+            ]);   
+        })  
+      
+     });
+     
+     
+     
      var lastnotelisthtml = String($('.allnote').html()).replaceAll('&amp;','&')
      localStorage.setItem('lastnotelisthtml',lastnotelisthtml)
      $('.note_c').css({'transition':'0.12s'}).attr('ld','1');
