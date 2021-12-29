@@ -988,7 +988,7 @@ for (var i = 0; i < listarr.length; i++) {
     if(i > (listarr.length-2)) {
      if(pinnednoteidli.length > 0) {
       
-     $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.join('') + '<h3 id="unpinnedtit">Unpinned</h3>')
+     $('.allnote').prepend('<h3 id="pinnedtit">Pinned</h3>' + pinnednotehtml.reverse().join('') + '<h3 id="unpinnedtit">Unpinned</h3>')
      for (var yu = 0; yu < pinnednoteidli.length; yu++) {
       $('.note_c[nid="' + pinnednoteidli[yu] + '"]').click(function() {
       var thlinkh = String($(this).attr('link'))
