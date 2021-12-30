@@ -1041,11 +1041,11 @@ for (var i = 0; i < listarr.length; i++) {
   for (var i = 0; i < $(scrollcacheselect).length; i++) {
     var thswww = $(scrollcacheselect).eq(i).offset().top-$(document).scrollTop()
     var thshh = $(scrollcacheselect).eq(i).height()
-    if(thswww > (0-thshh) && thswww < $(window).height()) {
+    if(thswww > (0-thshh) && thswww < window.innerHeight) {
       //$(scrollcacheselect).eq(i).attr('inviewarea','1')
      var thsidlinkjjufp = String($(scrollcacheselect).eq(i).attr('link'))
      dftuuarr.push(thsidlinkjjufp)
-     console.log(thswww + ',' + $(window).height())
+     console.log(thswww + ',' + window.innerHeight)
     }
     else {
       
