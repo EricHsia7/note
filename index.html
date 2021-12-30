@@ -1033,7 +1033,7 @@ for (var i = 0; i < listarr.length; i++) {
                 tendiidfjr
             ]);   
         })  
-      console.log('cache!')
+      console.log('cache ' + tendiidfjr)
      });
      var scrollcacheselect = '.note_c'
      $(document).scroll(function() {
@@ -1053,7 +1053,7 @@ for (var i = 0; i < listarr.length; i++) {
       caches.open('note_hover_cache').then(function(cache){
             cache.addAll(dftuuarr);   
         })  
-      console.log('cache!' + dftuuarr.join(','))
+      console.log('cache ' + dftuuarr.length)
       
 });
      
