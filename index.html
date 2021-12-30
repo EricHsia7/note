@@ -1037,24 +1037,26 @@ for (var i = 0; i < listarr.length; i++) {
      });
      var scrollcacheselect = '.note_c'
      $(document).scroll(function() {
+      var dftuuarr = [] ;
   for (var i = 0; i < $(scrollcacheselect).length; i++) {
     var thswww = $(scrollcacheselect).eq(i).offset().top-$(document).scrollTop()
     var thshh = $(scrollcacheselect).eq(i).height()
     if(thswww > (0-thshh) && thswww < $(window).height()) {
       //$(scrollcacheselect).eq(i).attr('inviewarea','1')
      var thsidlinkjjufp = String($(scrollcacheselect).eq(i).attr('link'))
-      caches.open('note_hover_cache').then(function(cache){
-            cache.addAll([
-                thsidlinkjjufp
-            ]);   
-        })  
-      console.log('cache!')
+     dftuuarr.push(thsidlinkjjufp)
+      
      
     }
     else {
       
     }
   }
+      caches.open('note_hover_cache').then(function(cache){
+            cache.addAll(dftuuarr);   
+        })  
+      console.log('cache!')
+      
 });
      
      
