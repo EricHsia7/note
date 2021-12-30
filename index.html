@@ -1045,8 +1045,6 @@ for (var i = 0; i < listarr.length; i++) {
       //$(scrollcacheselect).eq(i).attr('inviewarea','1')
      var thsidlinkjjufp = String($(scrollcacheselect).eq(i).attr('link'))
      dftuuarr.push(thsidlinkjjufp)
-      
-     
     }
     else {
       
@@ -1055,7 +1053,7 @@ for (var i = 0; i < listarr.length; i++) {
       caches.open('note_hover_cache').then(function(cache){
             cache.addAll(dftuuarr);   
         })  
-      console.log('cache!')
+      console.log('cache!' + dftuuarr.join(','))
       
 });
      
