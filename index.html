@@ -530,14 +530,11 @@ transition:width 0.3s ,background 0s;
  <script>
 $(document).ready(function() {
 setTimeout(function() {
-$('.ladbar').css({'width':'105%','transition':'0.7s'});
+$('.ladbar').css({'opacity':'0','transition':'0.3s'});
 },1000);
 setTimeout(function() {
-$('.ladbar').css({'opacity':'0','transition':'0.3s'});
-},2500);
-setTimeout(function() {
 $('.ladbar').css({'display':'none'});
-},2800);
+},1500);
 });
 </script>
 
