@@ -1139,14 +1139,8 @@ document.addEventListener("selectionchange", function (e){
     var serresulturlkk = 'https://erichsia7.github.io/note/d/?n=1&id=' + searchdaid[i] + '&r=' + genid('random')
     $('.search_result').prepend('<a href="' + serresulturlkk + '"><li>' + textlengthdd(searchdacontent[i][1][1],22) + '</li></a>')
     
-      caches.open('note_hover_cache').then(function(cache){
-            cache.addAll([
-                serresulturlkk
-            ]);   
-        })  
-      //console.log('cache!')
-     
-    
+     //console.log('cache!')
+       
    }
   }
   $('.search_result').css({'--search-result-co':searchresultarr.length});
