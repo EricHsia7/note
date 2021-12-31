@@ -1056,9 +1056,10 @@ for (var i = 0; i < listarr.length; i++) {
      var thsidlinkjjufp = String($(scrollcacheselect).eq(i).attr('link'))
      dftuuarr.push(thsidlinkjjufp)
      //console.log(thswww + ',' + window.innerHeight)
+     $(scrollcacheselect).css({'opacity':'1','transition':'0s'});
     }
     else {
-      
+      $(scrollcacheselect).css({'opacity':'0','transition':'0s'});
     }
   }
       caches.open('note_hover_cache').then(function(cache){
