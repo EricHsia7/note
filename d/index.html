@@ -533,6 +533,10 @@ $('.ladbar').css({'display':'none'});
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
 
+ function loadbarsh() {
+$('.ladbar').css({'display':'block','opacity':'1','transition':'0s'});
+ }
+ 
 var getUrlString = location.href;
 var url = new URL(getUrlString);
 var url_n = url.searchParams.get('n');
@@ -1078,6 +1082,7 @@ calctypespeed()
 
  var backurlzzff = 'https://erichsia7.github.io/note/?r=' + genid('random')
  $('.bar_btn[f="back"]').click(function() {
+  loadbarsh()
   gtag('event', 'type_speed', {
     'event_category': Math.round(timeavg/(timearr.length-1)),
     'event_label': user_id,
