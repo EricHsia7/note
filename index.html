@@ -540,23 +540,22 @@ $('.ladbar').css({'display':'none'});
 },2800);
 });
 </script>
-$('.ladbar').css({'opacity':'0','transition':'0.3s'});
-},2500);
-setTimeout(function() {
-$('.ladbar').css({'display':'none'});
-},2800);
-});
-</script>
- 
+
  
  
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
  
+ 
+ function loadbarsh() {
+$('.ladbar').css({'display':'block'});
+ }
+ 
  var getUrlString = location.href;
 var url = new URL(getUrlString);
 var url_transfer = url.searchParams.get('transfer');
+ 
  
  
  (function ($) {
@@ -1032,6 +1031,7 @@ for (var i = 0; i < listarr.length; i++) {
     else {
      $('.allnote').prepend('<div class="note_c" style="--color-light:' + getcolorset(thscoh).light + ';--color-dark:' + getcolorset(thscoh).dark + ';--color-grey:' + getcolorset(thscoh).grey + ';--color-ftf:' + getcolorset(thscoh).ftf + ';" nid="' + listarr[i] + '" link="https://erichsia7.github.io/note/d/?n=1&id=' + listarr[i] + '&r=' + genid('random') + '"><h2>' + thsdec + '</h2><div class="note_c_t">' + thstxdec + '</div></div>');
      $('.note_c[nid="' + listarr[i] + '"]').click(function() {
+      loadbarsh()
       var thlinkh = String($(this).attr('link'))
       var thidf = $(this).attr('nid')
       $(this).css({'opacity':'1'});
