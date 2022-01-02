@@ -889,6 +889,14 @@ function decu(juy,oik) {
                 return decryptedTexte;
                 
             }
+ function enur(u) {
+return encodeURIComponent(u)
+}
+ function deur(u) {
+return decodeURIComponent(u)
+}
+ 
+ 
 function setthemecol(hexcolsjs,delaytimems) {
   setTimeout(function() {
   $('meta[name="theme-color"]').attr('content',hexcolsjs);
@@ -1001,10 +1009,10 @@ for (var i = 0; i < listarr.length; i++) {
     }
     
      var ffdata = localStorage.getItem('note_id_' + listarr[i])
-     var thsdec = textlengthdd(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]),13)
+     var thsdec = textlengthdd(deur(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])),13)
      
      var thedwdhid = genid('uuid')
-     $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]) + '</span>')
+     $('body').append('<span id="' + thedwdhid + '">' + deur(decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1])) + '</span>')
      var thstxdec = textlengthdd($('span#' + thedwdhid).text(),25)
      $('span#' + thedwdhid).remove()
      
