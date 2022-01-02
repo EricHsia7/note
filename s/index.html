@@ -318,7 +318,7 @@ function saveftyyy() {
   var enftpw = url_pw.split('_') ;
   var titpw = parseInt(enftpw[0],32)
   var txtpw = parseInt(enftpw[1],32)
-  var encdtoi = url_d.split(',')[0] + ':' + titpw + ',' + url_d.split(',')[1] + ':' + txtpw + ',' + url_d.split(',')[2] + url_d.split(',')[3]
+  var encdtoi = url_d.split(',')[0] + ':' + titpw + ',' + url_d.split(',')[1] + ':' + txtpw + ',' + url_d.split(',')[2] + ',' + url_d.split(',')[3]
   localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
   localStorage.setItem('note_id_' + noteid, encdtoi);
   setTimeout(function() {
