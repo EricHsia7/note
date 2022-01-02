@@ -786,7 +786,12 @@ function decu(juy,oik) {
                 
             }
 
-
+function enur(u) {
+return encodeURIComponent(u)
+}
+ function deur(u) {
+return decodeURIComponent(u)
+}
  
 
 (function ($) {
@@ -996,8 +1001,8 @@ if(!(url_n === '1')) {
   history.pushState(null, null,'https://erichsia7.github.io/note/d/?n=1&id=' + noteid);
   localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
    $('.note_title').text(default_title_d)
-  var encdtit = encu($('.note_title').text()) ;
-  var enctxt = encu($('.note_text').html()) ;
+  var encdtit = encu(enur($('.note_title').text())) ;
+  var enctxt = encu(enur($('.note_text').html())) ;
   var color_h = Math.round(Math.random()*360)
 
   localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h + ',' + pinned);
@@ -1012,8 +1017,8 @@ else {
  else {
   pinned = String(localStorage.getItem('note_id_' + noteid).split(',')[3])
  }
-  $('.note_title').text(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1]));
-  $('.note_text').html(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1]));
+  $('.note_title').text(deur(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1])));
+  $('.note_text').html(deur(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1])));
  if(pinned === '1') {
   $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}')
  }
@@ -1067,8 +1072,8 @@ function save() {
   }
 calctypespeed()
  $('.note_text *').removeAttr('style')
-  var encdtit = encu($('.note_title').text()) ;
-  var enctxt = encu($('.note_text').html()) ;
+  var encdtit = encu(enur($('.note_title').text())) ;
+  var enctxt = encu(enur($('.note_text').html())) ;
   localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h + ',' + pinned)
  }
 }
