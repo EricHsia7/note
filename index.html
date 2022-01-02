@@ -1137,9 +1137,9 @@ var listarrh = listh.split(',') ;
   for (var i = 0; i < listarrh.length; i++) {
    if(!(listarrh[i] === 'null')) {
      var ffdata = localStorage.getItem('note_id_' + listarrh[i])
-     var thsdec = decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1])
+     var thsdec = deur(decu(ffdata.split(',')[0].split(':')[0],ffdata.split(',')[0].split(':')[1]))
      var thedwdhid = genid('uuid') + genid('random')
-     $('body').append('<span id="' + thedwdhid + '">' + decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1]) + '</span>')
+     $('body').append('<span id="' + thedwdhid + '">' + deur(decu(ffdata.split(',')[1].split(':')[0],ffdata.split(',')[1].split(':')[1])) + '</span>')
      var thstxdec = $('span#' + thedwdhid).text()
      searchdacontent.push([listarrh[i] + ' ' + thsdec + ' ' + thstxdec,[listarrh[i],thsdec,thstxdec]])
      searchdaid.push(listarrh[i])
