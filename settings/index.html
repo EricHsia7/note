@@ -1,341 +1,321 @@
-<meta charset="UTF-8">
-<title>Note</title>
-<head>
-   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-49JMVLZZTX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en">
 
-  gtag('config', 'G-49JMVLZZTX');
-</script>
-</head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
-<meta name="theme-color" content="#fff">
-<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="icon" />
-<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="bookmark" />
-<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="shortcut icon" />
-<link rel="manifest" href="https://erichsia7.github.io/note/manifest.json?l">
-<style>
+<head>
+  <meta charset="UTF-8">
+  <title>Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
+  <meta name="theme-color" content="#fff">
+  <link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="icon" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="bookmark" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="shortcut icon" />
+  <link rel="manifest" href="https://erichsia7.github.io/note/manifest.json?l">
+  <style>
     * {
-    -webkit-appearance:none;
-outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
-  }
+      -webkit-appearance: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
     *::-webkit-scrollbar {
-  display: none;
-}
-  .note_ti_s {
-background: #fff;
-  position:fixed;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:55px;
-  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
-  -webkit-user-select: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size:20px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:700;
- }
-.backb {
- position:absolute;
- top:0px;
- left:0px;
- width:55px;
- height:55px;
- display: flex;
-  justify-content: center;
-  align-items: center;
--webkit-user-select: none;
- }
-.storaged {
-  position:absolute;
-  top:60px;
-  left:0px;
-  width:100%;
-  height:calc(100% - 60px);
-  overflow:scroll;
-  -webkit-user-select: none;
-}
-.th {
-  font-size:15px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:500;
-  display: flex;
-  align-items: center;
-  min-height:45px;
-  width:calc(100% - 10px);
-  border-bottom:1px solid #e3e3e3;
-  padding-left:10px;
-  -webkit-user-select: none;
-}
-   .btn {
-  box-sizing: border-box;
-  background:#e3e3e3;
-  height:35px;
-  border-radius:13px;
-  font-size:15px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:500;
-  padding:3px 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -webkit-user-select: none;
-   }
+      display: none;
+    }
+
+    .note_ti_s {
+      background: #fff;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 55px;
+      box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+      -webkit-user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+    }
+
+    .backb {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-user-select: none;
+    }
+
+    .storaged {
+      position: absolute;
+      top: 60px;
+      left: 0px;
+      width: 100%;
+      height: calc(100% - 60px);
+      overflow: scroll;
+      -webkit-user-select: none;
+    }
+
+    .th {
+      font-size: 15px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      min-height: 45px;
+      width: calc(100% - 10px);
+      border-bottom: 1px solid #e3e3e3;
+      padding-left: 10px;
+      -webkit-user-select: none;
+    }
+
+    .btn {
+      box-sizing: border-box;
+      background: #e3e3e3;
+      height: 35px;
+      border-radius: 13px;
+      font-size: 15px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 500;
+      padding: 3px 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-user-select: none;
+    }
+
     :root {
-  --svg-fy-c:#000;
- }
-   input {
-  box-sizing: border-box;
-  border:1px solid #e3e3e3;
-  height:35px;
-  width:230px;
-  border-radius:13px;
-  font-size:15px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:500;
-   }
-   @media (prefers-color-scheme: dark) {
-  body,.note_ti_s {
-    background:#1a1a1a;
-    color:#fff;
-  }
-          :root {
-  --svg-fy-c:#fff;
- }
-   .th {
-  border-bottom:1px solid #1f1f1f;
+      --svg-fy-c: #000;
+    }
+
+    input {
+      box-sizing: border-box;
+      border: 1px solid #e3e3e3;
+      height: 35px;
+      width: 230px;
+      border-radius: 13px;
+      font-size: 15px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 500;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      body,
+      .note_ti_s {
+        background: #1a1a1a;
+        color: #fff;
       }
-   input {
-      background:#1a1a1a;
-      border:1px solid #1f1f1f;
-      color:#fff;
+
+      :root {
+        --svg-fy-c: #fff;
       }
+
+      .th {
+        border-bottom: 1px solid #1f1f1f;
+      }
+
+      input {
+        background: #1a1a1a;
+        border: 1px solid #1f1f1f;
+        color: #fff;
+      }
+
       .btn {
-         background:#1f1f1f;
-         color:#fff;
+        background: #1f1f1f;
+        color: #fff;
       }
-   }
-</style>
+    }
+  </style>
+</head>
+
 <div class="storaged">
   <div class="th" g="mb"></div>
   <div class="th" g="deftit">Default title: <input type="text" value="Untitled Note - {date}" id="deftit"></div>
-   <div class="th">Transfer data: <div class="btn" g="transfer">Transfer</div></div>
+  <div class="th">Transfer data: <div class="btn" g="transfer">Transfer</div>
+  </div>
 </div>
 <div class="note_ti_s">
   Settings
   <div class="backb">
-<svg height="25px" width="25px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M0 31.9379C0 33.1806 0.600647 34.4026 1.80194 35.6039L22.8039 56.668C23.6324 57.5379 24.7094 57.9728 26.035 57.9728C27.2777 57.9728 28.334 57.5275 29.2039 56.6369C30.0738 55.7463 30.5087 54.6796 30.5087 53.4369C30.5087 52.0699 30.0324 50.9515 29.0796 50.0816L21.3126 42.4388L13.7942 36.101L26.967 36.5981L59.3398 36.5981C60.7068 36.5981 61.8252 36.1631 62.6951 35.2932C63.565 34.4233 64 33.3049 64 31.9379C64 30.6123 63.565 29.5042 62.6951 28.6136C61.8252 27.723 60.7068 27.2777 59.3398 27.2777L26.967 27.2777L13.8563 27.7748L21.3126 21.499L29.0796 13.7942C30.0324 12.8828 30.5087 11.7851 30.5087 10.501C30.5087 9.21683 30.0738 8.15016 29.2039 7.30097C28.334 6.45178 27.2777 6.02718 26.035 6.02718C24.668 6.02718 23.5909 6.44142 22.8039 7.2699L1.80194 28.334C0.600647 29.5353 0 30.7366 0 31.9379Z" fill="var(--svg-fy-c)" fill-rule="evenodd" opacity="1" stroke="none"/>
-</svg>
+    <svg height="25px" width="25px" stroke-miterlimit="10"
+      style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+      viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path
+        d="M0 31.9379C0 33.1806 0.600647 34.4026 1.80194 35.6039L22.8039 56.668C23.6324 57.5379 24.7094 57.9728 26.035 57.9728C27.2777 57.9728 28.334 57.5275 29.2039 56.6369C30.0738 55.7463 30.5087 54.6796 30.5087 53.4369C30.5087 52.0699 30.0324 50.9515 29.0796 50.0816L21.3126 42.4388L13.7942 36.101L26.967 36.5981L59.3398 36.5981C60.7068 36.5981 61.8252 36.1631 62.6951 35.2932C63.565 34.4233 64 33.3049 64 31.9379C64 30.6123 63.565 29.5042 62.6951 28.6136C61.8252 27.723 60.7068 27.2777 59.3398 27.2777L26.967 27.2777L13.8563 27.7748L21.3126 21.499L29.0796 13.7942C30.0324 12.8828 30.5087 11.7851 30.5087 10.501C30.5087 9.21683 30.0738 8.15016 29.2039 7.30097C28.334 6.45178 27.2777 6.02718 26.035 6.02718C24.668 6.02718 23.5909 6.44142 22.8039 7.2699L1.80194 28.334C0.600647 29.5353 0 30.7366 0 31.9379Z"
+        fill="var(--svg-fy-c)" fill-rule="evenodd" opacity="1" stroke="none" />
+    </svg>
   </div>
-   </div>
+</div>
 <script>
   function genid(mode) {
-if(mode === "random"){
-var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var genid = "";
-            for (var i = 0; i < 16; i++) {
-                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
-                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
-            }
-  return genid ;
-}
-          
- if(mode === "time"){
-   var gtoday=new Date();
-   var genid2 = (gtoday.getMonth()+1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8));
-   
-   return genid2
- }
-  
-  if(mode === "number"){
-   
-   var genid3 = '' ;
-for (var i = 0; i < 16; i++) {
-  genid3 += '' + (0+Math.floor(Math.random() * 9))
-}
-   return genid3
- }
-  
-  if(mode === "uuid"){
-var genidchars4 = "abcdef012345678";
-    var geniduu = [8,4,4,4,12];
-            var genid4 = "";
-            var genid5 = "";
-    for (var ia = 0; ia < geniduu.length; ia++) {
-      var genid4 = "";
-            for (var i = 0; i < geniduu[ia]; i++) {
-                var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
-                genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
-            }
-genid5 += '-' + genid4 ;
+    if (mode === "random") {
+      var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+      var genid = "";
+      for (var i = 0; i < 16; i++) {
+        var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+        genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+      }
+      return genid;
     }
-    return genid5.substring(1,genid5.length)
-  }
-  }
-  
-var localStorageSpace = function(){
-        var allStrings = '';
-        for(var key in window.localStorage){
-            if(window.localStorage.hasOwnProperty(key)){
-                allStrings += window.localStorage[key];
-            }
-        }
-        return allStrings ? Math.round(3 + ((allStrings.length*16)/(8*1024))) : '0';
-    };
 
-function testsessionStorage() {
-  var genidchars = "0123456789";
-  var genid = "";
-            for (var i = 0; i < 50000; i++) {
-                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
-                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
-            }
-  if(sessionStorage.getItem('sizetest') === null) {
-    var char = genid ;
+    if (mode === "time") {
+      var gtoday = new Date();
+      var genid2 = (gtoday.getMonth() + 1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8));
+
+      return genid2
+    }
+
+    if (mode === "number") {
+
+      var genid3 = '';
+      for (var i = 0; i < 16; i++) {
+        genid3 += '' + (0 + Math.floor(Math.random() * 9))
+      }
+      return genid3
+    }
+
+    if (mode === "uuid") {
+      var genidchars4 = "abcdef012345678";
+      var geniduu = [8, 4, 4, 4, 12];
+      var genid4 = "";
+      var genid5 = "";
+      for (var ia = 0; ia < geniduu.length; ia++) {
+        var genid4 = "";
+        for (var i = 0; i < geniduu[ia]; i++) {
+          var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
+          genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
+        }
+        genid5 += '-' + genid4;
+      }
+      return genid5.substring(1, genid5.length)
+    }
+  }
+
+  var localStorageSpace = function () {
+    var allStrings = '';
+    for (var key in window.localStorage) {
+      if (window.localStorage.hasOwnProperty(key)) {
+        allStrings += window.localStorage[key];
+      }
+    }
+    return allStrings ? Math.round(3 + ((allStrings.length * 16) / (8 * 1024))) : '0';
+  };
+
+  function testsessionStorage() {
+    var genidchars = "0123456789";
+    var genid = "";
+    for (var i = 0; i < 50000; i++) {
+      var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+      genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+    }
+    if (sessionStorage.getItem('sizetest') === null) {
+      var char = genid;
+    }
+    else {
+      var char = sessionStorage.getItem('sizetest') + genid
+    }
+    try {
+      sessionStorage.setItem('sizetest', char);
+      console.log(String(sessionStorage.getItem('sizetest')).length);
+
+      $('.th[g="mb"]').html('Storage: Calculating')
+      setTimeout(testsessionStorage, 1)
+    } catch (error) {
+      //console.log(String(sessionStorage.getItem('sizetest')).length);
+
+      $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + String(sessionStorage.getItem('sizetest')).length / 1000 + 'KB');
+
+      localStorage.setItem('note_settings_storagesize', String(sessionStorage.getItem('sizetest')).length / 1000 + 'KB')
+
+      setTimeout(function () {
+        sessionStorage.setItem('sizetest', '')
+      }, 500)
+      return ''
+    }
+
+  }
+
+  if (localStorage.getItem('note_settings_deftit') === null) {
+    localStorage.setItem('note_settings_deftit', 'Untitled Note - {date} {time}')
+  }
+
+  sessionStorage.setItem('sizetest', '')
+  if (localStorage.getItem('note_settings_storagesize') === null) {
+    setTimeout(testsessionStorage, 1)
   }
   else {
-    var char = sessionStorage.getItem('sizetest') + genid
+    $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + localStorage.getItem('note_settings_storagesize'));
   }
-  try {
-  sessionStorage.setItem('sizetest',char);
-    console.log(String(sessionStorage.getItem('sizetest')).length);
-    
-   $('.th[g="mb"]').html('Storage: Calculating')
-    setTimeout(testsessionStorage,1)
-} catch (error) {
- //console.log(String(sessionStorage.getItem('sizetest')).length);
-   
-  $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + String(sessionStorage.getItem('sizetest')).length/1000 + 'KB');
-   
-   localStorage.setItem('note_settings_storagesize',String(sessionStorage.getItem('sizetest')).length/1000 + 'KB')
-                        
-  setTimeout(function() {
-    sessionStorage.setItem('sizetest','')
-  },500)
-  return ''
-}
 
-}
-   
-if(localStorage.getItem('note_settings_deftit') === null) {
-   localStorage.setItem('note_settings_deftit','Untitled Note - {date} {time}')
-  }
-   
-sessionStorage.setItem('sizetest','')
-   if(localStorage.getItem('note_settings_storagesize') === null) {
-      setTimeout(testsessionStorage,1)
-   }
-else {
-   $('.th[g="mb"]').html('Storage: ' + localStorageSpace() + '/' + localStorage.getItem('note_settings_storagesize'));
-}
-   
-   
+
   //ripple('.backb','#888','0.4',800,'true');
-  $('.backb').click(function() {
+  $('.backb').click(function () {
     location.href = 'https://erichsia7.github.io/note/?r=' + genid('random');
   });
-   $('#deftit').val(localStorage.getItem('note_settings_deftit'))
+  $('#deftit').val(localStorage.getItem('note_settings_deftit'))
   function savesettings() {
-     localStorage.setItem('note_settings_deftit',$('#deftit').val())
+    localStorage.setItem('note_settings_deftit', $('#deftit').val())
   }
-   document.addEventListener("paste", function (e){
+  document.addEventListener("paste", function (e) {
     savesettings();
   });
-document.addEventListener("cut", function (e){
+  document.addEventListener("cut", function (e) {
     savesettings();
   });
-document.addEventListener("selectionchange", function (e){
+  document.addEventListener("selectionchange", function (e) {
     savesettings();
   });
-document.addEventListener("keyup", function (e){
+  document.addEventListener("keyup", function (e) {
     save();
   });
-   
-function setthemecol(hexcolsjs,delaytimems) {
-  setTimeout(function() {
-  $('meta[name="theme-color"]').attr('content',hexcolsjs);
-  },delaytimems);
-}
-function darkmodehexcol() {
-if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  return '#1a1a1a'
-}
-else {
-return '#fff'
-}
-}
-  setthemecol(darkmodehexcol(),1)
-   $('.btn[g="transfer"]').click(function() {
-   location.href = 'https://erichsia7.github.io/note/transfer/a/?r=' + genid('random');
 
-   });
-   
-    //userid
-  var user_id ;
-  if(localStorage.getItem('user_id_r') === '1') {
-    user_id = localStorage.getItem('user_id') ;
-    gtag('event', 'user_start', {
-    'event_category': 'count',
-    'event_label': user_id,
-    'transport_type': 'beacon',
-    'event_callback': function(){
-    console.log('user_id:' + user_id)
-    systeminfodata(user_id)
-    }
-  });
+  function setthemecol(hexcolsjs, delaytimems) {
+    setTimeout(function () {
+      $('meta[name="theme-color"]').attr('content', hexcolsjs);
+    }, delaytimems);
   }
-  else {
-  var user_id_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            user_id = "";
-            for (var useridi = 0; useridi < 64; useridi++) {
-                var user_id_randomNumber = Math.floor(Math.random() * user_id_chars.length);
-                user_id += user_id_chars.substring(user_id_randomNumber, user_id_randomNumber + 1);
-            }
-  localStorage.setItem('user_id_r', '1');
-  localStorage.setItem('user_id',user_id);
-   var hyatav = {'appcodename':window.navigator.appCodeName,'appname':window.navigator.appName,'appver':window.navigator.appVersion,'lang':window.navigator.language,'platform':window.navigator.platform,'product':window.navigator.product,'productsub':window.navigator.productSub,'useragent':window.navigator.userAgent,'vendor':window.navigator.vendor} ;
-   //var newuseridbackurl = 'https://docs.google.com/forms/d/e/1FAIpQLSeu19oOI34etg9rGCah1l50AkJVqy2gi5d1uhW-g-zYDsCJCw/formResponse?usp=pp_url&entry.584799207=' + user_id + '&entry.1702628837=' + encodeURIComponent(JSON.stringify(hyatav)) + '&entry.688790589=' + encodeURIComponent(location.href) ;
-   //var newuseridbackurlajaxee = $.ajax({url:newuseridbackurl ,async:false});
+  function darkmodehexcol() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return '#1a1a1a'
+    }
+    else {
+      return '#fff'
+    }
+  }
+  setthemecol(darkmodehexcol(), 1)
+  $('.btn[g="transfer"]').click(function () {
+    location.href = 'https://erichsia7.github.io/note/transfer/a/?r=' + genid('random');
 
-   gtag('event', 'user_start', {
-    'event_category': 'count',
-    'event_label': user_id,
-    'transport_type': 'beacon',
-    'event_callback': function(){
-    console.log('user_id:' + user_id)
-    //systeminfodata(user_id)
-    }
   });
-    
-  }
-  //useridend
-   
-    $(document).ready(function() {
-        var googlefontloadtime = new Date().getTime() ;
-        if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
-  $('body').append('<style>' + localStorage.getItem('googlefontNotoSansTC') + '</style>');
-  console.log('loaded')
-}
-else {
- $.ajax({type:'get',url:"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap",dataType:'text',success:function(e) {
-  var googlefontloadtimedd = new Date().getTime() ;
-  localStorage.setItem('googlefontNotoSansTC', e); localStorage.setItem('googlefontNotoSansTCloaded', googlefontloadtimedd);
-   $('body').append('<style>' + e + '</style>');
-   
-   console.log('loaded2')
-   }
-}); 
-}
+
+  $(document).ready(function () {
+    var googlefontloadtime = new Date().getTime();
+    if (googlefontloadtime - parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
+      $('body').append('<style>' + localStorage.getItem('googlefontNotoSansTC') + '</style>');
+      console.log('loaded')
+    }
+    else {
+      $.ajax({
+        type: 'get', url: "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap", dataType: 'text', success: function (e) {
+          var googlefontloadtimedd = new Date().getTime();
+          localStorage.setItem('googlefontNotoSansTC', e); localStorage.setItem('googlefontNotoSansTCloaded', googlefontloadtimedd);
+          $('body').append('<style>' + e + '</style>');
+
+          console.log('loaded2')
+        }
+      });
+    }
   });
 </script>
+
+</html>
