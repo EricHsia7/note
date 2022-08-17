@@ -1,406 +1,447 @@
-<meta charset="UTF-8">
-<title>Note</title>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
- <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-49JMVLZZTX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <title>Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
+  <meta name="theme-color" content="#fff">
+  <link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="icon" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="bookmark" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="shortcut icon" />
+  <link rel="manifest" href="https://erichsia7.github.io/note/manifest.json?l">
+  <style id="color_set"></style>
+  <style>
+    * {
+      -webkit-appearance: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
 
-  gtag('config', 'G-49JMVLZZTX');
-</script>
-</head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<link href="https://erichsia7.github.io/note/note_icon.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<!--<meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
-<meta name="theme-color" content="#fff">
-<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="icon" />
-<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="bookmark" />
-<link type="image/x-icon" href="https://erichsia7.github.io/note/note_icon.ico" rel="shortcut icon" />
-<link rel="manifest" href="https://erichsia7.github.io/note/manifest.json?l">
-<style id="color_set"></style>
-<style>
-  * {
-    -webkit-appearance:none;
-outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
-  }
- *::-webkit-scrollbar {
-  display: none;
-}
-  body {
-    background:var(--color-light)
-  }
-  .note {
-  background:var(--color-light);
-  position:fixed;
-  top:55px;
-  left:0px;
-  width:100%;
-  height:calc(100% - 55px);
-  color:var(--color-ftf);
-  font-weight:400;
-  font-family: 'Noto Sans TC', sans-serif;
-  overflow:scroll;
-}
-.note_title {
-  padding:10px 20px;
-  font-weight:700;
-  font-size:20px;
-  width:calc(100% - 40px);
-  -webkit-appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
-}
-.note_line {
-  background:var(--color-grey);
-  width:calc(100% - 40px);
-  height:1px;
-  margin-left:20px;
-}
-.note_text {
-  width:calc(100% - 40px);
-  min-height:100%;
-  padding:0px 20px;
-  -webkit-appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
-  margin-bottom:80px;
-}
-.bar {
-  position:fixed;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:55px;
-  background:var(--color-light);
-  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:700;
-  color:var(--color-ftf);
-  display: flex;
-  justify-content: center;
-  align-items: center;
- -webkit-user-select: none;
-}
-.bar_btn {
-  position:relative;
-  height:100%;
-  width:60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight:700;
- -webkit-user-select: none;
-}
-.themeboxbg {
- position:fixed;
-  top:0px;
-  left:0px;
- width:100%;
- height:100%;
- background:var(--color-grey);
- opacity:0;
- display:none;
- transition:0.3s;
- -webkit-user-select: none;
- }
-.themebox {
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.8);
-  width:clamp(280px,80vw,400px);
-  height:calc((clamp(0px,100vw,350px) - 40px) / 4 + 20px + 10px + 40px + 15px + 5px + 7.5px + 5px + 20px + 45px);
-  background:var(--color-light);
-  border-radius:15px;
-  opacity:0;
-  display:none;
-  transition:0.3s;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight:700;
- -webkit-user-select: none;
-}
-.themebox input {
-  width:calc(100% - 40px);
-  height:40px;
-  position:absolute;
-  top:calc((clamp(0px,100vw,350px) - 40px) / 4 + 20px + 10px);
-  left:50%;
-  padding:0px;
-  margin:0px;
-  border-radius:15px;
-  max-width:350px;
-  transform:translateX(-50%);
-  text-align: center;
-  font-size:18px;
-  border: 1px solid var(--color-grey);
-  background:rgba(0, 0, 0, 0);
-  color:var(--color-ftf);
-}
-.themebar {
-  position:absolute;
-  width:calc(100% - 40px);
-  height:5px;
-  background: linear-gradient(90deg,rgba(255, 0, 0,1),rgba(255, 255, 0, 1), rgba(0, 255, 0, 1), rgba(0, 255, 255, 1), rgba(0, 0, 255, 1), rgba(255, 0, 255, 1), rgba(255, 0, 0, 1));
-  position:absolute;
-  top:calc((clamp(0px,100vw,350px) - 40px) / 4 + 20px + 10px + 40px + 10px + 5px);
-  left:50%;
-  border-radius:15px;
-  max-width:350px;
-  transform:translateX(-50%);
- -webkit-user-select: none;
-}
-.themebarradio {
-  position:absolute;
-  top:50%;
-  left:-10px;
-  width:20px;
-  height:20px;
-  background:#ff0000;
-  border-radius:99em;
-  transform:translateY(-50%);
-  border: 1.5px solid #fff;
-  box-sizing: border-box;
- -webkit-user-select: none;
-}
-.themeset {
-  width:calc(100% - 40px);
-  max-width:350px;
-  height:calc((clamp(0px,100vw,350px) - 40px) / 4);
-  background:#fff;
-  position:absolute;
-  top:20px;
-  left:50%;
-  border-radius:15px;
-  overflow:hidden;
-  transform:translateX(-50%);
- -webkit-user-select: none;
-}
-.themeset .col {
-  width:25%;
-  float:left;
-  height:100%;
- -webkit-user-select: none;
-}
-.themebtn {
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  width:calc(50% - 20px - 5px);
-  height:40px;
-  background:var(--color-grey);
- -webkit-user-select: none;
-  
-display: flex;
-justify-content: center;
-align-items: center;
-  color:#fff
-}
-.themebtn[f="cancel"] {
-  left:20px;
-  border-radius:15px;
-}
-.themebtn[f="change"] {
-  left:calc(20px + 50% - 25px + 10px);
-  border-radius:15px;
-}
- 
-.deletebox {
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.8);
-  width:clamp(280px,80vw,400px);
-  height:calc(20px + 20px + 40px + 50px);
-  background:var(--color-light);
-  border-radius:15px;
-  opacity:0;
-  display:none;
-  transition:0.3s;
- -webkit-user-select: none;
-}
-.delete_txt {
-  position:absolute;
-  top:20px;
-  left:20px;
-  width:calc(100% - 40px);
-  height:50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size:19px;
-  color:var(--color-ftf);
-  font-weight:500;
-  font-family: 'Noto Sans TC', sans-serif;
-  line-height:25px;
- -webkit-user-select: none;
-}
-.deletebtn {
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  width:calc(50% - 20px - 5px);
-  height:40px;
-  background:var(--color-grey);
-  -webkit-user-select: none;
-display: flex;
-justify-content: center;
-align-items: center;
-  color:#fff;
- font-family: 'Noto Sans TC', sans-serif;
- font-weight:700;
-}
-.deletebtn[f="canceldel"] {
-  left:20px;
-  border-radius:15px;
-}
-.deletebtn[f="confirmdel"] {
-  left:calc(20px + 50% - 25px + 10px);
-  border-radius:15px;
-}
- 
- 
+    *::-webkit-scrollbar {
+      display: none;
+    }
 
-.sharebox {
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.8);
-  width:clamp(280px,80vw,400px);
-  height:calc(20px + 20px + 40px + 50px + clamp(280px,80vw,400px) - 40px + 10px);
-  background:var(--color-light);
-  border-radius:15px;
-  opacity:0;
-  display:none;
- transition:0.3s;
- -webkit-user-select: none;
-}
-.sharebox input {
-  position:absolute;
-  bottom:70px;
-  left:20px;
-  width:calc(100% - 40px);
-  height:40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size:15px;
-  color:#fff;
-  padding:0px;
-  border:none;
-  border-radius:15px;
-  background:var(--color-grey);
- font-weight:500;
-  font-family: 'Noto Sans TC', sans-serif;
- padding:0px 10px;
- box-sizing: border-box
-}
-.sharebtn {
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  width:calc(50% - 20px - 5px);
-  height:40px;
-  background:var(--color-grey);
-  
-display: flex;
-justify-content: center;
-align-items: center;
-  color:#fff;
- font-weight:700;
-  font-family: 'Noto Sans TC', sans-serif;
- -webkit-user-select: none;
-}
-.sharebtn[f="closeshare"] {
-  left:20px;
-  border-radius:15px;
-}
-.sharebtn[f="copyshare"] {
-  left:calc(20px + 50% - 25px + 10px);
-  border-radius:15px;
-}
- .qrc {
-  width:calc(clamp(280px,80vw,400px) - 40px);
-  height:calc(clamp(280px,80vw,400px) - 40px);
-  position:absolute;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  -webkit-user-select: none;
-  color:var(--color-grey);
-  overflow:hidden;
-  display: flex;
-justify-content: center;
-align-items: center;
-  font-weight:500;
-  font-family: 'Noto Sans TC', sans-serif;
- }
- .qrc img {
-  width:calc(clamp(280px,80vw,400px) - 40px);
-  height:calc(clamp(280px,80vw,400px) - 40px);
-  -webkit-user-select: none;
- }
- .qrc *{
-  -webkit-user-select: none;
- }
- .qrc canvas {
-display:none;
- }
- :root {
-  --msg-co-o:var(--color-light);
-  --msg-co-f:var(--color-ftf);
- }
- /*prompt*/
+    body {
+      background: var(--color-light)
+    }
+
+    .note {
+      background: var(--color-light);
+      position: fixed;
+      top: 55px;
+      left: 0px;
+      width: 100%;
+      height: calc(100% - 55px);
+      color: var(--color-ftf);
+      font-weight: 400;
+      font-family: 'Noto Sans TC', sans-serif;
+      overflow: scroll;
+    }
+
+    .note_title {
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 20px;
+      width: calc(100% - 40px);
+      -webkit-appearance: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .note_line {
+      background: var(--color-grey);
+      width: calc(100% - 40px);
+      height: 1px;
+      margin-left: 20px;
+    }
+
+    .note_text {
+      width: calc(100% - 40px);
+      min-height: 100%;
+      padding: 0px 20px;
+      -webkit-appearance: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      margin-bottom: 80px;
+    }
+
+    .bar {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 55px;
+      background: var(--color-light);
+      box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      color: var(--color-ftf);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-user-select: none;
+    }
+
+    .bar_btn {
+      position: relative;
+      height: 100%;
+      width: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      -webkit-user-select: none;
+    }
+
+    .themeboxbg {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: var(--color-grey);
+      opacity: 0;
+      display: none;
+      transition: 0.3s;
+      -webkit-user-select: none;
+    }
+
+    .themebox {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: clamp(280px, 80vw, 400px);
+      height: calc((clamp(0px, 100vw, 350px) - 40px) / 4 + 20px + 10px + 40px + 15px + 5px + 7.5px + 5px + 20px + 45px);
+      background: var(--color-light);
+      border-radius: 15px;
+      opacity: 0;
+      display: none;
+      transition: 0.3s;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      -webkit-user-select: none;
+    }
+
+    .themebox input {
+      width: calc(100% - 40px);
+      height: 40px;
+      position: absolute;
+      top: calc((clamp(0px, 100vw, 350px) - 40px) / 4 + 20px + 10px);
+      left: 50%;
+      padding: 0px;
+      margin: 0px;
+      border-radius: 15px;
+      max-width: 350px;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid var(--color-grey);
+      background: rgba(0, 0, 0, 0);
+      color: var(--color-ftf);
+    }
+
+    .themebar {
+      position: absolute;
+      width: calc(100% - 40px);
+      height: 5px;
+      background: linear-gradient(90deg, rgba(255, 0, 0, 1), rgba(255, 255, 0, 1), rgba(0, 255, 0, 1), rgba(0, 255, 255, 1), rgba(0, 0, 255, 1), rgba(255, 0, 255, 1), rgba(255, 0, 0, 1));
+      position: absolute;
+      top: calc((clamp(0px, 100vw, 350px) - 40px) / 4 + 20px + 10px + 40px + 10px + 5px);
+      left: 50%;
+      border-radius: 15px;
+      max-width: 350px;
+      transform: translateX(-50%);
+      -webkit-user-select: none;
+    }
+
+    .themebarradio {
+      position: absolute;
+      top: 50%;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      background: #ff0000;
+      border-radius: 99em;
+      transform: translateY(-50%);
+      border: 1.5px solid #fff;
+      box-sizing: border-box;
+      -webkit-user-select: none;
+    }
+
+    .themeset {
+      width: calc(100% - 40px);
+      max-width: 350px;
+      height: calc((clamp(0px, 100vw, 350px) - 40px) / 4);
+      background: #fff;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      border-radius: 15px;
+      overflow: hidden;
+      transform: translateX(-50%);
+      -webkit-user-select: none;
+    }
+
+    .themeset .col {
+      width: 25%;
+      float: left;
+      height: 100%;
+      -webkit-user-select: none;
+    }
+
+    .themebtn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: calc(50% - 20px - 5px);
+      height: 40px;
+      background: var(--color-grey);
+      -webkit-user-select: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff
+    }
+
+    .themebtn[f="cancel"] {
+      left: 20px;
+      border-radius: 15px;
+    }
+
+    .themebtn[f="change"] {
+      left: calc(20px + 50% - 25px + 10px);
+      border-radius: 15px;
+    }
+
+    .deletebox {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: clamp(280px, 80vw, 400px);
+      height: calc(20px + 20px + 40px + 50px);
+      background: var(--color-light);
+      border-radius: 15px;
+      opacity: 0;
+      display: none;
+      transition: 0.3s;
+      -webkit-user-select: none;
+    }
+
+    .delete_txt {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 19px;
+      color: var(--color-ftf);
+      font-weight: 500;
+      font-family: 'Noto Sans TC', sans-serif;
+      line-height: 25px;
+      -webkit-user-select: none;
+    }
+
+    .deletebtn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: calc(50% - 20px - 5px);
+      height: 40px;
+      background: var(--color-grey);
+      -webkit-user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+    }
+
+    .deletebtn[f="canceldel"] {
+      left: 20px;
+      border-radius: 15px;
+    }
+
+    .deletebtn[f="confirmdel"] {
+      left: calc(20px + 50% - 25px + 10px);
+      border-radius: 15px;
+    }
+
+
+
+    .sharebox {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: clamp(280px, 80vw, 400px);
+      height: calc(20px + 20px + 40px + 50px + clamp(280px, 80vw, 400px) - 40px + 10px);
+      background: var(--color-light);
+      border-radius: 15px;
+      opacity: 0;
+      display: none;
+      transition: 0.3s;
+      -webkit-user-select: none;
+    }
+
+    .sharebox input {
+      position: absolute;
+      bottom: 70px;
+      left: 20px;
+      width: calc(100% - 40px);
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      color: #fff;
+      padding: 0px;
+      border: none;
+      border-radius: 15px;
+      background: var(--color-grey);
+      font-weight: 500;
+      font-family: 'Noto Sans TC', sans-serif;
+      padding: 0px 10px;
+      box-sizing: border-box
+    }
+
+    .sharebtn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: calc(50% - 20px - 5px);
+      height: 40px;
+      background: var(--color-grey);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-family: 'Noto Sans TC', sans-serif;
+      -webkit-user-select: none;
+    }
+
+    .sharebtn[f="closeshare"] {
+      left: 20px;
+      border-radius: 15px;
+    }
+
+    .sharebtn[f="copyshare"] {
+      left: calc(20px + 50% - 25px + 10px);
+      border-radius: 15px;
+    }
+
+    .qrc {
+      width: calc(clamp(280px, 80vw, 400px) - 40px);
+      height: calc(clamp(280px, 80vw, 400px) - 40px);
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-user-select: none;
+      color: var(--color-grey);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .qrc img {
+      width: calc(clamp(280px, 80vw, 400px) - 40px);
+      height: calc(clamp(280px, 80vw, 400px) - 40px);
+      -webkit-user-select: none;
+    }
+
+    .qrc * {
+      -webkit-user-select: none;
+    }
+
+    .qrc canvas {
+      display: none;
+    }
+
+    :root {
+      --msg-co-o: var(--color-light);
+      --msg-co-f: var(--color-ftf);
+    }
+
+    /*prompt*/
     .promptcenter {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--msg-co-f);
-        font-size: 15px;
-        font-family: "Noto Sans TC", sans-serif;
-        font-weight: 700;
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--msg-co-f);
+      font-size: 15px;
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
     }
-    .promptcenter * {
-        color: var(--msg-co-f);
-        font-size: 15px;
-        font-family: "Noto Sans TC", sans-serif;
-        font-weight: 700;
-    }
-        .prompt {
-            width: clamp(280px,80vw,400px);
-            height: 60px;
-            background: var(--msg-co-o);
-            border-radius: 15px;
-            position: fixed;
-            left: 50%;
-            bottom: -80px;
-            opacity: 0;
-            transform: translateX(-50%);
-            box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
-        }
-/*promptend*/
-@media (prefers-color-scheme: dark) {
- :root {
-  --msg-co-o:var(--color-dark);
-   --msg-co-f:var(--color-grey);
- }
-  .note,.bar,.themebox,.deletebox,.sharebox {
-    background:var(--color-dark);
-    color:#fff;
-  }
-  body {
-    background:var(--color-dark)
-  }
-  .themebox input {
-   color:#fff;
- }
- .delete_txt {
-  color:#fff;
- }
-}
-</style>
 
+    .promptcenter * {
+      color: var(--msg-co-f);
+      font-size: 15px;
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+    }
+
+    .prompt {
+      width: clamp(280px, 80vw, 400px);
+      height: 60px;
+      background: var(--msg-co-o);
+      border-radius: 15px;
+      position: fixed;
+      left: 50%;
+      bottom: -80px;
+      opacity: 0;
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.09);
+    }
+
+    /*promptend*/
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --msg-co-o: var(--color-dark);
+        --msg-co-f: var(--color-grey);
+      }
+
+      .note,
+      .bar,
+      .themebox,
+      .deletebox,
+      .sharebox {
+        background: var(--color-dark);
+        color: #fff;
+      }
+
+      body {
+        background: var(--color-dark)
+      }
+
+      .themebox input {
+        color: #fff;
+      }
+
+      .delete_txt {
+        color: #fff;
+      }
+    }
+  </style>
+</head>
 <div class="note">
   <div class="note_title">Untitled Note</div>
   <div class="note_line"></div>
@@ -408,40 +449,71 @@ display:none;
 </div>
 <div class="bar">
   <div class="bar_btn" f="back">
-<svg height="25px" width="25px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M0 31.9379C0 33.1806 0.600647 34.4026 1.80194 35.6039L22.8039 56.668C23.6324 57.5379 24.7094 57.9728 26.035 57.9728C27.2777 57.9728 28.334 57.5275 29.2039 56.6369C30.0738 55.7463 30.5087 54.6796 30.5087 53.4369C30.5087 52.0699 30.0324 50.9515 29.0796 50.0816L21.3126 42.4388L13.7942 36.101L26.967 36.5981L59.3398 36.5981C60.7068 36.5981 61.8252 36.1631 62.6951 35.2932C63.565 34.4233 64 33.3049 64 31.9379C64 30.6123 63.565 29.5042 62.6951 28.6136C61.8252 27.723 60.7068 27.2777 59.3398 27.2777L26.967 27.2777L13.8563 27.7748L21.3126 21.499L29.0796 13.7942C30.0324 12.8828 30.5087 11.7851 30.5087 10.501C30.5087 9.21683 30.0738 8.15016 29.2039 7.30097C28.334 6.45178 27.2777 6.02718 26.035 6.02718C24.668 6.02718 23.5909 6.44142 22.8039 7.2699L1.80194 28.334C0.600647 29.5353 0 30.7366 0 31.9379Z" fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none"/>
-</svg>
- </div>
+    <svg height="25px" width="25px" stroke-miterlimit="10"
+      style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+      viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path
+        d="M0 31.9379C0 33.1806 0.600647 34.4026 1.80194 35.6039L22.8039 56.668C23.6324 57.5379 24.7094 57.9728 26.035 57.9728C27.2777 57.9728 28.334 57.5275 29.2039 56.6369C30.0738 55.7463 30.5087 54.6796 30.5087 53.4369C30.5087 52.0699 30.0324 50.9515 29.0796 50.0816L21.3126 42.4388L13.7942 36.101L26.967 36.5981L59.3398 36.5981C60.7068 36.5981 61.8252 36.1631 62.6951 35.2932C63.565 34.4233 64 33.3049 64 31.9379C64 30.6123 63.565 29.5042 62.6951 28.6136C61.8252 27.723 60.7068 27.2777 59.3398 27.2777L26.967 27.2777L13.8563 27.7748L21.3126 21.499L29.0796 13.7942C30.0324 12.8828 30.5087 11.7851 30.5087 10.501C30.5087 9.21683 30.0738 8.15016 29.2039 7.30097C28.334 6.45178 27.2777 6.02718 26.035 6.02718C24.668 6.02718 23.5909 6.44142 22.8039 7.2699L1.80194 28.334C0.600647 29.5353 0 30.7366 0 31.9379Z"
+        fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none" />
+    </svg>
+  </div>
   <div class="bar_btn" f="theme">
- <svg height="25px" width="25px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M36.337 5.42125C30.9194 5.42125 25.9618 6.06288 21.5092 7.35531C17.0565 8.64774 13.2353 10.4832 10.022 12.8645C6.80861 15.2457 4.37241 18.1016 2.63736 21.4212C0.90232 24.7408 0 28.3852 0 32.4396C0 36.3346 0.815018 39.9017 2.46154 43.1062C4.10806 46.3107 6.44933 49.0595 9.49451 51.37C12.5397 53.6804 16.1908 55.4551 20.3956 56.7033C24.6004 57.9515 29.2277 58.5788 34.3443 58.5788C38.08 58.5788 41.3434 58.1712 44.1319 57.348C46.9203 56.5247 49.138 55.3596 50.696 53.8901C52.254 52.4206 53.0403 50.7387 53.0403 48.7912C53.0403 47.4811 52.7885 46.3767 52.337 45.5092C51.8855 44.6416 51.3388 43.9283 50.7546 43.2821C50.1703 42.6358 49.6822 41.9588 49.2308 41.348C48.7793 40.7372 48.5275 40.058 48.5275 39.2967C48.5275 38.5885 48.8974 37.938 49.641 37.3626C50.3846 36.7872 51.3443 36.2295 52.5128 35.663C53.6813 35.0965 54.9536 34.4692 56.2637 33.7875C57.5739 33.1059 58.7787 32.323 59.956 31.3846C61.1334 30.4463 62.1429 29.2955 62.8864 27.9853C63.63 26.6752 64 25.1203 64 23.2967C64 20.6056 63.3352 18.1661 62.0073 15.9707C60.6795 13.7753 58.7567 11.8614 56.3223 10.2857C53.888 8.71001 50.9802 7.50183 47.5897 6.65201C44.1993 5.8022 40.4621 5.42125 36.337 5.42125ZM36.9231 13.1575C38.1624 13.1575 39.2204 13.638 40.0879 14.5055C40.9554 15.373 41.3773 16.431 41.3773 17.6703C41.3773 18.9096 40.9554 19.909 40.0879 20.7766C39.2204 21.6441 38.1624 22.1245 36.9231 22.1245C35.7015 22.1245 34.6523 21.6441 33.7582 20.7766C32.8642 19.909 32.4103 18.9096 32.4103 17.6703C32.4103 16.431 32.8642 15.373 33.7582 14.5055C34.6523 13.638 35.7015 13.1575 36.9231 13.1575ZM22.7399 15.2088C24.2625 15.2088 25.5778 15.7787 26.6667 16.8498C27.7555 17.9209 28.3077 19.1954 28.3077 20.7179C28.3077 22.2937 27.7555 23.6322 26.6667 24.7033C25.5778 25.7744 24.2625 26.2857 22.7399 26.2857C21.1819 26.2857 19.8523 25.7744 18.7546 24.7033C17.6569 23.6322 17.1136 22.2937 17.1136 20.7179C17.1136 19.1954 17.6569 17.9209 18.7546 16.8498C19.8523 15.7787 21.1819 15.2088 22.7399 15.2088ZM49.4066 17.2015C50.398 17.2015 51.286 17.5482 51.9853 18.2564C52.6847 18.9646 53.0403 19.826 53.0403 20.8352C53.0403 21.8443 52.6847 22.7146 51.9853 23.4139C51.286 24.1132 50.398 24.4689 49.4066 24.4689C48.3974 24.4689 47.5449 24.1132 46.8278 23.4139C46.1108 22.7146 45.7729 21.8443 45.7729 20.8352C45.7729 19.826 46.1108 18.9646 46.8278 18.2564C47.5449 17.5482 48.3974 17.2015 49.4066 17.2015ZM12.5421 26.8718C13.7637 26.8718 14.7985 27.2527 15.6484 28.1026C16.4982 28.9524 16.9377 30.0458 16.9377 31.2674C16.9377 32.489 16.507 33.4973 15.6484 34.3736C14.7897 35.25 13.746 35.7216 12.5421 35.7216C11.3205 35.7216 10.3034 35.25 9.4359 34.3736C8.56838 33.4973 8.14652 32.489 8.14652 31.2674C8.14652 30.0989 8.60043 29.0375 9.49451 28.1612C10.3886 27.2848 11.3736 26.8718 12.5421 26.8718ZM33.7582 34.315C35.0684 34.315 36.2622 34.6154 37.3333 35.2527C38.4045 35.8901 39.2747 36.7604 39.9121 37.8315C40.5495 38.9026 40.8498 40.1142 40.8498 41.4066C40.8498 42.699 40.5495 43.852 39.9121 44.9231C39.2747 45.9942 38.4045 46.8645 37.3333 47.5018C36.2622 48.1392 35.0684 48.4396 33.7582 48.4396C32.4658 48.4396 31.304 48.1392 30.2418 47.5018C29.1795 46.8645 28.3092 45.9942 27.663 44.9231C27.0168 43.852 26.7253 42.699 26.7253 41.4066C26.7253 40.1142 27.0168 38.9026 27.663 37.8315C28.3092 36.7604 29.1795 35.8901 30.2418 35.2527C31.304 34.6154 32.4658 34.315 33.7582 34.315Z" fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none"/>
-</svg>
- </div>
- 
- <div class="bar_btn" f="pin">
-  <style id="pinsvgstyle">:root{--svg-pin-fill:rgba(0,0,0,0)}</style>
-<svg viewBox="0 0 64 64" width="25px" height="25px" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
-<defs/>
-<g id="圖層1" vectornator:layerName="圖層1">
-<path opacity="1" fill="var(--color-grey)" d="M43.6081+14.3878L49.6611+20.4408L34.9822+39.2081L25.0486+29.2744L43.6081+14.3878M44.0572+6.19278L15.9064+28.7733L35.5414+48.4083L57.8072+19.9428L44.0572+6.19278L44.0572+6.19278Z"/>
-<path opacity="1" d="M4.5+55.2222L24.9722+34.75L29.25+39.0278L8.77778+59.5L4.5+59.5L4.5+55.2222Z" fill="var(--color-grey)"/>
-<path stroke-linecap="butt" stroke="var(--color-grey)" opacity="1" fill="none" stroke-linejoin="miter" stroke-width="6.54" d="M13.6667+22.8333L41.1667+50.3333M38.1111+4.5L59.5+25.8889"/>
-<path opacity="1" fill="var(--svg-pin-fill)" d="M23.1283+28.9369L36.1979+41.5066L53.011+20.9978L42.5601+10.7445L23.1283+28.9369Z"/>
-</g>
-</svg>
+    <svg height="25px" width="25px" stroke-miterlimit="10"
+      style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+      viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path
+        d="M36.337 5.42125C30.9194 5.42125 25.9618 6.06288 21.5092 7.35531C17.0565 8.64774 13.2353 10.4832 10.022 12.8645C6.80861 15.2457 4.37241 18.1016 2.63736 21.4212C0.90232 24.7408 0 28.3852 0 32.4396C0 36.3346 0.815018 39.9017 2.46154 43.1062C4.10806 46.3107 6.44933 49.0595 9.49451 51.37C12.5397 53.6804 16.1908 55.4551 20.3956 56.7033C24.6004 57.9515 29.2277 58.5788 34.3443 58.5788C38.08 58.5788 41.3434 58.1712 44.1319 57.348C46.9203 56.5247 49.138 55.3596 50.696 53.8901C52.254 52.4206 53.0403 50.7387 53.0403 48.7912C53.0403 47.4811 52.7885 46.3767 52.337 45.5092C51.8855 44.6416 51.3388 43.9283 50.7546 43.2821C50.1703 42.6358 49.6822 41.9588 49.2308 41.348C48.7793 40.7372 48.5275 40.058 48.5275 39.2967C48.5275 38.5885 48.8974 37.938 49.641 37.3626C50.3846 36.7872 51.3443 36.2295 52.5128 35.663C53.6813 35.0965 54.9536 34.4692 56.2637 33.7875C57.5739 33.1059 58.7787 32.323 59.956 31.3846C61.1334 30.4463 62.1429 29.2955 62.8864 27.9853C63.63 26.6752 64 25.1203 64 23.2967C64 20.6056 63.3352 18.1661 62.0073 15.9707C60.6795 13.7753 58.7567 11.8614 56.3223 10.2857C53.888 8.71001 50.9802 7.50183 47.5897 6.65201C44.1993 5.8022 40.4621 5.42125 36.337 5.42125ZM36.9231 13.1575C38.1624 13.1575 39.2204 13.638 40.0879 14.5055C40.9554 15.373 41.3773 16.431 41.3773 17.6703C41.3773 18.9096 40.9554 19.909 40.0879 20.7766C39.2204 21.6441 38.1624 22.1245 36.9231 22.1245C35.7015 22.1245 34.6523 21.6441 33.7582 20.7766C32.8642 19.909 32.4103 18.9096 32.4103 17.6703C32.4103 16.431 32.8642 15.373 33.7582 14.5055C34.6523 13.638 35.7015 13.1575 36.9231 13.1575ZM22.7399 15.2088C24.2625 15.2088 25.5778 15.7787 26.6667 16.8498C27.7555 17.9209 28.3077 19.1954 28.3077 20.7179C28.3077 22.2937 27.7555 23.6322 26.6667 24.7033C25.5778 25.7744 24.2625 26.2857 22.7399 26.2857C21.1819 26.2857 19.8523 25.7744 18.7546 24.7033C17.6569 23.6322 17.1136 22.2937 17.1136 20.7179C17.1136 19.1954 17.6569 17.9209 18.7546 16.8498C19.8523 15.7787 21.1819 15.2088 22.7399 15.2088ZM49.4066 17.2015C50.398 17.2015 51.286 17.5482 51.9853 18.2564C52.6847 18.9646 53.0403 19.826 53.0403 20.8352C53.0403 21.8443 52.6847 22.7146 51.9853 23.4139C51.286 24.1132 50.398 24.4689 49.4066 24.4689C48.3974 24.4689 47.5449 24.1132 46.8278 23.4139C46.1108 22.7146 45.7729 21.8443 45.7729 20.8352C45.7729 19.826 46.1108 18.9646 46.8278 18.2564C47.5449 17.5482 48.3974 17.2015 49.4066 17.2015ZM12.5421 26.8718C13.7637 26.8718 14.7985 27.2527 15.6484 28.1026C16.4982 28.9524 16.9377 30.0458 16.9377 31.2674C16.9377 32.489 16.507 33.4973 15.6484 34.3736C14.7897 35.25 13.746 35.7216 12.5421 35.7216C11.3205 35.7216 10.3034 35.25 9.4359 34.3736C8.56838 33.4973 8.14652 32.489 8.14652 31.2674C8.14652 30.0989 8.60043 29.0375 9.49451 28.1612C10.3886 27.2848 11.3736 26.8718 12.5421 26.8718ZM33.7582 34.315C35.0684 34.315 36.2622 34.6154 37.3333 35.2527C38.4045 35.8901 39.2747 36.7604 39.9121 37.8315C40.5495 38.9026 40.8498 40.1142 40.8498 41.4066C40.8498 42.699 40.5495 43.852 39.9121 44.9231C39.2747 45.9942 38.4045 46.8645 37.3333 47.5018C36.2622 48.1392 35.0684 48.4396 33.7582 48.4396C32.4658 48.4396 31.304 48.1392 30.2418 47.5018C29.1795 46.8645 28.3092 45.9942 27.663 44.9231C27.0168 43.852 26.7253 42.699 26.7253 41.4066C26.7253 40.1142 27.0168 38.9026 27.663 37.8315C28.3092 36.7604 29.1795 35.8901 30.2418 35.2527C31.304 34.6154 32.4658 34.315 33.7582 34.315Z"
+        fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none" />
+    </svg>
+  </div>
 
- </div>
- 
+  <div class="bar_btn" f="pin">
+    <style id="pinsvgstyle">
+      :root {
+        --svg-pin-fill: rgba(0, 0, 0, 0)
+      }
+    </style>
+    <svg viewBox="0 0 64 64" width="25px" height="25px" xmlns:vectornator="http://vectornator.io"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+      xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
+      <defs />
+      <g id="圖層1" vectornator:layerName="圖層1">
+        <path opacity="1" fill="var(--color-grey)"
+          d="M43.6081+14.3878L49.6611+20.4408L34.9822+39.2081L25.0486+29.2744L43.6081+14.3878M44.0572+6.19278L15.9064+28.7733L35.5414+48.4083L57.8072+19.9428L44.0572+6.19278L44.0572+6.19278Z" />
+        <path opacity="1" d="M4.5+55.2222L24.9722+34.75L29.25+39.0278L8.77778+59.5L4.5+59.5L4.5+55.2222Z"
+          fill="var(--color-grey)" />
+        <path stroke-linecap="butt" stroke="var(--color-grey)" opacity="1" fill="none" stroke-linejoin="miter"
+          stroke-width="6.54" d="M13.6667+22.8333L41.1667+50.3333M38.1111+4.5L59.5+25.8889" />
+        <path opacity="1" fill="var(--svg-pin-fill)"
+          d="M23.1283+28.9369L36.1979+41.5066L53.011+20.9978L42.5601+10.7445L23.1283+28.9369Z" />
+      </g>
+    </svg>
+
+  </div>
+
   <div class="bar_btn" f="delete">
-<svg height="25px" width="25px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M26.5451 0C24.3224 0 22.5451 0.578463 21.2805 1.77602C20.0159 2.97357 19.3776 4.59068 19.3776 6.66006L19.3776 11.1001L6.3112 11.1001C5.73637 11.1001 5.22002 11.3033 4.7889 11.7344C4.35778 12.1655 4.15461 12.6819 4.15461 13.2567C4.15461 13.8507 4.35778 14.3479 4.7889 14.779C5.22002 15.2101 5.73637 15.4133 6.3112 15.4133L9.7998 15.4133L11.7661 57.2765C11.8619 59.3459 12.5216 60.9438 13.7958 62.1606C15.07 63.3773 16.7374 64 18.8067 64L45.1933 64C47.2626 64 48.93 63.3869 50.2042 62.1606C51.4784 60.9343 52.1381 59.2825 52.2339 57.2131L54.2636 15.4133L57.6888 15.4133C58.2828 15.4133 58.7896 15.2101 59.2111 14.779C59.6326 14.3479 59.8454 13.8507 59.8454 13.2567C59.8454 12.6627 59.6326 12.1559 59.2111 11.7344C58.7896 11.3129 58.2828 11.1001 57.6888 11.1001L44.559 11.1001L44.559 6.66006C44.559 4.59068 43.9207 2.97357 42.6561 1.77602C41.3915 0.57846 39.6776 0 37.4549 0L26.5451 0ZM26.7988 4.24975L37.1378 4.24975C38 4.24975 38.7136 4.51272 39.2309 5.0109C39.7483 5.50908 39.9921 6.17245 39.9921 6.97721L39.9921 11.1001L23.9445 11.1001L23.9445 6.97721C23.9445 6.17245 24.2517 5.50908 24.7691 5.0109C25.2864 4.51272 25.9366 4.24975 26.7988 4.24975ZM14.2398 15.4133L49.6333 15.4133L47.7304 56.7056C47.6921 57.5679 47.4077 58.3162 46.8424 58.8622C46.2772 59.4083 45.5923 59.6868 44.7493 59.6868L19.2507 59.6868C18.446 59.6868 17.7228 59.3545 17.1576 58.7988C16.5923 58.2431 16.3079 57.5487 16.2696 56.7056L14.2398 15.4133ZM22.6125 20.6145C22.076 20.6145 21.6062 20.8057 21.2805 21.1219C20.9547 21.4381 20.8365 21.8289 20.8365 22.3271L21.7245 53.0268C21.7245 53.5441 21.8966 53.9888 22.2319 54.2953C22.5672 54.6019 22.9832 54.7393 23.5005 54.7393C24.0562 54.7393 24.5068 54.6115 24.8325 54.2953C25.1582 53.9792 25.2957 53.5249 25.2765 53.0268L24.3885 22.3271C24.3693 21.8289 24.2164 21.365 23.8811 21.0585C23.5458 20.7519 23.1298 20.6145 22.6125 20.6145ZM32 20.6145C31.4443 20.6145 31.0129 20.8057 30.668 21.1219C30.3231 21.4381 30.1606 21.8289 30.1606 22.3271L30.1606 53.0268C30.1606 53.5249 30.3231 53.9792 30.668 54.2953C31.0129 54.6115 31.4443 54.7393 32 54.7393C32.5365 54.7393 32.9871 54.6115 33.332 54.2953C33.6769 53.9792 33.8394 53.5249 33.8394 53.0268L33.8394 22.3271C33.8394 21.8289 33.6769 21.4381 33.332 21.1219C32.9871 20.8057 32.5365 20.6145 32 20.6145ZM41.3875 20.6145C40.8893 20.6145 40.4542 20.7519 40.1189 21.0585C39.7836 21.365 39.6307 21.8097 39.6115 22.3271L38.7235 53.0268C38.7043 53.5249 38.9052 53.9792 39.2309 54.2953C39.5567 54.6115 39.9438 54.7393 40.4995 54.7393C41.0168 54.7393 41.4962 54.6019 41.8315 54.2953C42.1668 53.9888 42.3389 53.5441 42.3389 53.0268L43.227 22.3271C43.227 21.8289 43.0453 21.4381 42.7195 21.1219C42.3938 20.8057 41.9432 20.6145 41.3875 20.6145Z" fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none"/>
-</svg>
- </div>
+    <svg height="25px" width="25px" stroke-miterlimit="10"
+      style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+      viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path
+        d="M26.5451 0C24.3224 0 22.5451 0.578463 21.2805 1.77602C20.0159 2.97357 19.3776 4.59068 19.3776 6.66006L19.3776 11.1001L6.3112 11.1001C5.73637 11.1001 5.22002 11.3033 4.7889 11.7344C4.35778 12.1655 4.15461 12.6819 4.15461 13.2567C4.15461 13.8507 4.35778 14.3479 4.7889 14.779C5.22002 15.2101 5.73637 15.4133 6.3112 15.4133L9.7998 15.4133L11.7661 57.2765C11.8619 59.3459 12.5216 60.9438 13.7958 62.1606C15.07 63.3773 16.7374 64 18.8067 64L45.1933 64C47.2626 64 48.93 63.3869 50.2042 62.1606C51.4784 60.9343 52.1381 59.2825 52.2339 57.2131L54.2636 15.4133L57.6888 15.4133C58.2828 15.4133 58.7896 15.2101 59.2111 14.779C59.6326 14.3479 59.8454 13.8507 59.8454 13.2567C59.8454 12.6627 59.6326 12.1559 59.2111 11.7344C58.7896 11.3129 58.2828 11.1001 57.6888 11.1001L44.559 11.1001L44.559 6.66006C44.559 4.59068 43.9207 2.97357 42.6561 1.77602C41.3915 0.57846 39.6776 0 37.4549 0L26.5451 0ZM26.7988 4.24975L37.1378 4.24975C38 4.24975 38.7136 4.51272 39.2309 5.0109C39.7483 5.50908 39.9921 6.17245 39.9921 6.97721L39.9921 11.1001L23.9445 11.1001L23.9445 6.97721C23.9445 6.17245 24.2517 5.50908 24.7691 5.0109C25.2864 4.51272 25.9366 4.24975 26.7988 4.24975ZM14.2398 15.4133L49.6333 15.4133L47.7304 56.7056C47.6921 57.5679 47.4077 58.3162 46.8424 58.8622C46.2772 59.4083 45.5923 59.6868 44.7493 59.6868L19.2507 59.6868C18.446 59.6868 17.7228 59.3545 17.1576 58.7988C16.5923 58.2431 16.3079 57.5487 16.2696 56.7056L14.2398 15.4133ZM22.6125 20.6145C22.076 20.6145 21.6062 20.8057 21.2805 21.1219C20.9547 21.4381 20.8365 21.8289 20.8365 22.3271L21.7245 53.0268C21.7245 53.5441 21.8966 53.9888 22.2319 54.2953C22.5672 54.6019 22.9832 54.7393 23.5005 54.7393C24.0562 54.7393 24.5068 54.6115 24.8325 54.2953C25.1582 53.9792 25.2957 53.5249 25.2765 53.0268L24.3885 22.3271C24.3693 21.8289 24.2164 21.365 23.8811 21.0585C23.5458 20.7519 23.1298 20.6145 22.6125 20.6145ZM32 20.6145C31.4443 20.6145 31.0129 20.8057 30.668 21.1219C30.3231 21.4381 30.1606 21.8289 30.1606 22.3271L30.1606 53.0268C30.1606 53.5249 30.3231 53.9792 30.668 54.2953C31.0129 54.6115 31.4443 54.7393 32 54.7393C32.5365 54.7393 32.9871 54.6115 33.332 54.2953C33.6769 53.9792 33.8394 53.5249 33.8394 53.0268L33.8394 22.3271C33.8394 21.8289 33.6769 21.4381 33.332 21.1219C32.9871 20.8057 32.5365 20.6145 32 20.6145ZM41.3875 20.6145C40.8893 20.6145 40.4542 20.7519 40.1189 21.0585C39.7836 21.365 39.6307 21.8097 39.6115 22.3271L38.7235 53.0268C38.7043 53.5249 38.9052 53.9792 39.2309 54.2953C39.5567 54.6115 39.9438 54.7393 40.4995 54.7393C41.0168 54.7393 41.4962 54.6019 41.8315 54.2953C42.1668 53.9888 42.3389 53.5441 42.3389 53.0268L43.227 22.3271C43.227 21.8289 43.0453 21.4381 42.7195 21.1219C42.3938 20.8057 41.9432 20.6145 41.3875 20.6145Z"
+        fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none" />
+    </svg>
+  </div>
   <div class="bar_btn" f="share">
-<svg height="25px" width="25px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path d="M32 0C31.6976 0 31.4426 0.074108 31.1875 0.1875C30.9324 0.300892 30.6585 0.46652 30.375 0.75L20.7812 10C20.5545 10.2079 20.3946 10.3888 20.2812 10.625C20.1679 10.8612 20.0938 11.1351 20.0938 11.4375C20.0938 12.0234 20.2688 12.497 20.6562 12.875C21.0437 13.253 21.5704 13.4375 22.1562 13.4375C22.7988 13.4375 23.2906 13.2661 23.6875 12.8125L28 8.1875L29.9375 6.1875L29.75 10.4375L29.75 39.5312C29.75 40.136 29.9934 40.6591 30.4375 41.0938C30.8816 41.5284 31.3763 41.7813 32 41.7812C32.6048 41.7812 33.1184 41.5284 33.5625 41.0938C34.0066 40.6591 34.25 40.136 34.25 39.5312L34.25 10.4375L34.0625 6.1875L36 8.1875L40.3125 12.8125C40.7094 13.2661 41.1888 13.4375 41.8125 13.4375C42.3984 13.4375 42.9156 13.253 43.3125 12.875C43.7094 12.497 43.875 12.0234 43.875 11.4375C43.875 11.1351 43.8009 10.8612 43.6875 10.625C43.5741 10.3888 43.4143 10.2079 43.1875 10L33.625 0.75C33.3415 0.46652 33.0676 0.300892 32.8125 0.1875C32.5574 0.074108 32.2835 0 32 0ZM15.7188 18.1562C12.7517 18.1562 10.5148 18.8791 9.03125 20.3438C7.5477 21.8084 6.84375 23.977 6.84375 26.9062L6.84375 55.1875C6.84375 58.1168 7.5477 60.2854 9.03125 61.75C10.5148 63.2146 12.7517 64 15.7188 64L48.25 64C51.2171 64 53.4852 63.2146 54.9688 61.75C56.4523 60.2854 57.1563 58.1168 57.1562 55.1875L57.1562 26.9062C57.1562 23.977 56.4523 21.8084 54.9688 20.3438C53.4852 18.8791 51.2171 18.1562 48.25 18.1562L40.3125 18.1562L40.3125 22.7188L48.125 22.7188C49.5235 22.7188 50.6627 23.0973 51.4375 23.8438C52.2123 24.5902 52.5625 25.6822 52.5625 27.1562L52.5625 54.9375C52.5625 56.4116 52.2123 57.566 51.4375 58.3125C50.6627 59.059 49.5235 59.4375 48.125 59.4375L15.7812 59.4375C14.3639 59.4375 13.2872 59.059 12.5312 58.3125C11.7753 57.566 11.4062 56.4116 11.4062 54.9375L11.4062 27.1562C11.4062 25.6822 11.7753 24.5902 12.5312 23.8438C13.2872 23.0973 14.3638 22.7188 15.7812 22.7188L23.6875 22.7188L23.6875 18.1562L15.7188 18.1562Z" fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none"/>
-</svg>
- </div>
+    <svg height="25px" width="25px" stroke-miterlimit="10"
+      style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+      viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path
+        d="M32 0C31.6976 0 31.4426 0.074108 31.1875 0.1875C30.9324 0.300892 30.6585 0.46652 30.375 0.75L20.7812 10C20.5545 10.2079 20.3946 10.3888 20.2812 10.625C20.1679 10.8612 20.0938 11.1351 20.0938 11.4375C20.0938 12.0234 20.2688 12.497 20.6562 12.875C21.0437 13.253 21.5704 13.4375 22.1562 13.4375C22.7988 13.4375 23.2906 13.2661 23.6875 12.8125L28 8.1875L29.9375 6.1875L29.75 10.4375L29.75 39.5312C29.75 40.136 29.9934 40.6591 30.4375 41.0938C30.8816 41.5284 31.3763 41.7813 32 41.7812C32.6048 41.7812 33.1184 41.5284 33.5625 41.0938C34.0066 40.6591 34.25 40.136 34.25 39.5312L34.25 10.4375L34.0625 6.1875L36 8.1875L40.3125 12.8125C40.7094 13.2661 41.1888 13.4375 41.8125 13.4375C42.3984 13.4375 42.9156 13.253 43.3125 12.875C43.7094 12.497 43.875 12.0234 43.875 11.4375C43.875 11.1351 43.8009 10.8612 43.6875 10.625C43.5741 10.3888 43.4143 10.2079 43.1875 10L33.625 0.75C33.3415 0.46652 33.0676 0.300892 32.8125 0.1875C32.5574 0.074108 32.2835 0 32 0ZM15.7188 18.1562C12.7517 18.1562 10.5148 18.8791 9.03125 20.3438C7.5477 21.8084 6.84375 23.977 6.84375 26.9062L6.84375 55.1875C6.84375 58.1168 7.5477 60.2854 9.03125 61.75C10.5148 63.2146 12.7517 64 15.7188 64L48.25 64C51.2171 64 53.4852 63.2146 54.9688 61.75C56.4523 60.2854 57.1563 58.1168 57.1562 55.1875L57.1562 26.9062C57.1562 23.977 56.4523 21.8084 54.9688 20.3438C53.4852 18.8791 51.2171 18.1562 48.25 18.1562L40.3125 18.1562L40.3125 22.7188L48.125 22.7188C49.5235 22.7188 50.6627 23.0973 51.4375 23.8438C52.2123 24.5902 52.5625 25.6822 52.5625 27.1562L52.5625 54.9375C52.5625 56.4116 52.2123 57.566 51.4375 58.3125C50.6627 59.059 49.5235 59.4375 48.125 59.4375L15.7812 59.4375C14.3639 59.4375 13.2872 59.059 12.5312 58.3125C11.7753 57.566 11.4062 56.4116 11.4062 54.9375L11.4062 27.1562C11.4062 25.6822 11.7753 24.5902 12.5312 23.8438C13.2872 23.0973 14.3638 22.7188 15.7812 22.7188L23.6875 22.7188L23.6875 18.1562L15.7188 18.1562Z"
+        fill="var(--color-grey)" fill-rule="evenodd" opacity="1" stroke="none" />
+    </svg>
+  </div>
 </div>
 <div class="themeboxbg"></div>
 <div class="themebox">
@@ -449,7 +521,7 @@ display:none;
     <div class="col" id="lig"></div>
     <div class="col" id="gre"></div>
     <div class="col" id="ft"></div>
-    <div class="col" id="dar"></div>  
+    <div class="col" id="dar"></div>
   </div>
   <input type="text" id="colorhinp">
   <div class="themebar">
@@ -466,7 +538,7 @@ display:none;
 </div>
 
 <div class="sharebox">
- <div class="qrc"></div>
+  <div class="qrc"></div>
   <input type="text" id="sharelink" readonly="readonly">
   <div class="sharebtn" f="closeshare">Close</div>
   <div class="sharebtn" f="copyshare">Copy</div>
@@ -476,7 +548,7 @@ display:none;
 
 
 
- 
+
 
 
 
@@ -484,790 +556,735 @@ display:none;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
 
- function loadbarsh() {
-
- }
- 
-var getUrlString = location.href;
-var url = new URL(getUrlString);
-var url_n = url.searchParams.get('n');
-var url_id = url.searchParams.get('id');
-var url_new = url.searchParams.get('new')
-
-function genid(mode) {
-if(mode === "random"){
-var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var genid = "";
-            for (var i = 0; i < 16; i++) {
-                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
-                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
-            }
-  return genid ;
-}
-          
- if(mode === "time"){
-   var gtoday=new Date();
-   var genid2 = (gtoday.getMonth()+1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8));
-   
-   return genid2
- }
-  
-  if(mode === "number"){
-   
-   var genid3 = '' ;
-for (var i = 0; i < 16; i++) {
-  genid3 += '' + (0+Math.floor(Math.random() * 9))
-}
-   return genid3
- }
-  
-  if(mode === "uuid"){
-var genidchars4 = "abcdef012345678";
-    var geniduu = [8,4,4,4,12];
-            var genid4 = "";
-            var genid5 = "";
-    for (var ia = 0; ia < geniduu.length; ia++) {
-      var genid4 = "";
-            for (var i = 0; i < geniduu[ia]; i++) {
-                var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
-                genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
-            }
-genid5 += '-' + genid4 ;
-    }
-    return genid5.substring(1,genid5.length)
+  function loadbarsh() {
+    location.href = backurlzzff;
   }
 
-}
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
+  var getUrlString = location.href;
+  var url = new URL(getUrlString);
+  var url_n = url.searchParams.get('n');
+  var url_id = url.searchParams.get('id');
+  var url_new = url.searchParams.get('new')
 
-function rgbToHex(r, g, b) {
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-function rgbtocmyk(r, g, b, normalized){
+  function genid(mode) {
+    if (mode === "random") {
+      var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+      var genid = "";
+      for (var i = 0; i < 16; i++) {
+        var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+        genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+      }
+      return genid;
+    }
+
+    if (mode === "time") {
+      var gtoday = new Date();
+      var genid2 = (gtoday.getMonth() + 1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8)) + '' + (1 + Math.floor(Math.random() * 8));
+
+      return genid2
+    }
+
+    if (mode === "number") {
+
+      var genid3 = '';
+      for (var i = 0; i < 16; i++) {
+        genid3 += '' + (0 + Math.floor(Math.random() * 9))
+      }
+      return genid3
+    }
+
+    if (mode === "uuid") {
+      var genidchars4 = "abcdef012345678";
+      var geniduu = [8, 4, 4, 4, 12];
+      var genid4 = "";
+      var genid5 = "";
+      for (var ia = 0; ia < geniduu.length; ia++) {
+        var genid4 = "";
+        for (var i = 0; i < geniduu[ia]; i++) {
+          var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
+          genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
+        }
+        genid5 += '-' + genid4;
+      }
+      return genid5.substring(1, genid5.length)
+    }
+
+  }
+  function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  }
+
+  function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  }
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+  function rgbtocmyk(r, g, b, normalized) {
     var c = 1 - (r / 255);
     var m = 1 - (g / 255);
     var y = 1 - (b / 255);
     var k = Math.min(c, Math.min(m, y));
-    
+
     c = (c - k) / (1 - k);
     m = (m - k) / (1 - k);
     y = (y - k) / (1 - k);
-    
-    if(!normalized){
-        c = Math.round(c * 10000) / 100;
-        m = Math.round(m * 10000) / 100;
-        y = Math.round(y * 10000) / 100;
-        k = Math.round(k * 10000) / 100;
+
+    if (!normalized) {
+      c = Math.round(c * 10000) / 100;
+      m = Math.round(m * 10000) / 100;
+      y = Math.round(y * 10000) / 100;
+      k = Math.round(k * 10000) / 100;
     }
-    
+
     c = isNaN(c) ? 0 : c;
     m = isNaN(m) ? 0 : m;
     y = isNaN(y) ? 0 : y;
     k = isNaN(k) ? 0 : k;
-    
-    return {
-        c: c,
-        m: m,
-        y: y,
-        k: k,
-        cmykstr:c + ',' + m + ',' + y + ',' + k
-    }
-}
 
-function rgbtohsv(r, g, b) {
+    return {
+      c: c,
+      m: m,
+      y: y,
+      k: k,
+      cmykstr: c + ',' + m + ',' + y + ',' + k
+    }
+  }
+
+  function rgbtohsv(r, g, b) {
     let rabs, gabs, babs, rr, gg, bb, h, s, v, diff, diffc, percentRoundFn;
     rabs = r / 255;
     gabs = g / 255;
     babs = b / 255;
     v = Math.max(rabs, gabs, babs),
-    diff = v - Math.min(rabs, gabs, babs);
+      diff = v - Math.min(rabs, gabs, babs);
     diffc = c => (v - c) / 6 / diff + 1 / 2;
     percentRoundFn = num => Math.round(num * 100) / 100;
     if (diff == 0) {
-        h = s = 0;
+      h = s = 0;
     } else {
-        s = diff / v;
-        rr = diffc(rabs);
-        gg = diffc(gabs);
-        bb = diffc(babs);
+      s = diff / v;
+      rr = diffc(rabs);
+      gg = diffc(gabs);
+      bb = diffc(babs);
 
-        if (rabs === v) {
-            h = bb - gg;
-        } else if (gabs === v) {
-            h = (1 / 3) + rr - bb;
-        } else if (babs === v) {
-            h = (2 / 3) + gg - rr;
-        }
-        if (h < 0) {
-            h += 1;
-        }else if (h > 1) {
-            h -= 1;
-        }
+      if (rabs === v) {
+        h = bb - gg;
+      } else if (gabs === v) {
+        h = (1 / 3) + rr - bb;
+      } else if (babs === v) {
+        h = (2 / 3) + gg - rr;
+      }
+      if (h < 0) {
+        h += 1;
+      } else if (h > 1) {
+        h -= 1;
+      }
     }
     return {
-        h: Math.round(h * 360),
-        s: percentRoundFn(s * 100),
-        v: percentRoundFn(v * 100),
-        hsvstr: Math.round(h * 360) + ',' + percentRoundFn(s * 100) + ',' + percentRoundFn(v * 100)
+      h: Math.round(h * 360),
+      s: percentRoundFn(s * 100),
+      v: percentRoundFn(v * 100),
+      hsvstr: Math.round(h * 360) + ',' + percentRoundFn(s * 100) + ',' + percentRoundFn(v * 100)
     };
-}
+  }
 
 
 
 
 
-function rgbtohsl(r,g,b){
-    var rgbArr = [r,g,b]
+  function rgbtohsl(r, g, b) {
+    var rgbArr = [r, g, b]
     var r1 = rgbArr[0] / 255;
     var g1 = rgbArr[1] / 255;
     var b1 = rgbArr[2] / 255;
- 
-    var maxColor = Math.max(r1,g1,b1);
-    var minColor = Math.min(r1,g1,b1);
+
+    var maxColor = Math.max(r1, g1, b1);
+    var minColor = Math.min(r1, g1, b1);
     //Calculate L:
-    var L = (maxColor + minColor) / 2 ;
+    var L = (maxColor + minColor) / 2;
     var S = 0;
     var H = 0;
-    if(maxColor != minColor){
-        //Calculate S:
-        if(L < 0.5){
-            S = (maxColor - minColor) / (maxColor + minColor);
-        }else{
-            S = (maxColor - minColor) / (2.0 - maxColor - minColor);
-        }
-        //Calculate H:
-        if(r1 == maxColor){
-            H = (g1-b1) / (maxColor - minColor);
-        }else if(g1 == maxColor){
-            H = 2.0 + (b1 - r1) / (maxColor - minColor);
-        }else{
-            H = 4.0 + (r1 - g1) / (maxColor - minColor);
-        }
+    if (maxColor != minColor) {
+      //Calculate S:
+      if (L < 0.5) {
+        S = (maxColor - minColor) / (maxColor + minColor);
+      } else {
+        S = (maxColor - minColor) / (2.0 - maxColor - minColor);
+      }
+      //Calculate H:
+      if (r1 == maxColor) {
+        H = (g1 - b1) / (maxColor - minColor);
+      } else if (g1 == maxColor) {
+        H = 2.0 + (b1 - r1) / (maxColor - minColor);
+      } else {
+        H = 4.0 + (r1 - g1) / (maxColor - minColor);
+      }
     }
- 
+
     L = L * 100;
     S = S * 100;
     H = H * 60;
-    if(H<0){
-        H += 360;
+    if (H < 0) {
+      H += 360;
     }
-    
+
     return {
-        h: H,
-        s: S,
-        l: L,
-        hslstr: H + ',' + S + ',' + L
+      h: H,
+      s: S,
+      l: L,
+      hslstr: H + ',' + S + ',' + L
     };;
-}
-  function hsv2rgb(h,s,v) {
-  var h = h / 60,
+  }
+  function hsv2rgb(h, s, v) {
+    var h = h / 60,
       s = s / 100,
       v = v / 100,
       hi = Math.floor(h) % 6;
 
-  var f = h - Math.floor(h),
+    var f = h - Math.floor(h),
       p = 255 * v * (1 - s),
       q = 255 * v * (1 - (s * f)),
       t = 255 * v * (1 - (s * (1 - f))),
       v = 255 * v;
 
-  switch(hi) {
-    case 0:
-      return [v, t, p];
-    case 1:
-      return [q, v, p];
-    case 2:
-      return [p, v, t];
-    case 3:
-      return [p, q, v];
-    case 4:
-      return [t, p, v];
-    case 5:
-      return [v, p, q];
+    switch (hi) {
+      case 0:
+        return [v, t, p];
+      case 1:
+        return [q, v, p];
+      case 2:
+        return [p, v, t];
+      case 3:
+        return [p, q, v];
+      case 4:
+        return [t, p, v];
+      case 5:
+        return [v, p, q];
+    }
   }
-}
- 
- 
- String.prototype.hexEncode = function(){
+
+
+  String.prototype.hexEncode = function () {
     var hex, i;
 
     var result = "";
-    for (i=0; i<this.length; i++) {
-        hex = this.charCodeAt(i).toString(16);
-        result += ("000"+hex).slice(-4);
+    for (i = 0; i < this.length; i++) {
+      hex = this.charCodeAt(i).toString(16);
+      result += ("000" + hex).slice(-4);
     }
 
     return result
-}
-String.prototype.hexDecode = function(){
+  }
+  String.prototype.hexDecode = function () {
     var j;
     var hexes = this.match(/.{1,4}/g) || [];
     var back = "";
-    for(j = 0; j<hexes.length; j++) {
-        back += String.fromCharCode(parseInt(hexes[j], 16));
+    for (j = 0; j < hexes.length; j++) {
+      back += String.fromCharCode(parseInt(hexes[j], 16));
     }
 
     return back;
-}
+  }
 
- 
- 
- 
 
-function encu(textu) {
- var ivqu = parseInt(
-                    Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1)
-                );
-                
-                var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-                
-                var textBytesu = aesjs.utils.utf8.toBytes(textu);
 
-                var aesCtru = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(ivqu));
-                var encryptedBytesu = aesCtru.encrypt(textBytesu);
 
-                var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
-                //console.log(encryptedHexu);
-                return [encryptedHexu,ivqu]
-                
-            }
 
-function decu(juy,oik) {
-                var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-                var gbu = juy;
-                var kiu = oik;
-                var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
+  function encu(textu) {
+    var ivqu = parseInt(
+      Math.floor(Math.random() * 8 + 1) +
+      "" +
+      Math.floor(Math.random() * 8 + 1) +
+      "" +
+      Math.floor(Math.random() * 8 + 1) +
+      "" +
+      Math.floor(Math.random() * 8 + 1) +
+      "" +
+      Math.floor(Math.random() * 8 + 1) +
+      "" +
+      Math.floor(Math.random() * 8 + 1)
+    );
 
-                // The counter mode of operation maintains internal state, so to
-                // decrypt a new instance must be instantiated.
-                var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
-                var decryptedBytese = aesCtre.decrypt(encryptedBytese);
+    var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
-                // Convert our bytes back into text
-                var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
-                //console.log(decryptedTexte);
-                return decryptedTexte;
-                
-            }
+    var textBytesu = aesjs.utils.utf8.toBytes(textu);
 
-function enur(u) {
-return encodeURIComponent(u)
-}
- function deur(u) {
-return decodeURIComponent(u)
-}
- 
+    var aesCtru = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(ivqu));
+    var encryptedBytesu = aesCtru.encrypt(textBytesu);
 
-(function ($) {
+    var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
+    //console.log(encryptedHexu);
+    return [encryptedHexu, ivqu]
+
+  }
+
+  function decu(juy, oik) {
+    var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+    var gbu = juy;
+    var kiu = oik;
+    var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
+
+    // The counter mode of operation maintains internal state, so to
+    // decrypt a new instance must be instantiated.
+    var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
+    var decryptedBytese = aesCtre.decrypt(encryptedBytese);
+
+    // Convert our bytes back into text
+    var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
+    //console.log(decryptedTexte);
+    return decryptedTexte;
+
+  }
+
+  function enur(u) {
+    return encodeURIComponent(u)
+  }
+  function deur(u) {
+    return decodeURIComponent(u)
+  }
+
+
+  (function ($) {
     $.fn.prompt = function (options) {
-        var settings = $.extend(
-            {
-                message: "undefined",
-                time: 2000,
-                animate: "slide",
-            },
-            options
-        );
-        return this.each(function () {
-            $(".prompt").remove();
-            var promptchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var promptid = "";
-            for (var i = 0; i < 10; i++) {
-                var randomNumber = Math.floor(Math.random() * promptchars.length);
-                promptid += promptchars.substring(randomNumber, randomNumber + 1);
-            }
+      var settings = $.extend(
+        {
+          message: "undefined",
+          time: 2000,
+          animate: "slide",
+        },
+        options
+      );
+      return this.each(function () {
+        $(".prompt").remove();
+        var promptchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+        var promptid = "";
+        for (var i = 0; i < 10; i++) {
+          var randomNumber = Math.floor(Math.random() * promptchars.length);
+          promptid += promptchars.substring(randomNumber, randomNumber + 1);
+        }
 
-            if (settings.animate === "slide") {
-                $(this).append('<div class="prompt" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+        if (settings.animate === "slide") {
+          $(this).append('<div class="prompt" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
 
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "20px" });
-                }, 100);
+          setTimeout(function () {
+            $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "20px" });
+          }, 100);
 
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "0", transition: "0.4s", bottom: "-80px" });
-                }, settings.time + 100);
+          setTimeout(function () {
+            $("#" + promptid).css({ opacity: "0", transition: "0.4s", bottom: "-80px" });
+          }, settings.time + 100);
 
-                setTimeout(function () {
-                    $("#" + promptid).remove();
-                }, settings.time + 400);
-            }
+          setTimeout(function () {
+            $("#" + promptid).remove();
+          }, settings.time + 400);
+        }
 
-            if (settings.animate === "fade") {
-                $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
+        if (settings.animate === "fade") {
+          $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
 
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "10px" });
-                }, 100);
+          setTimeout(function () {
+            $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "10px" });
+          }, 100);
 
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "0", transition: "0.4s" });
-                }, settings.time + 100);
+          setTimeout(function () {
+            $("#" + promptid).css({ opacity: "0", transition: "0.4s" });
+          }, settings.time + 100);
 
-                setTimeout(function () {
-                    $("#" + promptid).remove();
-                }, settings.time + 400);
-            }
+          setTimeout(function () {
+            $("#" + promptid).remove();
+          }, settings.time + 400);
+        }
 
-            if (settings.animate === "show") {
-                $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "1", transition: "0s", bottom: "10px" });
-                }, 100);
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "0", transition: "0s" });
-                }, settings.time + 100);
-                setTimeout(function () {
-                    $("#" + promptid).remove();
-                }, settings.time + 400);
-            }
-        });
+        if (settings.animate === "show") {
+          $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
+          setTimeout(function () {
+            $("#" + promptid).css({ opacity: "1", transition: "0s", bottom: "10px" });
+          }, 100);
+          setTimeout(function () {
+            $("#" + promptid).css({ opacity: "0", transition: "0s" });
+          }, settings.time + 100);
+          setTimeout(function () {
+            $("#" + promptid).remove();
+          }, settings.time + 400);
+        }
+      });
     };
-})(jQuery);
- 
+  })(jQuery);
 
- 
- 
- 
-   //userid
-  var user_id ;
-  if(localStorage.getItem('user_id_r') === '1') {
-    user_id = localStorage.getItem('user_id') ;
-    gtag('event', 'user_start', {
-    'event_category': 'count',
-    'event_label': user_id,
-    'transport_type': 'beacon',
-    'event_callback': function(){
-    console.log('user_id:' + user_id)
-    systeminfodata(user_id)
-    }
+  document.querySelector('.note_title').contentEditable = true;
+  document.querySelector('.note_text').contentEditable = true;
+  //ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
+  //ripple('.themebtn,.deletebtn,.sharebtn','var(--color-ftf)','0.4',800,'true');
+  /*
+ var thclid = '' ;
+  $('.bar_btn,.themebtn,.deletebtn,.sharebtn').click(function() {
+  $(this).css({'opacity':'0.8','transition':'0.3s'});
+   thclas = genid('uuid')
+   $(this).attr('op',thclas)
+       setTimeout(function() {
+        $('*[op="' + thclas + '"]').css({'opacity':'1'});
+       },300);
   });
-  }
-  else {
-  var user_id_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            user_id = "";
-            for (var useridi = 0; useridi < 64; useridi++) {
-                var user_id_randomNumber = Math.floor(Math.random() * user_id_chars.length);
-                user_id += user_id_chars.substring(user_id_randomNumber, user_id_randomNumber + 1);
-            }
-  localStorage.setItem('user_id_r', '1');
-  localStorage.setItem('user_id',user_id);
-   var hyatav = {'appcodename':window.navigator.appCodeName,'appname':window.navigator.appName,'appver':window.navigator.appVersion,'lang':window.navigator.language,'platform':window.navigator.platform,'product':window.navigator.product,'productsub':window.navigator.productSub,'useragent':window.navigator.userAgent,'vendor':window.navigator.vendor} ;
-   //var newuseridbackurl = 'https://docs.google.com/forms/d/e/1FAIpQLSeu19oOI34etg9rGCah1l50AkJVqy2gi5d1uhW-g-zYDsCJCw/formResponse?usp=pp_url&entry.584799207=' + user_id + '&entry.1702628837=' + encodeURIComponent(JSON.stringify(hyatav)) + '&entry.688790589=' + encodeURIComponent(location.href) ;
-   //var newuseridbackurlajaxee = $.ajax({url:newuseridbackurl ,async:false});
+  */
 
-   gtag('event', 'user_start', {
-    'event_category': 'count',
-    'event_label': user_id,
-    'transport_type': 'beacon',
-    'event_callback': function(){
-    console.log('user_id:' + user_id)
-    //systeminfodata(user_id)
-    }
+
+
+  $('.bar_btn[f="delete"]').click(function () {
+    $('.deletebox').css({ 'display': 'block' });
+    $('.themeboxbg').css({ 'display': 'block' });
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'opacity': '0.6' });
+      $('.deletebox').css({ 'opacity': '1', 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
   });
-    
+
+  $('.themebtn[f="cancel"]').click(function () {
+    $('.themeboxbg').css({ 'opacity': '0' });
+    $('.themebox').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'display': 'none' });
+      $('.themebox').css({ 'display': 'none' });
+    }, 300);
+  });
+
+
+  $('.deletebtn[f="canceldel"]').click(function () {
+    $('.themeboxbg').css({ 'opacity': '0' });
+    $('.deletebox').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'display': 'none' });
+      $('.deletebox').css({ 'display': 'none' });
+    }, 300);
+  });
+
+  function getcolorset(main_color_h) {
+    var liga = hsv2rgb(main_color_h, 18, 100)
+    var light_color = rgbToHex(Math.round(liga[0]), Math.round(liga[1]), Math.round(liga[2]));
+    var darka = hsv2rgb(main_color_h, 55, 16)
+    var dark_color = rgbToHex(Math.round(darka[0]), Math.round(darka[1]), Math.round(darka[2]));
+
+    var grea = hsv2rgb(main_color_h, 30, 50)
+    var grey_color = rgbToHex(Math.round(grea[0]), Math.round(grea[1]), Math.round(grea[2]));
+
+    var ftf = hsv2rgb(main_color_h, 80, 20)
+    var ftf_color = rgbToHex(Math.round(ftf[0]), Math.round(ftf[1]), Math.round(ftf[2]));
+
+    return { 'light': light_color, 'dark': dark_color, 'grey': grey_color, 'ftf': ftf_color, 'arr': [light_color, dark_color, grey_color, ftf_color] }
   }
-  //useridend
- 
- 
- 
-document.querySelector('.note_title').contentEditable = true ;
-document.querySelector('.note_text').contentEditable = true ;
-//ripple('.bar_btn','var(--color-grey)','0.4',800,'true');
-//ripple('.themebtn,.deletebtn,.sharebtn','var(--color-ftf)','0.4',800,'true');
- /*
-var thclid = '' ;
- $('.bar_btn,.themebtn,.deletebtn,.sharebtn').click(function() {
- $(this).css({'opacity':'0.8','transition':'0.3s'});
-  thclas = genid('uuid')
-  $(this).attr('op',thclas)
-      setTimeout(function() {
-       $('*[op="' + thclas + '"]').css({'opacity':'1'});
-      },300);
- });
- */
- 
- 
 
-$('.bar_btn[f="delete"]').click(function() {
-  $('.deletebox').css({'display':'block'});
-  $('.themeboxbg').css({'display':'block'});
-  setTimeout(function() {
-    $('.themeboxbg').css({'opacity':'0.6'});
-    $('.deletebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
-  },1);
-});
- 
- $('.themebtn[f="cancel"]').click(function() {
- $('.themeboxbg').css({'opacity':'0'});
- $('.themebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
-  setTimeout(function() {
-$('.themeboxbg').css({'display':'none'});
-  $('.themebox').css({'display':'none'});
-  },300);
- });
- 
- 
- $('.deletebtn[f="canceldel"]').click(function() {
- $('.themeboxbg').css({'opacity':'0'});
- $('.deletebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
-  setTimeout(function() {
-$('.themeboxbg').css({'display':'none'});
-  $('.deletebox').css({'display':'none'});
-  },300);
- });
- 
-function getcolorset(main_color_h) {
-  var liga = hsv2rgb(main_color_h,18,100)
-  var light_color = rgbToHex(Math.round(liga[0]),Math.round(liga[1]),Math.round(liga[2])) ;
-  var darka = hsv2rgb(main_color_h,55,16)
-  var dark_color = rgbToHex(Math.round(darka[0]),Math.round(darka[1]),Math.round(darka[2])) ;
-  
-  var grea = hsv2rgb(main_color_h,30,50)
-  var grey_color = rgbToHex(Math.round(grea[0]),Math.round(grea[1]),Math.round(grea[2])) ;
-  
-  var ftf = hsv2rgb(main_color_h,80,20)
-  var ftf_color = rgbToHex(Math.round(ftf[0]),Math.round(ftf[1]),Math.round(ftf[2])) ;
-  
-  return {'light':light_color,'dark':dark_color,'grey':grey_color,'ftf':ftf_color,'arr':[light_color,dark_color,grey_color,ftf_color]}
-}
 
-  
 
-//var color_h = 198 ;
-function checkTime(i)
-{
-if (i<10) 
-  {i="0" + i}
-  return i
-}
+  //var color_h = 198 ;
+  function checkTime(i) {
+    if (i < 10) { i = "0" + i }
+    return i
+  }
 
-  if(localStorage.getItem('note_settings_deftit') === null) {
-   localStorage.setItem('note_settings_deftit','Untitled Note - {date} {time}')
+  if (localStorage.getItem('note_settings_deftit') === null) {
+    localStorage.setItem('note_settings_deftit', 'Untitled Note - {date} {time}')
   }
   var td = new Date()
-  var date_time = td.getFullYear()+ '/' + (td.getMonth()+1) + '/' + td.getDate() ;
+  var date_time = td.getFullYear() + '/' + (td.getMonth() + 1) + '/' + td.getDate();
   var dtt = checkTime(td.getHours()) + ':' + checkTime(td.getMinutes()) + ':' + checkTime(td.getSeconds())
   var default_title = localStorage.getItem('note_settings_deftit')
-  var default_title_d = default_title.replaceAll('{date}',date_time).replaceAll('{time}',dtt)
-  
-  var pinned = '0' ;
-  
+  var default_title_d = default_title.replaceAll('{date}', date_time).replaceAll('{time}', dtt)
+
+  var pinned = '0';
+
   var noteid
-if(!(url_n === '1')) {
-  if(url_new === '1') {
-  var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            noteid = "";
-            for (var i = 0; i < 16; i++) {
-                var idrandomNumber = Math.floor(Math.random() * idchars.length);
-                noteid += idchars.substring(idrandomNumber, idrandomNumber + 1);
-            }
-  history.pushState(null, null,'https://erichsia7.github.io/note/d/?n=1&id=' + noteid);
-  localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
-   $('.note_title').text(default_title_d)
-  var encdtit = encu(enur($('.note_title').text())) ;
-  var enctxt = encu(enur($('.note_text').html())) ;
-  var color_h = Math.round(Math.random()*360)
+  if (!(url_n === '1')) {
+    if (url_new === '1') {
+      var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+      noteid = "";
+      for (var i = 0; i < 16; i++) {
+        var idrandomNumber = Math.floor(Math.random() * idchars.length);
+        noteid += idchars.substring(idrandomNumber, idrandomNumber + 1);
+      }
+      history.pushState(null, null, 'https://erichsia7.github.io/note/d/?n=1&id=' + noteid);
+      localStorage.setItem('note_id_list', localStorage.getItem('note_id_list') + ',' + noteid);
+      $('.note_title').text(default_title_d)
+      var encdtit = encu(enur($('.note_title').text()));
+      var enctxt = encu(enur($('.note_text').html()));
+      var color_h = Math.round(Math.random() * 360)
 
-  localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h + ',' + pinned);
+      localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h + ',' + pinned);
+    }
   }
-}
-else {
-  noteid = url_id
-  var color_h = parseInt(localStorage.getItem('note_id_' + noteid).split(',')[2]) ;
-  if(String(localStorage.getItem('note_id_' + noteid).split(',')[3]) === 'undefined') {
-   pinned = '0' ;
-  }
- else {
-  pinned = String(localStorage.getItem('note_id_' + noteid).split(',')[3])
- }
-  $('.note_title').text(deur(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1])));
-  $('.note_text').html(deur(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0],localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1])));
- if(pinned === '1') {
-  $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}')
- }
- 
-}
- $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+  else {
+    noteid = url_id
+    var color_h = parseInt(localStorage.getItem('note_id_' + noteid).split(',')[2]);
+    if (String(localStorage.getItem('note_id_' + noteid).split(',')[3]) === 'undefined') {
+      pinned = '0';
+    }
+    else {
+      pinned = String(localStorage.getItem('note_id_' + noteid).split(',')[3])
+    }
+    $('.note_title').text(deur(decu(localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[0], localStorage.getItem('note_id_' + noteid).split(',')[0].split(':')[1])));
+    $('.note_text').html(deur(decu(localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[0], localStorage.getItem('note_id_' + noteid).split(',')[1].split(':')[1])));
+    if (pinned === '1') {
+      $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}')
+    }
 
-function setthemecol(hexcolsjs,delaytimems) {
-  setTimeout(function() {
-  $('meta[name="theme-color"]').attr('content',hexcolsjs);
-  },delaytimems);
-}
-function darkmodehexcol() {
-if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  return getcolorset(color_h).dark
-}
-else {
-return getcolorset(color_h).light
-}
-}
+  }
+  $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+
+  function setthemecol(hexcolsjs, delaytimems) {
+    setTimeout(function () {
+      $('meta[name="theme-color"]').attr('content', hexcolsjs);
+    }, delaytimems);
+  }
+  function darkmodehexcol() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return getcolorset(color_h).dark
+    }
+    else {
+      return getcolorset(color_h).light
+    }
+  }
   setthemecol(darkmodehexcol())
 
-document.addEventListener("paste", function (e){
+  document.addEventListener("paste", function (e) {
     save();
   });
-document.addEventListener("cut", function (e){
+  document.addEventListener("cut", function (e) {
     save();
   });
-document.addEventListener("selectionchange", function (e){
+  document.addEventListener("selectionchange", function (e) {
     save();
   });
-document.addEventListener("keyup", function (e){
+  document.addEventListener("keyup", function (e) {
     save();
   });
 
- timearr = []
- var timeavg = 0
- function calctypespeed() {
-  timeavg = 0
-for (var i = 0; i < timearr.length-1; i++) {
-  timeavg += Math.abs(timearr[(i+1)]-timearr[i])
-}
-//console.log(timearr.length + ',' + timeavg/(timearr.length-1))
- }
- var deleteee = '0' ;
-function save() {
- if(deleteee === '0') {
-  timearr.push(new Date().getTime())
-  if(timearr.length > 10) {
-   timearr.splice(0, 1);
+  timearr = []
+  var timeavg = 0
+  function calctypespeed() {
+    timeavg = 0
+    for (var i = 0; i < timearr.length - 1; i++) {
+      timeavg += Math.abs(timearr[(i + 1)] - timearr[i])
+    }
+    //console.log(timearr.length + ',' + timeavg/(timearr.length-1))
   }
-calctypespeed()
- $('.note_text *').removeAttr('style')
-  var encdtit = encu(enur($('.note_title').text())) ;
-  var enctxt = encu(enur($('.note_text').html())) ;
-  localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h + ',' + pinned)
- }
-}
+  var deleteee = '0';
+  function save() {
+    if (deleteee === '0') {
+      timearr.push(new Date().getTime())
+      if (timearr.length > 10) {
+        timearr.splice(0, 1);
+      }
+      calctypespeed()
+      $('.note_text *').removeAttr('style')
+      var encdtit = encu(enur($('.note_title').text()));
+      var enctxt = encu(enur($('.note_text').html()));
+      localStorage.setItem('note_id_' + noteid, encdtit[0] + ':' + encdtit[1] + ',' + enctxt[0] + ':' + enctxt[1] + ',' + color_h + ',' + pinned)
+    }
+  }
 
- var backurlzzff = 'https://erichsia7.github.io/note/?r=' + genid('random')
- $('.bar_btn[f="back"]').click(function() {
-  loadbarsh()
-  gtag('event', 'type_speed', {
-    'event_category': Math.round(timeavg/(timearr.length-1)),
-    'event_label': user_id,
-    'transport_type': 'beacon',
-    'event_callback': function(){
-    //systeminfodata(user_id)
-     location.href = backurlzzff ;
+  var backurlzzff = 'https://erichsia7.github.io/note/?r=' + genid('random')
+  $('.bar_btn[f="back"]').click(function () {
+    loadbarsh()
+  });
+  /*
+       $('.bar_btn[f="back"]').hover(function() {
+       caches.open('note_hover_cache').then(function(cache){
+             cache.addAll([
+                 backurlzzff
+             ]);   
+         })  
+       console.log('cache!')
+      });
+  */
+
+  function previewcolorset(colorh) {
+    $('#lig').css({ 'background': getcolorset(colorh).light })
+    $('#dar').css({ 'background': getcolorset(colorh).dark })
+    $('#gre').css({ 'background': getcolorset(colorh).grey })
+    $('#ft').css({ 'background': getcolorset(colorh).ftf })
+  }
+  $.extend($.support, { touch: "ontouchend" in document });
+
+  var eventlistenert = ['touchstart', 'touchmove', 'touchend'];
+  if ($.support.touch) {
+    eventlistenert = ['touchstart', 'touchmove', 'touchend'];
+  }
+  else {
+    eventlistenert = ['mousedown', 'mousemove', 'mouseup'];
+  }
+  let mouseX = 0
+  let mouseY = 0
+  let offsetX = 0
+  let offsetY = 0
+  let isDown = false
+  var div2 = document.querySelector(".themebar");
+  var hsv_a = 0;
+  var px = 0;
+  var py = $('.box').height();
+
+  div2.addEventListener(eventlistenert[0], function (e) {
+    isDown = true
+    mouseX = e.pageX
+    mouseY = e.pageY
+    document.addEventListener(eventlistenert[1], m2)
+  }, { passive: true });
+
+  document.addEventListener(eventlistenert[2], function (e) {
+    if (isDown) {
+      offsetX += e.pageX - mouseX
+      offsetY += e.pageY - mouseY
+    }
+    isDown = false
+    document.removeEventListener(eventlistenert[1], m2)
+  });
+  function m2(e) {
+    var bar_width = $('.themebar').width()
+    var px2 = (e.pageX - $('.themebar').offset().left - $(window).scrollLeft());
+    if (e.pageX > ($('.themebar').offset().left - $(window).scrollLeft() + bar_width)) {
+      px2 = bar_width;
+    }
+    if (e.pageX < ($('.themebar').offset().left - $(window).scrollLeft())) {
+      px2 = 0;
+    }
+    $('#colorhinp').val(Math.round(px2 / bar_width * 359))
+    previewcolorset(Math.round(px2 / bar_width * 359))
+    $('.themebarradio').css({ 'left': (px2 - 10), 'background': 'rgb(' + hsv2rgb(Math.round(px2 / bar_width * 359), 100, 100).join(',') + ')' })
+  }
+
+
+  $('.bar_btn[f="theme"]').click(function () {
+    $('.themebox').css({ 'display': 'block' });
+    $('.themeboxbg').css({ 'display': 'block' });
+    $('#colorhinp').val(color_h)
+    previewcolorset(color_h)
+    $('.themebarradio').css({ 'left': ((color_h / 359 * $('.themebar').width()) - 10), 'background': 'rgb(' + hsv2rgb(color_h, 100, 100).join(',') + ')' })
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'opacity': '0.6' });
+      $('.themebox').css({ 'opacity': '1', 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  });
+  $('.themebtn[f="change"]').click(function () {
+    color_h = parseInt($('#colorhinp').val())
+    save();
+    $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
+    setthemecol(darkmodehexcol())
+    $('.themeboxbg').css({ 'opacity': '0' });
+    $('.themebox').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'display': 'none' });
+      $('.themebox').css({ 'display': 'none' });
+    }, 300);
+    $('body').prompt({ 'message': 'Theme changed!', 'time': 1200, 'animate': 'slide' });
+  });
+
+  $('.deletebtn[f="confirmdel"]').click(function () {
+    deleteee = '1'
+    localStorage.removeItem('note_id_' + noteid)
+    localStorage.setItem('note_id_list', localStorage.getItem('note_id_list').replaceAll(',' + noteid, ''))
+    setTimeout(function () {
+      location.href = 'https://erichsia7.github.io/note/?r=' + genid('random');
+    }, 100);
+  });
+
+  $('.bar_btn[f="pin"]').click(function () {
+    var pindervmsg = '';
+    if (pinned === '0') {
+      pindervmsg = 'Pinned!';
+      $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}');
+      pinned = '1';
+      save()
+    }
+    else {
+      pindervmsg = 'Unpinned!';
+      $('#pinsvgstyle').html(':root{--svg-pin-fill:rgba(0,0,0,0)}');
+      pinned = '0';
+      save()
+    }
+    $('body').prompt({ 'message': pindervmsg, 'time': 1200, 'animate': 'slide' });
+  });
+
+
+  function getsharelink() {
+    var encdtit = encu(enur($('.note_title').text()));
+    var enctxt = encu(enur($('.note_text').html()));
+    var shdatastr = encdtit[0] + ',' + enctxt[0] + ',' + color_h + ',' + pinned
+    var shdatapwd = encdtit[1].toString(32) + '_' + enctxt[1].toString(32);
+    return 'https://erichsia7.github.io/note/s/?d=' + shdatastr + '&pw=' + shdatapwd
+  }
+  $('.bar_btn[f="share"]').click(function () {
+    var c865bb62 = getsharelink()
+    $('#sharelink').val(c865bb62)
+    $('.sharebox').css({ 'display': 'block' });
+    $('.themeboxbg').css({ 'display': 'block' });
+    $('#colorhinp').val(color_h)
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'opacity': '0.6' });
+      $('.sharebox').css({ 'opacity': '1', 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      var qrcdarkcol = getcolorset(color_h).grey
+      var qrclightcol = getcolorset(color_h).dark
+    }
+    else {
+      var qrcdarkcol = getcolorset(color_h).ftf
+      var qrclightcol = getcolorset(color_h).light
+    }
+
+    if ($('#sharelink').val().length < 2500) {
+      document.querySelector('.qrc').innerHTML = '';
+      var qrcode = new QRCode(document.querySelector('.qrc'), {
+        text: $('#sharelink').val(),
+        width: 512,
+        height: 512,
+        colorDark: qrcdarkcol,
+        colorLight: qrclightcol,
+        correctLevel: QRCode.CorrectLevel.L
+      });
+    }
+    else {
+      document.querySelector('.qrc').innerHTML = 'The link is too long, so the QR Code cannot be used.';
+    }
+
+
+  });
+  $('.sharebtn[f="closeshare"]').click(function () {
+    $('.themeboxbg').css({ 'opacity': '0' });
+    $('.sharebox').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.themeboxbg').css({ 'display': 'none' });
+      $('.sharebox').css({ 'display': 'none' });
+    }, 300);
+  });
+  $('.sharebtn[f="copyshare"]').click(function () {
+    var copyText = $('#sharelink');
+    copyText.select();
+    document.execCommand("Copy");
+    $('body').prompt({ 'message': 'Link copied!', 'time': 1200, 'animate': 'slide' });
+  });
+  $(document).ready(function () {
+    var googlefontloadtime = new Date().getTime();
+    if (googlefontloadtime - parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
+      $('body').append('<style>' + localStorage.getItem('googlefontNotoSansTC') + '</style>');
+      console.log('loaded')
+    }
+    else {
+      $.ajax({
+        type: 'get', url: "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap", dataType: 'text', success: function (e) {
+          var googlefontloadtimedd = new Date().getTime();
+          localStorage.setItem('googlefontNotoSansTC', e); localStorage.setItem('googlefontNotoSansTCloaded', googlefontloadtimedd);
+          $('body').append('<style>' + e + '</style>');
+
+          console.log('loaded2')
+        }
+      });
     }
   });
- //gt
-});
- /*
-      $('.bar_btn[f="back"]').hover(function() {
-      caches.open('note_hover_cache').then(function(cache){
-            cache.addAll([
-                backurlzzff
-            ]);   
-        })  
-      console.log('cache!')
-     });
- */
- 
-function previewcolorset(colorh) {
-  $('#lig').css({'background':getcolorset(colorh).light})
-  $('#dar').css({'background':getcolorset(colorh).dark})
-  $('#gre').css({'background':getcolorset(colorh).grey})
-  $('#ft').css({'background':getcolorset(colorh).ftf})
-}
-      $.extend($.support, { touch: "ontouchend" in document });
- 
- var eventlistenert = ['touchstart','touchmove','touchend'] ;
- if($.support.touch) {
-  eventlistenert = ['touchstart','touchmove','touchend'] ;
- }
- else {
-  eventlistenert = ['mousedown','mousemove','mouseup'] ;
- }
-let mouseX = 0
-let mouseY = 0
-let offsetX = 0
-let offsetY = 0
-let isDown = false
-var div2 = document.querySelector(".themebar");
-var hsv_a = 0 ;
-var px = 0 ;
-var py = $('.box').height() ;
-
-div2.addEventListener(eventlistenert[0], function(e) {
-  isDown = true
-  mouseX = e.pageX
-  mouseY = e.pageY
-  document.addEventListener(eventlistenert[1], m2)
-}, {passive: true});
-
-document.addEventListener(eventlistenert[2], function(e) {
-  if (isDown) {
-    offsetX += e.pageX - mouseX
-    offsetY += e.pageY - mouseY
-  }
-  isDown = false
-  document.removeEventListener(eventlistenert[1],m2)
-});
-function m2(e) {
-  var bar_width = $('.themebar').width()
-  var px2 = (e.pageX-$('.themebar').offset().left-$(window).scrollLeft()) ;
-  if(e.pageX > ($('.themebar').offset().left-$(window).scrollLeft()+bar_width)) {
-    px2 = bar_width;
-  }
-  if(e.pageX < ($('.themebar').offset().left-$(window).scrollLeft())) {
-    px2 = 0;
-  }
-  $('#colorhinp').val(Math.round(px2/bar_width*359))
-previewcolorset(Math.round(px2/bar_width*359))
-  $('.themebarradio').css({'left':(px2-10),'background':'rgb(' + hsv2rgb(Math.round(px2/bar_width*359),100,100).join(',') + ')'})
-}
-
-
- $('.bar_btn[f="theme"]').click(function() {
-  $('.themebox').css({'display':'block'});
-  $('.themeboxbg').css({'display':'block'});
-  $('#colorhinp').val(color_h)
-previewcolorset(color_h)
-$('.themebarradio').css({'left':((color_h/359*$('.themebar').width())-10),'background':'rgb(' + hsv2rgb(color_h,100,100).join(',') + ')'})
-  setTimeout(function() {
-    $('.themeboxbg').css({'opacity':'0.6'});
-    $('.themebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
-  },1);
-});
- $('.themebtn[f="change"]').click(function() {
-  color_h = parseInt($('#colorhinp').val())
-  save();
-  $('#color_set').html(':root {--color-light:' + getcolorset(color_h).light + ';--color-dark:' + getcolorset(color_h).dark + ';--color-grey:' + getcolorset(color_h).grey + ';--color-ftf:' + getcolorset(color_h).ftf + '}')
-  setthemecol(darkmodehexcol())
-  $('.themeboxbg').css({'opacity':'0'});
- $('.themebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
-  setTimeout(function() {
-$('.themeboxbg').css({'display':'none'});
-  $('.themebox').css({'display':'none'});
-  },300);
-  $('body').prompt({'message':'Theme changed!','time':1200,'animate':'slide'});
- });
- 
- $('.deletebtn[f="confirmdel"]').click(function() {
-  deleteee = '1'
-  localStorage.removeItem('note_id_' + noteid)
-  localStorage.setItem('note_id_list',localStorage.getItem('note_id_list').replaceAll(',' + noteid,''))
-  setTimeout(function() {
-   location.href = 'https://erichsia7.github.io/note/?r=' + genid('random') ;
-  },100);
- });
- 
- $('.bar_btn[f="pin"]').click(function() {
-  var pindervmsg = '' ;
-  if(pinned === '0') {
-   pindervmsg = 'Pinned!' ;
- $('#pinsvgstyle').html(':root{--svg-pin-fill:var(--color-grey)}');
-  pinned = '1' ;
-  save()
-  }
-  else {
-   pindervmsg = 'Unpinned!' ;
-   $('#pinsvgstyle').html(':root{--svg-pin-fill:rgba(0,0,0,0)}');
-  pinned = '0' ;
-  save()
-  }
-  $('body').prompt({'message':pindervmsg,'time':1200,'animate':'slide'});
- });
- 
- 
- function getsharelink() {
-  var encdtit = encu(enur($('.note_title').text())) ;
-  var enctxt = encu(enur($('.note_text').html())) ;
-  var shdatastr = encdtit[0] + ',' + enctxt[0] + ',' + color_h + ',' + pinned
-  var shdatapwd = encdtit[1].toString(32) + '_' + enctxt[1].toString(32) ;
-  return 'https://erichsia7.github.io/note/s/?d=' + shdatastr + '&pw=' + shdatapwd
- }
- $('.bar_btn[f="share"]').click(function() {
-  var c865bb62 = getsharelink()
-  $('#sharelink').val(c865bb62)
-  $('.sharebox').css({'display':'block'});
-  $('.themeboxbg').css({'display':'block'});
-  $('#colorhinp').val(color_h)
-  setTimeout(function() {
-    $('.themeboxbg').css({'opacity':'0.6'});
-    $('.sharebox').css({'opacity':'1','transform':'translate(-50%,-50%) scale(1)'});
-  },1);
-  
-  if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-   var qrcdarkcol = getcolorset(color_h).grey
-   var qrclightcol = getcolorset(color_h).dark
-  }
-  else { 
-   var qrcdarkcol = getcolorset(color_h).ftf
-   var qrclightcol = getcolorset(color_h).light
-  }
-  
-  if($('#sharelink').val().length < 2500) {
-  document.querySelector('.qrc').innerHTML = '';
-var qrcode = new QRCode(document.querySelector('.qrc') , {
-    text: $('#sharelink').val(),
-    width: 512,
-    height: 512,
-    colorDark : qrcdarkcol,
-    colorLight : qrclightcol,
-    correctLevel : QRCode.CorrectLevel.L
-});
-  }
-  else {
-   document.querySelector('.qrc').innerHTML = 'The link is too long, so the QR Code cannot be used.';
-  }
-  
-  
- });
- $('.sharebtn[f="closeshare"]').click(function() {
- $('.themeboxbg').css({'opacity':'0'});
- $('.sharebox').css({'opacity':'0','transform':'translate(-50%,-50%) scale(0.8)'});
-  setTimeout(function() {
-$('.themeboxbg').css({'display':'none'});
-  $('.sharebox').css({'display':'none'});
-  },300);
- });
- $('.sharebtn[f="copyshare"]').click(function() {
- var copyText = $('#sharelink');
-        copyText.select();
-        document.execCommand("Copy");
-  $('body').prompt({'message':'Link copied!','time':1200,'animate':'slide'});
- });
-$(document).ready(function() {
-        var googlefontloadtime = new Date().getTime() ;
-        if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
-  $('body').append('<style>' + localStorage.getItem('googlefontNotoSansTC') + '</style>');
-  console.log('loaded')
-}
-else {
- $.ajax({type:'get',url:"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap",dataType:'text',success:function(e) {
-  var googlefontloadtimedd = new Date().getTime() ;
-  localStorage.setItem('googlefontNotoSansTC', e); localStorage.setItem('googlefontNotoSansTCloaded', googlefontloadtimedd);
-   $('body').append('<style>' + e + '</style>');
-   
-   console.log('loaded2')
-   }
-}); 
-}
-  });
 </script>
+
+</html>
